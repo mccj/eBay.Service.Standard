@@ -1,0 +1,7 @@
+﻿http://developer.ebay.com/webservices/latest/eBaySvc.wsdl
+
+以下属性无效
+mEnableComression
+moAuthToken
+mCallMetrics.NetworkSendStarted
+mWebProxy
