@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -178,7 +179,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="SetSellingManagerItemAutomationRuleResponseType.Fees"/> of type <see cref="FeeTypeCollection"/>.
 		/// </summary>
-		public FeeType[] FeeList
+		public List<FeeType> FeeList
 		{ 
 			get { return ApiResponse.Fees; }
 		}

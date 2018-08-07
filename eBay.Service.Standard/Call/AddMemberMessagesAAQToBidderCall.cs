@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -57,7 +58,7 @@ namespace eBay.Service.Call
 		/// An <b>AddMemberMessagesAAQToBidderRequestContainer</b> container is required for each message being sent to unique bidders/potential buyers.  A seller can send up to 10 messages to unique bidders/potential buyers in one <b>AddMemberMessagesAAQToBidder</b> call.
 		/// </param>
 		///
-		public AddMemberMessagesAAQToBidderResponseContainerType[] AddMemberMessagesAAQToBidder(AddMemberMessagesAAQToBidderRequestContainerType[] AddMemberMessagesAAQToBidderRequestContainerList)
+		public List<AddMemberMessagesAAQToBidderResponseContainerType> AddMemberMessagesAAQToBidder(List<AddMemberMessagesAAQToBidderRequestContainerType> AddMemberMessagesAAQToBidderRequestContainerList)
 		{
 			this.AddMemberMessagesAAQToBidderRequestContainerList = AddMemberMessagesAAQToBidderRequestContainerList;
 
@@ -103,7 +104,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="AddMemberMessagesAAQToBidderRequestType.AddMemberMessagesAAQToBidderRequestContainer"/> of type <see cref="AddMemberMessagesAAQToBidderRequestContainerTypeCollection"/>.
 		/// </summary>
-		public AddMemberMessagesAAQToBidderRequestContainerType[] AddMemberMessagesAAQToBidderRequestContainerList
+		public List<AddMemberMessagesAAQToBidderRequestContainerType> AddMemberMessagesAAQToBidderRequestContainerList
 		{ 
 			get { return ApiRequest.AddMemberMessagesAAQToBidderRequestContainer; }
 			set { ApiRequest.AddMemberMessagesAAQToBidderRequestContainer = value; }
@@ -113,7 +114,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="AddMemberMessagesAAQToBidderResponseType.AddMemberMessagesAAQToBidderResponseContainer"/> of type <see cref="AddMemberMessagesAAQToBidderResponseContainerTypeCollection"/>.
 		/// </summary>
-		public AddMemberMessagesAAQToBidderResponseContainerType[] AddMemberMessagesAAQToBidderResponseContainerList
+		public List<AddMemberMessagesAAQToBidderResponseContainerType> AddMemberMessagesAAQToBidderResponseContainerList
 		{ 
 			get { return ApiResponse.AddMemberMessagesAAQToBidderResponseContainer; }
 		}

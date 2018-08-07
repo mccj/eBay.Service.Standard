@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -62,7 +63,7 @@ namespace eBay.Service.Call
 		/// specified image.
 		/// </param>
 		///
-		public String[] ExtendSiteHostedPictures(String[] PictureURLList, int ExtensionInDays)
+		public List<string> ExtendSiteHostedPictures(List<string> PictureURLList, int ExtensionInDays)
 		{
 			this.PictureURLList = PictureURLList;
 			this.ExtensionInDays = ExtensionInDays;
@@ -107,9 +108,9 @@ namespace eBay.Service.Call
 
 		
  		/// <summary>
-		/// Gets or sets the <see cref="ExtendSiteHostedPicturesRequestType.PictureURL"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="ExtendSiteHostedPicturesRequestType.PictureURL"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] PictureURLList
+		public List<string> PictureURLList
 		{ 
 			get { return ApiRequest.PictureURL; }
 			set { ApiRequest.PictureURL = value; }
@@ -120,15 +121,15 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int ExtensionInDays
 		{ 
-			get { return ApiRequest.ExtensionInDays; }
+			get { return ApiRequest.ExtensionInDays.Value; }
 			set { ApiRequest.ExtensionInDays = value; }
 		}
 		
 		
  		/// <summary>
-		/// Gets the returned <see cref="ExtendSiteHostedPicturesResponseType.PictureURL"/> of type <see cref="StringCollection"/>.
+		/// Gets the returned <see cref="ExtendSiteHostedPicturesResponseType.PictureURL"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] PictureURLListReturn
+		public List<string> PictureURLListReturn
 		{ 
 			get { return ApiResponse.PictureURL; }
 		}

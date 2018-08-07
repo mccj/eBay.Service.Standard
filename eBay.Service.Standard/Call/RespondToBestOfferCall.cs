@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -82,7 +83,7 @@ namespace eBay.Service.Call
 		/// The seller inserts the quantity of items in the counter offer into this field. This field is conditionally required and only applicable when the <b>Action</b> value is set to <code>Counter</code>, The counter offer price must be specified in the <b>CounterOfferPrice</b> field if the seller is making a counter offer. This price should reflect the quantity of items in the counter offer. So, if the seller's counter offer 'unit' price is 15 dollars, and the item quantity is '2', the dollar value passed into the <b>CounterOfferPrice</b> field would be <code>30.0</code>.
 		/// </param>
 		///
-		public BestOfferType[] RespondToBestOffer(string ItemID, String[] BestOfferIDList, BestOfferActionCodeType Action, string SellerResponse, AmountType CounterOfferPrice, int CounterOfferQuantity)
+		public List<BestOfferType> RespondToBestOffer(string ItemID, List<string> BestOfferIDList, BestOfferActionCodeType Action, string SellerResponse, AmountType CounterOfferPrice, int CounterOfferQuantity)
 		{
 			this.ItemID = ItemID;
 			this.BestOfferIDList = BestOfferIDList;
@@ -99,7 +100,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public BestOfferType[] RespondToBestOffer(string ItemID, String[] BestOfferIDList, BestOfferActionCodeType Action, string SellerResponse)
+		public List<BestOfferType> RespondToBestOffer(string ItemID, List<string> BestOfferIDList, BestOfferActionCodeType Action, string SellerResponse)
 		{
 			this.ItemID = ItemID;
 			this.BestOfferIDList = BestOfferIDList;
@@ -152,9 +153,9 @@ namespace eBay.Service.Call
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="RespondToBestOfferRequestType.BestOfferID"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="RespondToBestOfferRequestType.BestOfferID"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] BestOfferIDList
+		public List<string> BestOfferIDList
 		{ 
 			get { return ApiRequest.BestOfferID; }
 			set { ApiRequest.BestOfferID = value; }
@@ -165,7 +166,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public BestOfferActionCodeType Action
 		{ 
-			get { return ApiRequest.Action; }
+			get { return ApiRequest.Action.Value; }
 			set { ApiRequest.Action = value; }
 		}
 		
@@ -192,7 +193,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int CounterOfferQuantity
 		{ 
-			get { return ApiRequest.CounterOfferQuantity; }
+			get { return ApiRequest.CounterOfferQuantity.Value; }
 			set { ApiRequest.CounterOfferQuantity = value; }
 		}
 		
@@ -200,7 +201,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="RespondToBestOfferResponseType.RespondToBestOffer"/> of type <see cref="BestOfferTypeCollection"/>.
 		/// </summary>
-		public BestOfferType[] RespondToBestOfferList
+		public List<BestOfferType> RespondToBestOfferList
 		{ 
 			get { return ApiResponse.RespondToBestOffer; }
 		}

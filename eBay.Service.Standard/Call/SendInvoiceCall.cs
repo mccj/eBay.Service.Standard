@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -171,7 +172,7 @@ namespace eBay.Service.Call
 		/// This field allows the seller to adjust the total cost of the order to account for an extra charge or to pass down a discount to the buyer.  The currency used in this field must be the same currency of the listing site. A positive value in this field indicates that the amount is an extra charge being paid to the seller by the buyer, and a negative value indicates that the amount is a discount given to the buyer by the seller.
 		/// </param>
 		///
-		public void SendInvoice(string ItemID, string TransactionID, string OrderID, InternationalShippingServiceOptionsType[] InternationalShippingServiceOptionsList, ShippingServiceOptionsType[] ShippingServiceOptionsList, SalesTaxType SalesTax, InsuranceOptionCodeType InsuranceOption, AmountType InsuranceFee, BuyerPaymentMethodCodeType[] PaymentMethodsList, string PayPalEmailAddress, string CheckoutInstructions, bool EmailCopyToSeller, AmountType CODCost, string SKU, string OrderLineItemID, AmountType AdjustmentAmount)
+		public void SendInvoice(string ItemID, string TransactionID, string OrderID, List<InternationalShippingServiceOptionsType> InternationalShippingServiceOptionsList, List<ShippingServiceOptionsType> ShippingServiceOptionsList, SalesTaxType SalesTax, InsuranceOptionCodeType InsuranceOption, AmountType InsuranceFee, List<BuyerPaymentMethodCodeType?> PaymentMethodsList, string PayPalEmailAddress, string CheckoutInstructions, bool EmailCopyToSeller, AmountType CODCost, string SKU, string OrderLineItemID, AmountType AdjustmentAmount)
 		{
 			this.ItemID = ItemID;
 			this.TransactionID = TransactionID;
@@ -198,7 +199,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public void SendInvoice(string ItemID, string TransactionID, ShippingServiceOptionsType[] ShippingServiceOptionsList)
+		public void SendInvoice(string ItemID, string TransactionID, List<ShippingServiceOptionsType> ShippingServiceOptionsList)
 		{
 			this.ItemID = ItemID;
 			this.TransactionID = TransactionID;
@@ -277,7 +278,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="SendInvoiceRequestType.InternationalShippingServiceOptions"/> of type <see cref="InternationalShippingServiceOptionsTypeCollection"/>.
 		/// </summary>
-		public InternationalShippingServiceOptionsType[] InternationalShippingServiceOptionsList
+		public List<InternationalShippingServiceOptionsType> InternationalShippingServiceOptionsList
 		{ 
 			get { return ApiRequest.InternationalShippingServiceOptions; }
 			set { ApiRequest.InternationalShippingServiceOptions = value; }
@@ -286,7 +287,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="SendInvoiceRequestType.ShippingServiceOptions"/> of type <see cref="ShippingServiceOptionsTypeCollection"/>.
 		/// </summary>
-		public ShippingServiceOptionsType[] ShippingServiceOptionsList
+		public List<ShippingServiceOptionsType> ShippingServiceOptionsList
 		{ 
 			get { return ApiRequest.ShippingServiceOptions; }
 			set { ApiRequest.ShippingServiceOptions = value; }
@@ -306,7 +307,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public InsuranceOptionCodeType InsuranceOption
 		{ 
-			get { return ApiRequest.InsuranceOption; }
+			get { return ApiRequest.InsuranceOption.Value; }
 			set { ApiRequest.InsuranceOption = value; }
 		}
 		
@@ -322,7 +323,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="SendInvoiceRequestType.PaymentMethods"/> of type <see cref="BuyerPaymentMethodCodeTypeCollection"/>.
 		/// </summary>
-		public BuyerPaymentMethodCodeType[] PaymentMethodsList
+		public List<BuyerPaymentMethodCodeType?> PaymentMethodsList
 		{ 
 			get { return ApiRequest.PaymentMethods; }
 			set { ApiRequest.PaymentMethods = value; }
@@ -351,7 +352,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool EmailCopyToSeller
 		{ 
-			get { return ApiRequest.EmailCopyToSeller; }
+			get { return ApiRequest.EmailCopyToSeller.Value; }
 			set { ApiRequest.EmailCopyToSeller = value; }
 		}
 		

@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -108,7 +109,7 @@ namespace eBay.Service.Call
 		/// Default: <code>Ascending</code>
 		/// </param>
 		///
-		public OrderType[] GetOrders(String[] OrderIDList, DateTime CreateTimeFrom, DateTime CreateTimeTo, TradingRoleCodeType OrderRole, OrderStatusCodeType OrderStatus, ListingTypeCodeType ListingType, PaginationType Pagination, DateTime ModTimeFrom, DateTime ModTimeTo, int NumberOfDays, bool IncludeFinalValueFee, SortOrderCodeType SortingOrder)
+		public List<OrderType> GetOrders(List<string> OrderIDList, DateTime CreateTimeFrom, DateTime CreateTimeTo, TradingRoleCodeType OrderRole, OrderStatusCodeType OrderStatus, ListingTypeCodeType ListingType, PaginationType Pagination, DateTime ModTimeFrom, DateTime ModTimeTo, int NumberOfDays, bool IncludeFinalValueFee, SortOrderCodeType SortingOrder)
 		{
 			this.OrderIDList = OrderIDList;
 			this.CreateTimeFrom = CreateTimeFrom;
@@ -131,7 +132,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public OrderType[] GetOrders(String[] OrderIDList)
+		public List<OrderType> GetOrders(List<string> OrderIDList)
 		{
 			this.OrderIDList = OrderIDList;
 			Execute();
@@ -140,7 +141,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public OrderType[] GetOrders(TimeFilter CreateTimeFilter, TradingRoleCodeType OrderRole, OrderStatusCodeType OrderStatus)
+		public List<OrderType> GetOrders(TimeFilter CreateTimeFilter, TradingRoleCodeType OrderRole, OrderStatusCodeType OrderStatus)
 		{
 			this.OrderRole = OrderRole;
 			this.OrderStatus = OrderStatus;
@@ -152,7 +153,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public OrderType[] GetOrders(DateTime CreateTimeFrom, DateTime CreateTimeTo, TradingRoleCodeType OrderRole, OrderStatusCodeType OrderStatus)
+		public List<OrderType> GetOrders(DateTime CreateTimeFrom, DateTime CreateTimeTo, TradingRoleCodeType OrderRole, OrderStatusCodeType OrderStatus)
 		{
 			this.OrderRole = OrderRole;
 			this.OrderStatus = OrderStatus;
@@ -196,12 +197,12 @@ namespace eBay.Service.Call
 
 		
  		/// <summary>
-		/// Gets or sets the <see cref="GetOrdersRequestType.OrderIDArray"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="GetOrdersRequestType.OrderIDArray"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] OrderIDList
+		public List<string> OrderIDList
 		{ 
 			get { return ApiRequest.OrderIDArray; }
-			set { ApiRequest.OrderIDArray = value; }
+			set { ApiRequest.OrderIDArray =value; }
 		}
 		
  		/// <summary>
@@ -209,7 +210,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime CreateTimeFrom
 		{ 
-			get { return ApiRequest.CreateTimeFrom; }
+			get { return ApiRequest.CreateTimeFrom.Value; }
 			set { ApiRequest.CreateTimeFrom = value; }
 		}
 		
@@ -218,7 +219,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime CreateTimeTo
 		{ 
-			get { return ApiRequest.CreateTimeTo; }
+			get { return ApiRequest.CreateTimeTo.Value; }
 			set { ApiRequest.CreateTimeTo = value; }
 		}
 		
@@ -227,7 +228,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public TradingRoleCodeType OrderRole
 		{ 
-			get { return ApiRequest.OrderRole; }
+			get { return ApiRequest.OrderRole.Value; }
 			set { ApiRequest.OrderRole = value; }
 		}
 		
@@ -236,7 +237,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public OrderStatusCodeType OrderStatus
 		{ 
-			get { return ApiRequest.OrderStatus; }
+			get { return ApiRequest.OrderStatus.Value; }
 			set { ApiRequest.OrderStatus = value; }
 		}
 		
@@ -245,7 +246,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public ListingTypeCodeType ListingType
 		{ 
-			get { return ApiRequest.ListingType; }
+			get { return ApiRequest.ListingType.Value; }
 			set { ApiRequest.ListingType = value; }
 		}
 		
@@ -263,7 +264,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime ModTimeFrom
 		{ 
-			get { return ApiRequest.ModTimeFrom; }
+			get { return ApiRequest.ModTimeFrom.Value; }
 			set { ApiRequest.ModTimeFrom = value; }
 		}
 		
@@ -272,7 +273,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime ModTimeTo
 		{ 
-			get { return ApiRequest.ModTimeTo; }
+			get { return ApiRequest.ModTimeTo.Value; }
 			set { ApiRequest.ModTimeTo = value; }
 		}
 		
@@ -281,7 +282,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int NumberOfDays
 		{ 
-			get { return ApiRequest.NumberOfDays; }
+			get { return ApiRequest.NumberOfDays.Value; }
 			set { ApiRequest.NumberOfDays = value; }
 		}
 		
@@ -290,7 +291,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeFinalValueFee
 		{ 
-			get { return ApiRequest.IncludeFinalValueFee; }
+			get { return ApiRequest.IncludeFinalValueFee.Value; }
 			set { ApiRequest.IncludeFinalValueFee = value; }
 		}
 		
@@ -299,7 +300,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public SortOrderCodeType SortingOrder
 		{ 
-			get { return ApiRequest.SortingOrder; }
+			get { return ApiRequest.SortingOrder.Value; }
 			set { ApiRequest.SortingOrder = value; }
 		}
 				/// <summary>
@@ -307,7 +308,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public TimeFilter CreateTimeFilter
 		{ 
-			get { return new TimeFilter(ApiRequest.CreateTimeFrom, ApiRequest.CreateTimeTo); }
+			get { return new TimeFilter(ApiRequest.CreateTimeFrom.Value, ApiRequest.CreateTimeTo.Value); }
 			set { 
 				if (value.TimeFrom > DateTime.MinValue)
 					ApiRequest.CreateTimeFrom = value.TimeFrom;
@@ -330,13 +331,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool HasMoreOrders
 		{ 
-			get { return ApiResponse.HasMoreOrders; }
+			get { return ApiResponse.HasMoreOrders.Value; }
 		}
-		
- 		/// <summary>
-		/// Gets the returned <see cref="GetOrdersResponseType.OrderArray"/> of type <see cref="OrderTypeCollection"/>.
-		/// </summary>
-		public OrderType[] OrderList
+
+        /// <summary>
+        /// Gets the returned <see cref="GetOrdersResponseType.OrderArray"/> of type <see cref="List<OrderType>"/>.
+        /// </summary>
+        public List<OrderType> OrderList
 		{ 
 			get { return ApiResponse.OrderArray; }
 		}
@@ -346,7 +347,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int OrdersPerPage
 		{ 
-			get { return ApiResponse.OrdersPerPage; }
+			get { return ApiResponse.OrdersPerPage.Value; }
 		}
 		
  		/// <summary>
@@ -354,7 +355,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int PageNumber
 		{ 
-			get { return ApiResponse.PageNumber; }
+			get { return ApiResponse.PageNumber.Value; }
 		}
 		
  		/// <summary>
@@ -362,7 +363,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int ReturnedOrderCountActual
 		{ 
-			get { return ApiResponse.ReturnedOrderCountActual; }
+			get { return ApiResponse.ReturnedOrderCountActual.Value; }
 		}
 		
 

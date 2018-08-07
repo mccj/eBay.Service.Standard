@@ -232,7 +232,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public FeedbackResponseCodeType ResponseType
 		{ 
-			get { return ApiRequest.ResponseType; }
+			get { return ApiRequest.ResponseType.Value; }
 			set { ApiRequest.ResponseType = value; }
 		}
 		

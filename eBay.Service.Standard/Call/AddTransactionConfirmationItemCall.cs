@@ -170,7 +170,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public RecipientRelationCodeType RecipientRelationType
 		{ 
-			get { return ApiRequest.RecipientRelationType; }
+			get { return ApiRequest.RecipientRelationType.Value; }
 			set { ApiRequest.RecipientRelationType = value; }
 		}
 		
@@ -188,7 +188,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public SecondChanceOfferDurationCodeType ListingDuration
 		{ 
-			get { return ApiRequest.ListingDuration; }
+			get { return ApiRequest.ListingDuration.Value; }
 			set { ApiRequest.ListingDuration = value; }
 		}
 		
@@ -224,7 +224,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartTime
 		{ 
-			get { return ApiResponse.StartTime; }
+			get { return ApiResponse.StartTime.Value; }
 		}
 		
  		/// <summary>
@@ -232,7 +232,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTime
 		{ 
-			get { return ApiResponse.EndTime; }
+			get { return ApiResponse.EndTime.Value; }
 		}
 		
 

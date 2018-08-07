@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -89,7 +90,7 @@ namespace eBay.Service.Call
 		/// This flag controls whether all eBay categories (that satisfy input filters) are returned, or only leaf categories (you can only list items in leaf categories) are returned. The default value is 'true', so if this field is omitted, all eBay categories will be returned. If you only want to retrieve leaf categories, include this flag and set it to 'false'. The actual data returned will vary depending on how you configure other fields in the request.
 		/// </param>
 		///
-		public CategoryType[] GetCategories(string CategorySiteID, String[] CategoryParent, int LevelLimit, bool ViewAllNodes)
+		public List<CategoryType> GetCategories(string CategorySiteID, List<string> CategoryParent, int LevelLimit, bool ViewAllNodes)
 		{
 			this.CategorySiteID = CategorySiteID;
 			this.CategoryParent = CategoryParent;
@@ -116,7 +117,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public CategoryType[] GetCategories()
+		public List<CategoryType> GetCategories()
 		{
 			Execute();
 			return CategoryList;
@@ -165,9 +166,9 @@ namespace eBay.Service.Call
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="GetCategoriesRequestType.CategoryParent"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="GetCategoriesRequestType.CategoryParent"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] CategoryParent
+		public List<string> CategoryParent
 		{ 
 			get { return ApiRequest.CategoryParent; }
 			set { ApiRequest.CategoryParent = value; }
@@ -178,7 +179,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int LevelLimit
 		{ 
-			get { return ApiRequest.LevelLimit; }
+			get { return ApiRequest.LevelLimit.Value; }
 			set { ApiRequest.LevelLimit = value; }
 		}
 		
@@ -187,7 +188,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ViewAllNodes
 		{ 
-			get { return ApiRequest.ViewAllNodes; }
+			get { return ApiRequest.ViewAllNodes.Value; }
 			set { ApiRequest.ViewAllNodes = value; }
 		}
 		
@@ -195,7 +196,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetCategoriesResponseType.CategoryArray"/> of type <see cref="CategoryTypeCollection"/>.
 		/// </summary>
-		public CategoryType[] CategoryList
+		public List<CategoryType> CategoryList
 		{ 
 			get { return ApiResponse.CategoryArray; }
 		}
@@ -205,7 +206,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int CategoryCount
 		{ 
-			get { return ApiResponse.CategoryCount; }
+			get { return ApiResponse.CategoryCount.Value; }
 		}
 		
  		/// <summary>
@@ -213,7 +214,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime UpdateTime
 		{ 
-			get { return ApiResponse.UpdateTime; }
+			get { return ApiResponse.UpdateTime.Value; }
 		}
 		
  		/// <summary>
@@ -229,7 +230,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ReservePriceAllowed
 		{ 
-			get { return ApiResponse.ReservePriceAllowed; }
+			get { return ApiResponse.ReservePriceAllowed.Value; }
 		}
 		
  		/// <summary>
@@ -237,7 +238,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public double MinimumReservePrice
 		{ 
-			get { return ApiResponse.MinimumReservePrice; }
+			get { return ApiResponse.MinimumReservePrice.Value; }
 		}
 		
  		/// <summary>
@@ -245,7 +246,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ReduceReserveAllowed
 		{ 
-			get { return ApiResponse.ReduceReserveAllowed; }
+			get { return ApiResponse.ReduceReserveAllowed.Value; }
 		}
 		
 

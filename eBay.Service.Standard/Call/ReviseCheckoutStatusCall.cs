@@ -336,7 +336,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public BuyerPaymentMethodCodeType PaymentMethodUsed
 		{ 
-			get { return ApiRequest.PaymentMethodUsed; }
+			get { return ApiRequest.PaymentMethodUsed.Value; }
 			set { ApiRequest.PaymentMethodUsed = value; }
 		}
 		
@@ -345,7 +345,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public CompleteStatusCodeType CheckoutStatus
 		{ 
-			get { return ApiRequest.CheckoutStatus; }
+			get { return ApiRequest.CheckoutStatus.Value; }
 			set { ApiRequest.CheckoutStatus = value; }
 		}
 		
@@ -363,7 +363,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShippingIncludedInTax
 		{ 
-			get { return ApiRequest.ShippingIncludedInTax; }
+			get { return ApiRequest.ShippingIncludedInTax.Value; }
 			set { ApiRequest.ShippingIncludedInTax = value; }
 		}
 		
@@ -372,7 +372,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public CheckoutMethodCodeType CheckoutMethod
 		{ 
-			get { return ApiRequest.CheckoutMethod; }
+			get { return ApiRequest.CheckoutMethod.Value; }
 			set { ApiRequest.CheckoutMethod = value; }
 		}
 		
@@ -381,7 +381,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public InsuranceSelectedCodeType InsuranceType
 		{ 
-			get { return ApiRequest.InsuranceType; }
+			get { return ApiRequest.InsuranceType.Value; }
 			set { ApiRequest.InsuranceType = value; }
 		}
 		
@@ -390,7 +390,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public RCSPaymentStatusCodeType PaymentStatus
 		{ 
-			get { return ApiRequest.PaymentStatus; }
+			get { return ApiRequest.PaymentStatus.Value; }
 			set { ApiRequest.PaymentStatus = value; }
 		}
 		

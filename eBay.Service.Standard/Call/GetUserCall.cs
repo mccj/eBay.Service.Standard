@@ -171,7 +171,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeExpressRequirements
 		{ 
-			get { return ApiRequest.IncludeExpressRequirements; }
+			get { return ApiRequest.IncludeExpressRequirements.Value; }
 			set { ApiRequest.IncludeExpressRequirements = value; }
 		}
 		
@@ -180,7 +180,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeFeatureEligibility
 		{ 
-			get { return ApiRequest.IncludeFeatureEligibility; }
+			get { return ApiRequest.IncludeFeatureEligibility.Value; }
 			set { ApiRequest.IncludeFeatureEligibility = value; }
 		}
 		

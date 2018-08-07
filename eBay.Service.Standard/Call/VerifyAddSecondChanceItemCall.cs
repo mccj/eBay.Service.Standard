@@ -97,7 +97,7 @@ namespace eBay.Service.Call
 			this.SellerMessage = SellerMessage;
 
 			Execute();
-			return ApiResponse.StartTime;
+			return ApiResponse.StartTime.Value;
 		}
 
 
@@ -179,7 +179,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public SecondChanceOfferDurationCodeType Duration
 		{ 
-			get { return ApiRequest.Duration; }
+			get { return ApiRequest.Duration.Value; }
 			set { ApiRequest.Duration = value; }
 		}
 		
@@ -215,7 +215,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartTime
 		{ 
-			get { return ApiResponse.StartTime; }
+			get { return ApiResponse.StartTime.Value; }
 		}
 		
  		/// <summary>
@@ -223,7 +223,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTime
 		{ 
-			get { return ApiResponse.EndTime; }
+			get { return ApiResponse.EndTime.Value; }
 		}
 		
 

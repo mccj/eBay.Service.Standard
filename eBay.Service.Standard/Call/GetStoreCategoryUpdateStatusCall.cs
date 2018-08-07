@@ -65,7 +65,7 @@ namespace eBay.Service.Call
 			this.TaskID = TaskID;
 
 			Execute();
-			return ApiResponse.Status;
+			return ApiResponse.Status.Value;
 		}
 
 
@@ -108,7 +108,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long TaskID
 		{ 
-			get { return ApiRequest.TaskID; }
+			get { return ApiRequest.TaskID.Value; }
 			set { ApiRequest.TaskID = value; }
 		}
 		
@@ -118,7 +118,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public TaskStatusCodeType Status
 		{ 
-			get { return ApiResponse.Status; }
+			get { return ApiResponse.Status.Value; }
 		}
 		
 

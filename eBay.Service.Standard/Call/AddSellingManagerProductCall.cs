@@ -124,7 +124,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long FolderID
 		{ 
-			get { return ApiRequest.FolderID; }
+			get { return ApiRequest.FolderID.Value; }
 			set { ApiRequest.FolderID = value; }
 		}
 		

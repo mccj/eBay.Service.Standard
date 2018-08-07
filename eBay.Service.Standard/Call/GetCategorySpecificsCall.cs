@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -134,7 +135,7 @@ namespace eBay.Service.Call
 		/// </span>
 		/// </param>
 		///
-		public RecommendationsType[] GetCategorySpecifics(String[] CategoryIDList, DateTime LastUpdateTime, int MaxNames, int MaxValuesPerName, string Name, CategoryItemSpecificsType[] CategorySpecificList, bool ExcludeRelationships, bool IncludeConfidence, bool CategorySpecificsFileInfo)
+		public List<RecommendationsType> GetCategorySpecifics(List<String> CategoryIDList, DateTime LastUpdateTime, int MaxNames, int MaxValuesPerName, string Name, List<CategoryItemSpecificsType>  CategorySpecificList, bool ExcludeRelationships, bool IncludeConfidence, bool CategorySpecificsFileInfo)
 		{
 			this.CategoryIDList = CategoryIDList;
 			this.LastUpdateTime = LastUpdateTime;
@@ -154,7 +155,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public RecommendationsType[] GetCategorySpecifics(String[] CategoryIDList)
+		public List<RecommendationsType> GetCategorySpecifics(List<String> CategoryIDList)
 		{
 			this.CategoryIDList = CategoryIDList;
 
@@ -197,9 +198,9 @@ namespace eBay.Service.Call
 
 		
  		/// <summary>
-		/// Gets or sets the <see cref="GetCategorySpecificsRequestType.CategoryID"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="GetCategorySpecificsRequestType.CategoryID"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] CategoryIDList
+		public List<String> CategoryIDList
 		{ 
 			get { return ApiRequest.CategoryID; }
 			set { ApiRequest.CategoryID = value; }
@@ -210,7 +211,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime LastUpdateTime
 		{ 
-			get { return ApiRequest.LastUpdateTime; }
+			get { return ApiRequest.LastUpdateTime.Value; }
 			set { ApiRequest.LastUpdateTime = value; }
 		}
 		
@@ -219,7 +220,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int MaxNames
 		{ 
-			get { return ApiRequest.MaxNames; }
+			get { return ApiRequest.MaxNames.Value; }
 			set { ApiRequest.MaxNames = value; }
 		}
 		
@@ -228,7 +229,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int MaxValuesPerName
 		{ 
-			get { return ApiRequest.MaxValuesPerName; }
+			get { return ApiRequest.MaxValuesPerName.Value; }
 			set { ApiRequest.MaxValuesPerName = value; }
 		}
 		
@@ -244,7 +245,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="GetCategorySpecificsRequestType.CategorySpecific"/> of type <see cref="CategoryItemSpecificsTypeCollection"/>.
 		/// </summary>
-		public CategoryItemSpecificsType[] CategorySpecificList
+		public List<CategoryItemSpecificsType>  CategorySpecificList
 		{ 
 			get { return ApiRequest.CategorySpecific; }
 			set { ApiRequest.CategorySpecific = value; }
@@ -255,7 +256,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ExcludeRelationships
 		{ 
-			get { return ApiRequest.ExcludeRelationships; }
+			get { return ApiRequest.ExcludeRelationships.Value; }
 			set { ApiRequest.ExcludeRelationships = value; }
 		}
 		
@@ -264,7 +265,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeConfidence
 		{ 
-			get { return ApiRequest.IncludeConfidence; }
+			get { return ApiRequest.IncludeConfidence.Value; }
 			set { ApiRequest.IncludeConfidence = value; }
 		}
 		
@@ -273,7 +274,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool CategorySpecificsFileInfo
 		{ 
-			get { return ApiRequest.CategorySpecificsFileInfo; }
+			get { return ApiRequest.CategorySpecificsFileInfo.Value; }
 			set { ApiRequest.CategorySpecificsFileInfo = value; }
 		}
 		
@@ -281,7 +282,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetCategorySpecificsResponseType.Recommendations"/> of type <see cref="RecommendationsTypeCollection"/>.
 		/// </summary>
-		public RecommendationsType[] RecommendationList
+		public List<RecommendationsType> RecommendationList
 		{ 
 			get { return ApiResponse.Recommendations; }
 		}

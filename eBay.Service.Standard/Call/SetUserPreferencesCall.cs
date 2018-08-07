@@ -266,7 +266,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool EmailShipmentTrackingNumberPreference
 		{ 
-			get { return ApiRequest.EmailShipmentTrackingNumberPreference; }
+			get { return ApiRequest.EmailShipmentTrackingNumberPreference.Value; }
 			set { ApiRequest.EmailShipmentTrackingNumberPreference = value; }
 		}
 		
@@ -275,7 +275,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool RequiredShipPhoneNumberPreference
 		{ 
-			get { return ApiRequest.RequiredShipPhoneNumberPreference; }
+			get { return ApiRequest.RequiredShipPhoneNumberPreference.Value; }
 			set { ApiRequest.RequiredShipPhoneNumberPreference = value; }
 		}
 		
@@ -302,7 +302,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool SellerThirdPartyCheckoutDisabled
 		{ 
-			get { return ApiRequest.SellerThirdPartyCheckoutDisabled; }
+			get { return ApiRequest.SellerThirdPartyCheckoutDisabled.Value; }
 			set { ApiRequest.SellerThirdPartyCheckoutDisabled = value; }
 		}
 		
@@ -320,7 +320,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool GlobalShippingProgramListingPreference
 		{ 
-			get { return ApiRequest.GlobalShippingProgramListingPreference; }
+			get { return ApiRequest.GlobalShippingProgramListingPreference.Value; }
 			set { ApiRequest.GlobalShippingProgramListingPreference = value; }
 		}
 		
@@ -329,7 +329,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool OverrideGSPserviceWithIntlService
 		{ 
-			get { return ApiRequest.OverrideGSPserviceWithIntlService; }
+			get { return ApiRequest.OverrideGSPserviceWithIntlService.Value; }
 			set { ApiRequest.OverrideGSPserviceWithIntlService = value; }
 		}
 		
@@ -338,7 +338,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool OutOfStockControlPreference
 		{ 
-			get { return ApiRequest.OutOfStockControlPreference; }
+			get { return ApiRequest.OutOfStockControlPreference.Value; }
 			set { ApiRequest.OutOfStockControlPreference = value; }
 		}
 		

@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -93,7 +94,7 @@ namespace eBay.Service.Call
 		/// <span class="tablenote"><b>Note:</b> Messages in the Sent folder of My Messages cannot be moved, marked as read, or flagged. </span>
 		/// </param>
 		///
-		public void ReviseMyMessages(String[] MessageIDList, String[] AlertIDList, bool Read, bool Flagged, long FolderID)
+		public void ReviseMyMessages(List<string> MessageIDList, List<string> AlertIDList, bool Read, bool Flagged, long FolderID)
 		{
 			this.MessageIDList = MessageIDList;
 			this.AlertIDList = AlertIDList;
@@ -109,7 +110,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public void ReviseMyMessages(bool Read, bool Flagged, String[] MessageIDList)
+		public void ReviseMyMessages(bool Read, bool Flagged, List<string> MessageIDList)
 		{
 			this.Read = Read;
 			this.Flagged = Flagged;
@@ -151,18 +152,18 @@ namespace eBay.Service.Call
 
 		
  		/// <summary>
-		/// Gets or sets the <see cref="ReviseMyMessagesRequestType.MessageIDs"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="ReviseMyMessagesRequestType.MessageIDs"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] MessageIDList
+		public List<string> MessageIDList
 		{ 
 			get { return ApiRequest.MessageIDs; }
 			set { ApiRequest.MessageIDs = value; }
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="ReviseMyMessagesRequestType.AlertIDs"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="ReviseMyMessagesRequestType.AlertIDs"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] AlertIDList
+		public List<string> AlertIDList
 		{ 
 			get { return ApiRequest.AlertIDs; }
 			set { ApiRequest.AlertIDs = value; }
@@ -173,7 +174,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool Read
 		{ 
-			get { return ApiRequest.Read; }
+			get { return ApiRequest.Read.Value; }
 			set { ApiRequest.Read = value; }
 		}
 		
@@ -182,7 +183,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool Flagged
 		{ 
-			get { return ApiRequest.Flagged; }
+			get { return ApiRequest.Flagged.Value; }
 			set { ApiRequest.Flagged = value; }
 		}
 		
@@ -191,7 +192,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long FolderID
 		{ 
-			get { return ApiRequest.FolderID; }
+			get { return ApiRequest.FolderID.Value; }
 			set { ApiRequest.FolderID = value; }
 		}
 		

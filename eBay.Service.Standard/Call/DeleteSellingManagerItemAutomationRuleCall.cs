@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -128,7 +129,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool DeleteAutomatedRelistingRule
 		{ 
-			get { return ApiRequest.DeleteAutomatedRelistingRule; }
+			get { return ApiRequest.DeleteAutomatedRelistingRule.Value; }
 			set { ApiRequest.DeleteAutomatedRelistingRule = value; }
 		}
 		
@@ -137,7 +138,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool DeleteAutomatedSecondChanceOfferRule
 		{ 
-			get { return ApiRequest.DeleteAutomatedSecondChanceOfferRule; }
+			get { return ApiRequest.DeleteAutomatedSecondChanceOfferRule.Value; }
 			set { ApiRequest.DeleteAutomatedSecondChanceOfferRule = value; }
 		}
 		
@@ -167,9 +168,9 @@ namespace eBay.Service.Call
 		}
 		
  		/// <summary>
-		/// Gets the returned <see cref="DeleteSellingManagerItemAutomationRuleResponseType.Fees"/> of type <see cref="FeeTypeCollection"/>.
+		/// Gets the returned <see cref="DeleteSellingManagerItemAutomationRuleResponseType.Fees"/> of type <see cref="List<FeeType>"/>.
 		/// </summary>
-		public FeeType[] FeeList
+		public List<FeeType> FeeList
 		{ 
 			get { return ApiResponse.Fees; }
 		}

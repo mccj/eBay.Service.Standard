@@ -184,7 +184,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime HardExpirationTime
 		{ 
-			get { return ApiResponse.HardExpirationTime; }
+			get { return ApiResponse.HardExpirationTime.Value; }
 		}
 		
  		/// <summary>

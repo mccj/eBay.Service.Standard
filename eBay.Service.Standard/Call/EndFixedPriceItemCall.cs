@@ -81,7 +81,7 @@ namespace eBay.Service.Call
 			this.SKU = SKU;
 
 			Execute();
-			return ApiResponse.EndTime;
+			return ApiResponse.EndTime.Value;
 		}
 
 
@@ -133,7 +133,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public EndReasonCodeType EndingReason
 		{ 
-			get { return ApiRequest.EndingReason; }
+			get { return ApiRequest.EndingReason.Value; }
 			set { ApiRequest.EndingReason = value; }
 		}
 		
@@ -152,7 +152,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTime
 		{ 
-			get { return ApiResponse.EndTime; }
+			get { return ApiResponse.EndTime.Value; }
 		}
 		
  		/// <summary>

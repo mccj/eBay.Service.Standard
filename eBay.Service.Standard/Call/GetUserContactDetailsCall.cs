@@ -159,7 +159,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime RegistrationDate
 		{ 
-			get { return ApiResponse.RegistrationDate; }
+			get { return ApiResponse.RegistrationDate.Value; }
 		}
 		
 

@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -81,7 +82,7 @@ namespace eBay.Service.Call
 		/// One or more <b>Filter</b> fields can be used to retrieve Selling Manager Inventory that is in a certain state, such as active listings, inactive listings, or listings that are low in stock.
 		/// </param>
 		///
-		public DateTime GetSellingManagerInventory(SellingManagerProductSortCodeType Sort, long FolderID, PaginationType Pagination, SortOrderCodeType SortOrder, SellingManagerSearchType Search, long StoreCategoryID, SellingManagerInventoryPropertyTypeCodeType[] FilterList)
+		public DateTime GetSellingManagerInventory(SellingManagerProductSortCodeType Sort, long FolderID, PaginationType Pagination, SortOrderCodeType SortOrder, SellingManagerSearchType Search, long StoreCategoryID, List<SellingManagerInventoryPropertyTypeCodeType?> FilterList)
 		{
 			this.Sort = Sort;
 			this.FolderID = FolderID;
@@ -92,7 +93,7 @@ namespace eBay.Service.Call
 			this.FilterList = FilterList;
 
 			Execute();
-			return ApiResponse.InventoryCountLastCalculatedDate;
+			return ApiResponse.InventoryCountLastCalculatedDate.Value;
 		}
 
 
@@ -135,7 +136,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public SellingManagerProductSortCodeType Sort
 		{ 
-			get { return ApiRequest.Sort; }
+			get { return ApiRequest.Sort.Value; }
 			set { ApiRequest.Sort = value; }
 		}
 		
@@ -144,7 +145,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long FolderID
 		{ 
-			get { return ApiRequest.FolderID; }
+			get { return ApiRequest.FolderID.Value; }
 			set { ApiRequest.FolderID = value; }
 		}
 		
@@ -162,7 +163,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public SortOrderCodeType SortOrder
 		{ 
-			get { return ApiRequest.SortOrder; }
+			get { return ApiRequest.SortOrder.Value; }
 			set { ApiRequest.SortOrder = value; }
 		}
 		
@@ -180,14 +181,14 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long StoreCategoryID
 		{ 
-			get { return ApiRequest.StoreCategoryID; }
+			get { return ApiRequest.StoreCategoryID.Value; }
 			set { ApiRequest.StoreCategoryID = value; }
 		}
 		
  		/// <summary>
 		/// Gets or sets the <see cref="GetSellingManagerInventoryRequestType.Filter"/> of type <see cref="SellingManagerInventoryPropertyTypeCodeTypeCollection"/>.
 		/// </summary>
-		public SellingManagerInventoryPropertyTypeCodeType[] FilterList
+		public List<SellingManagerInventoryPropertyTypeCodeType?> FilterList
 		{ 
 			get { return ApiRequest.Filter; }
 			set { ApiRequest.Filter = value; }
@@ -199,13 +200,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime InventoryCountLastCalculatedDate
 		{ 
-			get { return ApiResponse.InventoryCountLastCalculatedDate; }
+			get { return ApiResponse.InventoryCountLastCalculatedDate.Value; }
 		}
 		
  		/// <summary>
 		/// Gets the returned <see cref="GetSellingManagerInventoryResponseType.SellingManagerProduct"/> of type <see cref="SellingManagerProductTypeCollection"/>.
 		/// </summary>
-		public SellingManagerProductType[] SellingManagerProductList
+		public List<SellingManagerProductType> SellingManagerProductList
 		{ 
 			get { return ApiResponse.SellingManagerProduct; }
 		}

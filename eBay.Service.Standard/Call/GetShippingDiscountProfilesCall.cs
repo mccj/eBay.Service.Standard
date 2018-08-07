@@ -57,7 +57,7 @@ namespace eBay.Service.Call
 		{
 
 			Execute();
-			return ApiResponse.CurrencyID;
+			return ApiResponse.CurrencyID.Value;
 		}
 
 
@@ -101,7 +101,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public CurrencyCodeType CurrencyID
 		{ 
-			get { return ApiResponse.CurrencyID; }
+			get { return ApiResponse.CurrencyID.Value; }
 		}
 		
  		/// <summary>
@@ -125,7 +125,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool PromotionalShippingDiscount
 		{ 
-			get { return ApiResponse.PromotionalShippingDiscount; }
+			get { return ApiResponse.PromotionalShippingDiscount.Value; }
 		}
 		
  		/// <summary>
@@ -165,7 +165,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public CombinedPaymentPeriodCodeType CombinedDuration
 		{ 
-			get { return ApiResponse.CombinedDuration; }
+			get { return ApiResponse.CombinedDuration.Value; }
 		}
 		
 

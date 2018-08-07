@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -68,7 +69,7 @@ namespace eBay.Service.Call
 		/// 
 		/// </param>
 		///
-		public void SetSellingManagerFeedbackOptions(AutomatedLeaveFeedbackEventCodeType AutomatedLeaveFeedbackEvent, String[] StoredCommentList)
+		public void SetSellingManagerFeedbackOptions(AutomatedLeaveFeedbackEventCodeType AutomatedLeaveFeedbackEvent, List<string> StoredCommentList)
 		{
 			this.AutomatedLeaveFeedbackEvent = AutomatedLeaveFeedbackEvent;
 			this.StoredCommentList = StoredCommentList;
@@ -117,14 +118,14 @@ namespace eBay.Service.Call
 		/// </summary>
 		public AutomatedLeaveFeedbackEventCodeType AutomatedLeaveFeedbackEvent
 		{ 
-			get { return ApiRequest.AutomatedLeaveFeedbackEvent; }
+			get { return ApiRequest.AutomatedLeaveFeedbackEvent.Value; }
 			set { ApiRequest.AutomatedLeaveFeedbackEvent = value; }
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="SetSellingManagerFeedbackOptionsRequestType.StoredComments"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="SetSellingManagerFeedbackOptionsRequestType.StoredComments"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] StoredCommentList
+		public List<string> StoredCommentList
 		{ 
 			get { return ApiRequest.StoredComments; }
 			set { ApiRequest.StoredComments = value; }

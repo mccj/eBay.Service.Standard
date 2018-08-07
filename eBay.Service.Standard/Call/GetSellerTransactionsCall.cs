@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -142,7 +143,7 @@ namespace eBay.Service.Call
 		/// Codice Fiscale is only applicable to buyers on the Italy and Spain sites. It is required that buyers on the Italy site provide their Codice Fiscale ID before buying an item, and sellers on the Spain site have the option of requiring buyers on the Spain site to provide their taxpayer ID.
 		/// </param>
 		///
-		public TransactionType[] GetSellerTransactions(DateTime ModTimeFrom, DateTime ModTimeTo, PaginationType Pagination, bool IncludeFinalValueFee, bool IncludeContainingOrder, String[] SKUArrayList, TransactionPlatformCodeType Platform, int NumberOfDays, InventoryTrackingMethodCodeType InventoryTrackingMethod, bool IncludeCodiceFiscale)
+		public List<TransactionType> GetSellerTransactions(DateTime ModTimeFrom, DateTime ModTimeTo, PaginationType Pagination, bool IncludeFinalValueFee, bool IncludeContainingOrder, List<string> SKUArrayList, TransactionPlatformCodeType Platform, int NumberOfDays, InventoryTrackingMethodCodeType InventoryTrackingMethod, bool IncludeCodiceFiscale)
 		{
 			this.ModTimeFrom = ModTimeFrom;
 			this.ModTimeTo = ModTimeTo;
@@ -163,7 +164,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public TransactionType[] GetSellerTransactions(TimeFilter ModTimeFilter)
+		public List<TransactionType> GetSellerTransactions(TimeFilter ModTimeFilter)
 		{
 			this.ModTimeFilter = ModTimeFilter;
 			Execute();
@@ -172,7 +173,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public TransactionType[] GetSellerTransactions(DateTime TimeFrom, DateTime TimeTo)
+		public List<TransactionType> GetSellerTransactions(DateTime TimeFrom, DateTime TimeTo)
 		{
 			this.ModTimeFilter = new TimeFilter(TimeFrom, TimeTo);
 			Execute();
@@ -217,7 +218,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime ModTimeFrom
 		{ 
-			get { return ApiRequest.ModTimeFrom; }
+			get { return ApiRequest.ModTimeFrom.Value; }
 			set { ApiRequest.ModTimeFrom = value; }
 		}
 		
@@ -226,7 +227,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime ModTimeTo
 		{ 
-			get { return ApiRequest.ModTimeTo; }
+			get { return ApiRequest.ModTimeTo.Value; }
 			set { ApiRequest.ModTimeTo = value; }
 		}
 		
@@ -244,7 +245,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeFinalValueFee
 		{ 
-			get { return ApiRequest.IncludeFinalValueFee; }
+			get { return ApiRequest.IncludeFinalValueFee.Value; }
 			set { ApiRequest.IncludeFinalValueFee = value; }
 		}
 		
@@ -253,14 +254,14 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeContainingOrder
 		{ 
-			get { return ApiRequest.IncludeContainingOrder; }
+			get { return ApiRequest.IncludeContainingOrder.Value; }
 			set { ApiRequest.IncludeContainingOrder = value; }
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="GetSellerTransactionsRequestType.SKUArray"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="GetSellerTransactionsRequestType.SKUArray"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] SKUArrayList
+		public List<string> SKUArrayList
 		{ 
 			get { return ApiRequest.SKUArray; }
 			set { ApiRequest.SKUArray = value; }
@@ -271,7 +272,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public TransactionPlatformCodeType Platform
 		{ 
-			get { return ApiRequest.Platform; }
+			get { return ApiRequest.Platform.Value; }
 			set { ApiRequest.Platform = value; }
 		}
 		
@@ -280,7 +281,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int NumberOfDays
 		{ 
-			get { return ApiRequest.NumberOfDays; }
+			get { return ApiRequest.NumberOfDays.Value; }
 			set { ApiRequest.NumberOfDays = value; }
 		}
 		
@@ -289,7 +290,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public InventoryTrackingMethodCodeType InventoryTrackingMethod
 		{ 
-			get { return ApiRequest.InventoryTrackingMethod; }
+			get { return ApiRequest.InventoryTrackingMethod.Value; }
 			set { ApiRequest.InventoryTrackingMethod = value; }
 		}
 		
@@ -298,7 +299,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeCodiceFiscale
 		{ 
-			get { return ApiRequest.IncludeCodiceFiscale; }
+			get { return ApiRequest.IncludeCodiceFiscale.Value; }
 			set { ApiRequest.IncludeCodiceFiscale = value; }
 		}
 				/// <summary>
@@ -306,7 +307,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public TimeFilter ModTimeFilter
 		{ 
-			get { return new TimeFilter(ApiRequest.ModTimeFrom, ApiRequest.ModTimeTo); }
+			get { return new TimeFilter(ApiRequest.ModTimeFrom.Value, ApiRequest.ModTimeTo.Value); }
 			set 
 			{
 				if (value.TimeFrom > DateTime.MinValue)
@@ -330,7 +331,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool HasMoreTransactions
 		{ 
-			get { return ApiResponse.HasMoreTransactions; }
+			get { return ApiResponse.HasMoreTransactions.Value; }
 		}
 		
  		/// <summary>
@@ -338,7 +339,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int TransactionsPerPage
 		{ 
-			get { return ApiResponse.TransactionsPerPage; }
+			get { return ApiResponse.TransactionsPerPage.Value; }
 		}
 		
  		/// <summary>
@@ -346,7 +347,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int PageNumber
 		{ 
-			get { return ApiResponse.PageNumber; }
+			get { return ApiResponse.PageNumber.Value; }
 		}
 		
  		/// <summary>
@@ -354,7 +355,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int ReturnedTransactionCountActual
 		{ 
-			get { return ApiResponse.ReturnedTransactionCountActual; }
+			get { return ApiResponse.ReturnedTransactionCountActual.Value; }
 		}
 		
  		/// <summary>
@@ -368,7 +369,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetSellerTransactionsResponseType.TransactionArray"/> of type <see cref="TransactionTypeCollection"/>.
 		/// </summary>
-		public TransactionType[] TransactionList
+		public List<TransactionType> TransactionList
 		{ 
 			get { return ApiResponse.TransactionArray; }
 		}
@@ -378,7 +379,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool PayPalPreferred
 		{ 
-			get { return ApiResponse.PayPalPreferred; }
+			get { return ApiResponse.PayPalPreferred.Value; }
 		}
 		
 

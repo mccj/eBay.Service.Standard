@@ -147,7 +147,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int FeedbackScore
 		{ 
-			get { return ApiRequest.FeedbackScore; }
+			get { return ApiRequest.FeedbackScore.Value; }
 			set { ApiRequest.FeedbackScore = value; }
 		}
 		
@@ -156,7 +156,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime RegistrationDate
 		{ 
-			get { return ApiRequest.RegistrationDate; }
+			get { return ApiRequest.RegistrationDate.Value; }
 			set { ApiRequest.RegistrationDate = value; }
 		}
 		
@@ -165,7 +165,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool SubscribeSA
 		{ 
-			get { return ApiRequest.SubscribeSA; }
+			get { return ApiRequest.SubscribeSA.Value; }
 			set { ApiRequest.SubscribeSA = value; }
 		}
 		
@@ -174,7 +174,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool SubscribeSAPro
 		{ 
-			get { return ApiRequest.SubscribeSAPro; }
+			get { return ApiRequest.SubscribeSAPro.Value; }
 			set { ApiRequest.SubscribeSAPro = value; }
 		}
 		
@@ -183,7 +183,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool SubscribeSM
 		{ 
-			get { return ApiRequest.SubscribeSM; }
+			get { return ApiRequest.SubscribeSM.Value; }
 			set { ApiRequest.SubscribeSM = value; }
 		}
 		
@@ -192,7 +192,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool SubscribeSMPro
 		{ 
-			get { return ApiRequest.SubscribeSMPro; }
+			get { return ApiRequest.SubscribeSMPro.Value; }
 			set { ApiRequest.SubscribeSMPro = value; }
 		}
 		

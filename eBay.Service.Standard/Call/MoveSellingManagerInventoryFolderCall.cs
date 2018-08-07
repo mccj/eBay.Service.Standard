@@ -113,7 +113,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long FolderID
 		{ 
-			get { return ApiRequest.FolderID; }
+			get { return ApiRequest.FolderID.Value; }
 			set { ApiRequest.FolderID = value; }
 		}
 		
@@ -122,7 +122,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long NewParentFolderID
 		{ 
-			get { return ApiRequest.NewParentFolderID; }
+			get { return ApiRequest.NewParentFolderID.Value; }
 			set { ApiRequest.NewParentFolderID = value; }
 		}
 		

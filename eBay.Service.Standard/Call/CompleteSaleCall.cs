@@ -277,7 +277,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool Shipped
 		{ 
-			get { return ApiRequest.Shipped; }
+			get { return ApiRequest.Shipped.Value; }
 			set { ApiRequest.Shipped = value; }
 		}
 		
@@ -286,7 +286,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool Paid
 		{ 
-			get { return ApiRequest.Paid; }
+			get { return ApiRequest.Paid.Value; }
 			set { ApiRequest.Paid = value; }
 		}
 		
@@ -295,7 +295,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public ListingTypeCodeType ListingType
 		{ 
-			get { return ApiRequest.ListingType; }
+			get { return ApiRequest.ListingType.Value; }
 			set { ApiRequest.ListingType = value; }
 		}
 		

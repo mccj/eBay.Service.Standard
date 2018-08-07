@@ -73,7 +73,7 @@ namespace eBay.Service.Call
 			this.Comment = Comment;
 
 			Execute();
-			return ApiResponse.FolderID;
+			return ApiResponse.FolderID.Value;
 		}
 
 
@@ -125,7 +125,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long ParentFolderID
 		{ 
-			get { return ApiRequest.ParentFolderID; }
+			get { return ApiRequest.ParentFolderID.Value; }
 			set { ApiRequest.ParentFolderID = value; }
 		}
 		
@@ -144,7 +144,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long FolderID
 		{ 
-			get { return ApiResponse.FolderID; }
+			get { return ApiResponse.FolderID.Value; }
 		}
 		
 

@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -21,112 +22,112 @@ using eBay.Service.Util;
 namespace eBay.Service.Call
 {
 
-	/// <summary>
-	/// 
-	/// </summary>
-	[ClassInterface(ClassInterfaceType.AutoDispatch)]
-	public class DeleteMyMessagesCall : ApiCall
-	{
+    /// <summary>
+    /// 
+    /// </summary>
+    [ClassInterface(ClassInterfaceType.AutoDispatch)]
+    public class DeleteMyMessagesCall : ApiCall
+    {
 
-		#region Constructors
-		/// <summary>
-		/// 
-		/// </summary>
-		public DeleteMyMessagesCall()
-		{
-			ApiRequest = new DeleteMyMessagesRequestType();
-		}
+        #region Constructors
+        /// <summary>
+        /// 
+        /// </summary>
+        public DeleteMyMessagesCall()
+        {
+            ApiRequest = new DeleteMyMessagesRequestType();
+        }
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="ApiContext">The <see cref="ApiCall.ApiContext"/> for this API Call of type <see cref="ApiContext"/>.</param>
-		public DeleteMyMessagesCall(ApiContext ApiContext)
-		{
-			ApiRequest = new DeleteMyMessagesRequestType();
-			this.ApiContext = ApiContext;
-		}
-		#endregion
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ApiContext">The <see cref="ApiCall.ApiContext"/> for this API Call of type <see cref="ApiContext"/>.</param>
+        public DeleteMyMessagesCall(ApiContext ApiContext)
+        {
+            ApiRequest = new DeleteMyMessagesRequestType();
+            this.ApiContext = ApiContext;
+        }
+        #endregion
 
-		#region Public Methods
-		/// <summary>
-		/// Removes selected messages for a given user.
-		/// </summary>
-		/// 
-		/// <param name="AlertIDList">
-		/// This field is deprecated.
-		/// </param>
-		///
-		/// <param name="MessageIDList">
-		/// Contains a list of up to 10 <b>MessageID</b> values.
-		/// </param>
-		///
-		public void DeleteMyMessages(String[] AlertIDList, String[] MessageIDList)
-		{
-			this.AlertIDList = AlertIDList;
-			this.MessageIDList = MessageIDList;
+        #region Public Methods
+        /// <summary>
+        /// Removes selected messages for a given user.
+        /// </summary>
+        /// 
+        /// <param name="AlertIDList">
+        /// This field is deprecated.
+        /// </param>
+        ///
+        /// <param name="MessageIDList">
+        /// Contains a list of up to 10 <b>MessageID</b> values.
+        /// </param>
+        ///
+        public void DeleteMyMessages(List<string> AlertIDList, List<string> MessageIDList)
+        {
+            this.AlertIDList = AlertIDList;
+            this.MessageIDList = MessageIDList;
 
-			Execute();
-			
-		}
+            Execute();
 
-
-
-		#endregion
+        }
 
 
 
+        #endregion
 
-		#region Properties
-		/// <summary>
-		/// The base interface object.
-		/// </summary>
-		/// <remarks>This property is reserved for users who have difficulty querying multiple interfaces.</remarks>
-		public ApiCall ApiCallBase
-		{
-			get { return this; }
-		}
 
-		/// <summary>
-		/// Gets or sets the <see cref="DeleteMyMessagesRequestType"/> for this API call.
-		/// </summary>
-		public DeleteMyMessagesRequestType ApiRequest
-		{ 
-			get { return (DeleteMyMessagesRequestType) AbstractRequest; }
-			set { AbstractRequest = value; }
-		}
 
-		/// <summary>
-		/// Gets the <see cref="DeleteMyMessagesResponseType"/> for this API call.
-		/// </summary>
-		public DeleteMyMessagesResponseType ApiResponse
-		{ 
-			get { return (DeleteMyMessagesResponseType) AbstractResponse; }
-		}
 
-		
- 		/// <summary>
-		/// Gets or sets the <see cref="DeleteMyMessagesRequestType.AlertIDs"/> of type <see cref="StringCollection"/>.
-		/// </summary>
-		public String[] AlertIDList
-		{ 
-			get { return ApiRequest.AlertIDs; }
-			set { ApiRequest.AlertIDs = value; }
-		}
-		
- 		/// <summary>
-		/// Gets or sets the <see cref="DeleteMyMessagesRequestType.MessageIDs"/> of type <see cref="StringCollection"/>.
-		/// </summary>
-		public String[] MessageIDList
-		{ 
-			get { return ApiRequest.MessageIDs; }
-			set { ApiRequest.MessageIDs = value; }
-		}
-		
-		
+        #region Properties
+        /// <summary>
+        /// The base interface object.
+        /// </summary>
+        /// <remarks>This property is reserved for users who have difficulty querying multiple interfaces.</remarks>
+        public ApiCall ApiCallBase
+        {
+            get { return this; }
+        }
 
-		#endregion
+        /// <summary>
+        /// Gets or sets the <see cref="DeleteMyMessagesRequestType"/> for this API call.
+        /// </summary>
+        public DeleteMyMessagesRequestType ApiRequest
+        {
+            get { return (DeleteMyMessagesRequestType)AbstractRequest; }
+            set { AbstractRequest = value; }
+        }
 
-		
-	}
+        /// <summary>
+        /// Gets the <see cref="DeleteMyMessagesResponseType"/> for this API call.
+        /// </summary>
+        public DeleteMyMessagesResponseType ApiResponse
+        {
+            get { return (DeleteMyMessagesResponseType)AbstractResponse; }
+        }
+
+
+        /// <summary>
+        /// Gets or sets the <see cref="DeleteMyMessagesRequestType.AlertIDs"/> of type <see cref="List<string>"/>.
+        /// </summary>
+        public List<string> AlertIDList
+        {
+            get { return ApiRequest.AlertIDs; }
+            set { ApiRequest.AlertIDs = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="DeleteMyMessagesRequestType.MessageIDs"/> of type <see cref="List<string>"/>.
+        /// </summary>
+        public List<string> MessageIDList
+        {
+            get { return ApiRequest.MessageIDs; }
+            set { ApiRequest.MessageIDs = value; }
+        }
+
+
+
+        #endregion
+
+
+    }
 }

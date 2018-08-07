@@ -86,17 +86,10 @@ namespace eBay.Service.Core.Sdk
                 //mCallMetrics速度监控
 
 
-                var endpointAddress = new System.ServiceModel.EndpointAddress(url);
-                var binding = new System.ServiceModel.BasicHttpsBinding()
-                {
-                    CloseTimeout = TimeSpan.FromMilliseconds(Timeout),
-                    MaxBufferPoolSize = int.MaxValue,
-                    MaxBufferSize = int.MaxValue,
-                    MaxReceivedMessageSize = int.MaxValue
-                };
-                var eBayAPIInterfaceClient = new eBay.Service.Core.Soap.eBayAPIInterfaceClient(binding, endpointAddress);
-                var 报文 = new 报文();
-                eBayAPIInterfaceClient.Endpoint.EndpointBehaviors.Add(new ContextPropagationBehavior(报文));
+
+                var eBayAPIInterfaceClient = eBayAPIInstance.Instance.GeteBayAPIClient(url, timeout: this.Timeout);
+                //var 报文 = new 报文();
+                //eBayAPIInterfaceClient.Endpoint.EndpointBehaviors.Add(new ContextPropagationBehavior(报文));
                 //PropertyInfo pi;
 
                 //pi = this.mServiceType.GetProperty("ApiLogManager");
@@ -171,8 +164,10 @@ namespace eBay.Service.Core.Sdk
                 //object[] reqparm = new object[] { AbstractRequest };
 
                 CustomSecurityHeaderType secHdr = this.GetSecurityHeader();
-                var request = System.Activator.CreateInstance(requestName, secHdr, this.AbstractRequest);
-
+                var request = System.Activator.CreateInstance(requestName);
+                requestName.GetProperty("RequesterCredentials").SetValue(request, secHdr);
+                requestName.GetProperty(apiName+"RequestType").SetValue(request, AbstractRequest);
+                //, secHdr, this.AbstractRequest
                 int retries = 0;
                 int maxRetries = 0;
                 bool doretry = false;
@@ -219,7 +214,7 @@ namespace eBay.Service.Core.Sdk
                         }
                         var response = eBayAPIInterfaceClient.GetType().GetMethod(apiName).Invoke(eBayAPIInterfaceClient, new[] { request });
 
-                        mResponse = (AbstractResponseType)response.GetType().GetField(apiName + "Response1").GetValue(response);
+                        mResponse = (AbstractResponseType)response.GetType().GetProperty(apiName + "ResponseType").GetValue(response);
                         if (mCallMetrics != null)
                         {
                             mCallMetrics.NetworkReceiveEnded = DateTime.Now;
@@ -239,7 +234,7 @@ namespace eBay.Service.Core.Sdk
                         }
 
 
-                        if (mResponse != null && mResponse.Errors != null && mResponse.Errors.Length > 0)
+                        if (mResponse != null && mResponse.Errors != null && mResponse.Errors.Count > 0)
                         {
                             throw new ApiException(new List<ErrorType>(mResponse.Errors));
                         }
@@ -291,10 +286,10 @@ namespace eBay.Service.Core.Sdk
                         }
                         else
                         {
-                            string soapReq = 报文.发送.LastOrDefault();//  (string)this.mServiceType.GetProperty("SoapRequest").GetValue(svcInst, null);
-                            string soapResp = 报文.接收.LastOrDefault(); // (string)this.mServiceType.GetProperty("SoapResponse").GetValue(svcInst, null);
+                            //string soapReq = 报文.发送.LastOrDefault();//  (string)this.mServiceType.GetProperty("SoapRequest").GetValue(svcInst, null);
+                            //string soapResp = 报文.接收.LastOrDefault(); // (string)this.mServiceType.GetProperty("SoapResponse").GetValue(svcInst, null);
 
-                            LogMessagePayload(soapReq + "\r\n\r\n" + soapResp, MessageSeverity.Informational, ex);
+                            //LogMessagePayload(soapReq + "\r\n\r\n" + soapResp, MessageSeverity.Informational, ex);
                             MessageSeverity svr = ((ApiException)ex).SeverityErrorCount > 0 ? MessageSeverity.Error : MessageSeverity.Warning;
                             LogMessage(ex.Message, MessageType.Exception, svr);
 
@@ -309,19 +304,19 @@ namespace eBay.Service.Core.Sdk
 
                     finally
                     {
-                        string soapReq = 报文.发送.LastOrDefault();// (string)this.mServiceType.GetProperty("SoapRequest").GetValue(svcInst, null);
-                        string soapResp = 报文.接收.LastOrDefault(); //(string)this.mServiceType.GetProperty("SoapResponse").GetValue(svcInst, null);
+                        //string soapReq = 报文.发送.LastOrDefault();// (string)this.mServiceType.GetProperty("SoapRequest").GetValue(svcInst, null);
+                        //string soapResp = 报文.接收.LastOrDefault(); //(string)this.mServiceType.GetProperty("SoapResponse").GetValue(svcInst, null);
 
-                        if (!doretry || retries == maxRetries)
-                            LogMessagePayload(soapReq + "\r\n\r\n" + soapResp, MessageSeverity.Informational, callException);
+                        //if (!doretry || retries == maxRetries)
+                        //    LogMessagePayload(soapReq + "\r\n\r\n" + soapResp, MessageSeverity.Informational, callException);
 
-                        if (mResponse != null && mResponse.TimestampSpecified)
-                            ApiContext.CallUpdate(mResponse.Timestamp);
+                        if (mResponse != null && mResponse.Timestamp.HasValue)
+                            ApiContext.CallUpdate(mResponse.Timestamp.Value);
                         else
                             ApiContext.CallUpdate(new DateTime(0));
 
-                        mSoapRequest = soapReq;
-                        mSoapResponse = soapResp;
+                        //mSoapRequest = soapReq;
+                        //mSoapResponse = soapResp;
                         retries++;
 
 

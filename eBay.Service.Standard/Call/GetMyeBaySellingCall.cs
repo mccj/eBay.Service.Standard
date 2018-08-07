@@ -237,7 +237,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool HideVariations
 		{ 
-			get { return ApiRequest.HideVariations; }
+			get { return ApiRequest.HideVariations.Value; }
 			set { ApiRequest.HideVariations = value; }
 		}
 		

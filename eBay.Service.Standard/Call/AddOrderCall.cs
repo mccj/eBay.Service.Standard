@@ -132,7 +132,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime CreatedTime
 		{ 
-			get { return ApiResponse.CreatedTime; }
+			get { return ApiResponse.CreatedTime.Value; }
 		}
 		
 

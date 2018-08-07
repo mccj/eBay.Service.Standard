@@ -107,7 +107,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long ProductID
 		{ 
-			get { return ApiRequest.ProductID; }
+			get { return ApiRequest.ProductID.Value; }
 			set { ApiRequest.ProductID = value; }
 		}
 		

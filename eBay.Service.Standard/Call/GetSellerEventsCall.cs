@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -212,7 +213,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public ItemType[] GetSellerEvents(TimeFilter ModTimeFilter)
+		public List<ItemType> GetSellerEvents(TimeFilter ModTimeFilter)
 		{
 			this.ModTimeFilter = ModTimeFilter;
 			Execute();
@@ -221,7 +222,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public ItemType[] GetSellerEvents(DateTime ModTimeFrom, DateTime ModTimeTo)
+		public List<ItemType> GetSellerEvents(DateTime ModTimeFrom, DateTime ModTimeTo)
 		{
 			this.ModTimeFilter = new TimeFilter(ModTimeFrom, ModTimeTo);
 			Execute();
@@ -275,7 +276,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartTimeFrom
 		{ 
-			get { return ApiRequest.StartTimeFrom; }
+			get { return ApiRequest.StartTimeFrom.Value; }
 			set { ApiRequest.StartTimeFrom = value; }
 		}
 		
@@ -284,7 +285,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartTimeTo
 		{ 
-			get { return ApiRequest.StartTimeTo; }
+			get { return ApiRequest.StartTimeTo.Value; }
 			set { ApiRequest.StartTimeTo = value; }
 		}
 		
@@ -293,7 +294,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTimeFrom
 		{ 
-			get { return ApiRequest.EndTimeFrom; }
+			get { return ApiRequest.EndTimeFrom.Value; }
 			set { ApiRequest.EndTimeFrom = value; }
 		}
 		
@@ -302,7 +303,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTimeTo
 		{ 
-			get { return ApiRequest.EndTimeTo; }
+			get { return ApiRequest.EndTimeTo.Value; }
 			set { ApiRequest.EndTimeTo = value; }
 		}
 		
@@ -311,7 +312,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime ModTimeFrom
 		{ 
-			get { return ApiRequest.ModTimeFrom; }
+			get { return ApiRequest.ModTimeFrom.Value; }
 			set { ApiRequest.ModTimeFrom = value; }
 		}
 		
@@ -320,7 +321,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime ModTimeTo
 		{ 
-			get { return ApiRequest.ModTimeTo; }
+			get { return ApiRequest.ModTimeTo.Value; }
 			set { ApiRequest.ModTimeTo = value; }
 		}
 		
@@ -329,7 +330,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeNewItem
 		{ 
-			get { return ApiRequest.NewItemFilter; }
+			get { return ApiRequest.NewItemFilter.Value; }
 			set { ApiRequest.NewItemFilter = value; }
 		}
 		
@@ -338,7 +339,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeWatchCount
 		{ 
-			get { return ApiRequest.IncludeWatchCount; }
+			get { return ApiRequest.IncludeWatchCount.Value; }
 			set { ApiRequest.IncludeWatchCount = value; }
 		}
 		
@@ -347,7 +348,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeVariationSpecifics
 		{ 
-			get { return ApiRequest.IncludeVariationSpecifics; }
+			get { return ApiRequest.IncludeVariationSpecifics.Value; }
 			set { ApiRequest.IncludeVariationSpecifics = value; }
 		}
 		
@@ -356,7 +357,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool HideVariations
 		{ 
-			get { return ApiRequest.HideVariations; }
+			get { return ApiRequest.HideVariations.Value; }
 			set { ApiRequest.HideVariations = value; }
 		}
 				/// <summary>
@@ -364,7 +365,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public TimeFilter EndTimeFilter
 		{ 
-			get { return new TimeFilter(ApiRequest.EndTimeFrom, ApiRequest.EndTimeTo); }
+			get { return new TimeFilter(ApiRequest.EndTimeFrom.Value, ApiRequest.EndTimeTo.Value); }
 			set 
 			{
 				if (value.TimeFrom > DateTime.MinValue)
@@ -379,7 +380,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public TimeFilter ModTimeFilter
 		{ 
-			get { return new TimeFilter(ApiRequest.ModTimeFrom, ApiRequest.ModTimeTo); }
+			get { return new TimeFilter(ApiRequest.ModTimeFrom.Value, ApiRequest.ModTimeTo.Value); }
 			set 
 			{
 				if (value.TimeFrom > DateTime.MinValue)
@@ -395,7 +396,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public TimeFilter StartTimeFilter
 		{ 
-			get { return new TimeFilter(ApiRequest.StartTimeFrom, ApiRequest.StartTimeTo); }
+			get { return new TimeFilter(ApiRequest.StartTimeFrom.Value, ApiRequest.StartTimeTo.Value); }
 			set 
 			{
 				if (value.TimeFrom > DateTime.MinValue)
@@ -412,13 +413,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime TimeTo
 		{ 
-			get { return ApiResponse.TimeTo; }
+			get { return ApiResponse.TimeTo.Value; }
 		}
 		
  		/// <summary>
 		/// Gets the returned <see cref="GetSellerEventsResponseType.ItemArray"/> of type <see cref="ItemTypeCollection"/>.
 		/// </summary>
-		public ItemType[] ItemEventList
+		public List<ItemType> ItemEventList
 		{ 
 			get { return ApiResponse.ItemArray; }
 		}

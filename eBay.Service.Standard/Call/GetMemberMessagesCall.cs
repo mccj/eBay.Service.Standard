@@ -107,7 +107,7 @@ namespace eBay.Service.Call
 		/// An eBay ID that uniquely identifies a user. For <b>GetMemberMessages</b>, this is the sender of the message. If included in the request, returns only messages from the specified sender.
 		/// </param>
 		///
-		public MemberMessageExchangeType[] GetMemberMessages(string ItemID, MessageTypeCodeType MailMessageType, MessageStatusTypeCodeType MessageStatus, bool DisplayToPublic, DateTime StartCreationTime, DateTime EndCreationTime, PaginationType Pagination, string MemberMessageID, string SenderID)
+		public System.Collections.Generic.List<MemberMessageExchangeType> GetMemberMessages(string ItemID, MessageTypeCodeType MailMessageType, MessageStatusTypeCodeType MessageStatus, bool DisplayToPublic, DateTime StartCreationTime, DateTime EndCreationTime, PaginationType Pagination, string MemberMessageID, string SenderID)
 		{
 			this.ItemID = ItemID;
 			this.MailMessageType = MailMessageType;
@@ -127,7 +127,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public MemberMessageExchangeType[] GetMemberMessages(string ItemID, MessageTypeCodeType MailMessageType, MessageStatusTypeCodeType MessageStatus)
+		public System.Collections.Generic.List<MemberMessageExchangeType> GetMemberMessages(string ItemID, MessageTypeCodeType MailMessageType, MessageStatusTypeCodeType MessageStatus)
 		{
 			this.ItemID = ItemID;
 			this.MailMessageType = MailMessageType;
@@ -138,7 +138,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public MemberMessageExchangeType[] GetMemberMessages(TimeFilter CreateTimeFilter, MessageTypeCodeType MailMessageType, MessageStatusTypeCodeType MessageStatus)
+		public System.Collections.Generic.List<MemberMessageExchangeType> GetMemberMessages(TimeFilter CreateTimeFilter, MessageTypeCodeType MailMessageType, MessageStatusTypeCodeType MessageStatus)
 		{
 			this.CreateTimeFilter = CreateTimeFilter;
 			this.MailMessageType = MailMessageType;
@@ -149,7 +149,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public MemberMessageExchangeType[] GetMemberMessages(DateTime TimeFrom, DateTime TimeTo, MessageTypeCodeType MailMessageType, MessageStatusTypeCodeType MessageStatus)
+		public System.Collections.Generic.List<MemberMessageExchangeType> GetMemberMessages(DateTime TimeFrom, DateTime TimeTo, MessageTypeCodeType MailMessageType, MessageStatusTypeCodeType MessageStatus)
 		{
 			this.CreateTimeFilter = new TimeFilter(TimeFrom, TimeTo);
 			this.MailMessageType = MailMessageType;
@@ -205,7 +205,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public MessageTypeCodeType MailMessageType
 		{ 
-			get { return ApiRequest.MailMessageType; }
+			get { return ApiRequest.MailMessageType.Value; }
 			set { ApiRequest.MailMessageType = value; }
 		}
 		
@@ -214,7 +214,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public MessageStatusTypeCodeType MessageStatus
 		{ 
-			get { return ApiRequest.MessageStatus; }
+			get { return ApiRequest.MessageStatus.Value; }
 			set { ApiRequest.MessageStatus = value; }
 		}
 		
@@ -223,7 +223,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool DisplayToPublic
 		{ 
-			get { return ApiRequest.DisplayToPublic; }
+			get { return ApiRequest.DisplayToPublic.Value; }
 			set { ApiRequest.DisplayToPublic = value; }
 		}
 		
@@ -232,7 +232,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartCreationTime
 		{ 
-			get { return ApiRequest.StartCreationTime; }
+			get { return ApiRequest.StartCreationTime.Value; }
 			set { ApiRequest.StartCreationTime = value; }
 		}
 		
@@ -241,7 +241,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndCreationTime
 		{ 
-			get { return ApiRequest.EndCreationTime; }
+			get { return ApiRequest.EndCreationTime.Value; }
 			set { ApiRequest.EndCreationTime = value; }
 		}
 		
@@ -276,7 +276,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public TimeFilter CreateTimeFilter
 		{ 
-			get { return new TimeFilter(ApiRequest.StartCreationTime, ApiRequest.EndCreationTime); }
+			get { return new TimeFilter(ApiRequest.StartCreationTime.Value, ApiRequest.EndCreationTime.Value); }
 			set 
 			{ 
 				if (value.TimeFrom > DateTime.MinValue)
@@ -290,7 +290,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetMemberMessagesResponseType.MemberMessage"/> of type <see cref="MemberMessageExchangeTypeCollection"/>.
 		/// </summary>
-		public MemberMessageExchangeType[] MemberMessageList
+		public System.Collections.Generic.List<MemberMessageExchangeType> MemberMessageList
 		{ 
 			get { return ApiResponse.MemberMessage; }
 		}
@@ -308,7 +308,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool HasMoreItems
 		{ 
-			get { return ApiResponse.HasMoreItems; }
+			get { return ApiResponse.HasMoreItems.Value; }
 		}
 		
 

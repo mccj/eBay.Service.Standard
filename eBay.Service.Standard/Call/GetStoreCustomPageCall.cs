@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -57,7 +58,7 @@ namespace eBay.Service.Call
 		/// This field is used if the seller wants to retrieved detailed information on a specific custom page. If no <b>PageID</b> is specified, then all of the seller's custom pages are returned, but without the page content.
 		/// </param>
 		///
-		public StoreCustomPageType[] GetStoreCustomPage(long PageID)
+		public List<StoreCustomPageType> GetStoreCustomPage(long PageID)
 		{
 			this.PageID = PageID;
 
@@ -69,7 +70,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public StoreCustomPageType[] GetStoreCustomPage()
+		public List<StoreCustomPageType> GetStoreCustomPage()
 		{
 			Execute();
 			return CustomPageList;
@@ -113,7 +114,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long PageID
 		{ 
-			get { return ApiRequest.PageID; }
+			get { return ApiRequest.PageID.Value; }
 			set { ApiRequest.PageID = value; }
 		}
 		
@@ -121,7 +122,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetStoreCustomPageResponseType.CustomPageArray"/> of type <see cref="StoreCustomPageTypeCollection"/>.
 		/// </summary>
-		public StoreCustomPageType[] CustomPageList
+		public List<StoreCustomPageType> CustomPageList
 		{ 
 			get { return ApiResponse.CustomPageArray; }
 		}

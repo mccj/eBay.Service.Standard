@@ -68,7 +68,7 @@ namespace eBay.Service.Call
 			this.PromotionalSaleDetails = PromotionalSaleDetails;
 
 			Execute();
-			return ApiResponse.Status;
+			return ApiResponse.Status.Value;
 		}
 
 
@@ -111,7 +111,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public ModifyActionCodeType Action
 		{ 
-			get { return ApiRequest.Action; }
+			get { return ApiRequest.Action.Value; }
 			set { ApiRequest.Action = value; }
 		}
 		
@@ -130,7 +130,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public PromotionalSaleStatusCodeType Status
 		{ 
-			get { return ApiResponse.Status; }
+			get { return ApiResponse.Status.Value; }
 		}
 		
  		/// <summary>
@@ -138,7 +138,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long PromotionalSaleID
 		{ 
-			get { return ApiResponse.PromotionalSaleID; }
+			get { return ApiResponse.PromotionalSaleID.Value; }
 		}
 		
 

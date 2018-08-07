@@ -118,193 +118,193 @@ namespace eBay.Service.Util
 
 	}
 	#region ApiLoggerCollection
-	///// <summary>
-	///// 
-	///// </summary>
-	//[Serializable()]
-	//public sealed class ApiLoggerCollection : System.Collections.CollectionBase 
-	//{
+	/// <summary>
+	/// 
+	/// </summary>
+	[Serializable()]
+	public sealed class ApiLoggerCollection : System.Collections.CollectionBase 
+	{
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	public ApiLoggerCollection() 
-	//	{
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		public ApiLoggerCollection() 
+		{
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	/// <param name="items">An array of loggers to log to of type <see cref="ApiLogger"/>.</param>
-	//	public ApiLoggerCollection(ApiLogger[] items) 
-	//	{
-	//		this.AddRange(items);
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="items">An array of loggers to log to of type <see cref="ApiLogger"/>.</param>
+		public ApiLoggerCollection(ApiLogger[] items) 
+		{
+			this.AddRange(items);
+		}
         
-	//	///// <summary>
-	//	///// 
-	//	///// </summary>
-	//	///// <param name="items">A [] of loggers to log to of type <see cref="ApiLoggerCollection"/>.</param>
-	//	//public ApiLoggerCollection(ApiLogger[] items) 
-	//	//{
-	//	//	this.AddRange(items);
-	//	//}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="items">A collection of loggers to log to of type <see cref="ApiLoggerCollection"/>.</param>
+		public ApiLoggerCollection(ApiLoggerCollection items) 
+		{
+			this.AddRange(items);
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	public ApiLogger this[int index] 
-	//	{
-	//		get 
-	//		{
-	//			return ((ApiLogger)(this.InnerList[index]));
-	//		}
-	//		set 
-	//		{
-	//			this.InnerList[index] = value;
-	//		}
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		public ApiLogger this[int index] 
+		{
+			get 
+			{
+				return ((ApiLogger)(this.InnerList[index]));
+			}
+			set 
+			{
+				this.InnerList[index] = value;
+			}
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	public bool IsFixedSize 
-	//	{
-	//		get 
-	//		{
-	//			return this.InnerList.IsFixedSize;
-	//		}
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		public bool IsFixedSize 
+		{
+			get 
+			{
+				return this.InnerList.IsFixedSize;
+			}
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	public bool IsReadOnly 
-	//	{
-	//		get 
-	//		{
-	//			return this.InnerList.IsReadOnly;
-	//		}
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		public bool IsReadOnly 
+		{
+			get 
+			{
+				return this.InnerList.IsReadOnly;
+			}
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	public bool IsSynchronized 
-	//	{
-	//		get 
-	//		{
-	//			return this.InnerList.IsSynchronized;
-	//		}
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		public bool IsSynchronized 
+		{
+			get 
+			{
+				return this.InnerList.IsSynchronized;
+			}
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	public object SyncRoot 
-	//	{
-	//		get 
-	//		{
-	//			return this.InnerList.SyncRoot;
-	//		}
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		public object SyncRoot 
+		{
+			get 
+			{
+				return this.InnerList.SyncRoot;
+			}
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	/// <param name="item"></param>
-	//	/// <returns></returns>
-	//	public int Add(ApiLogger item) 
-	//	{
-	//		return this.InnerList.Add(item);
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public int Add(ApiLogger item) 
+		{
+			return this.InnerList.Add(item);
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	/// <param name="items"></param>
-	//	public void AddRange(ApiLogger[] items) 
-	//	{
-	//		this.InnerList.AddRange(items);
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="items"></param>
+		public void AddRange(ApiLogger[] items) 
+		{
+			this.InnerList.AddRange(items);
+		}
         
-	//	///// <summary>
-	//	///// 
-	//	///// </summary>
-	//	///// <param name="items"></param>
-	//	//public void AddRange(ApiLogger[] items) 
-	//	//{
-	//	//	this.InnerList.AddRange(items);
-	//	//}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="items"></param>
+		public void AddRange(ApiLoggerCollection items) 
+		{
+			this.InnerList.AddRange(items);
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	/// <param name="item"></param>
-	//	/// <returns></returns>
-	//	public bool Contains(ApiLogger item) 
-	//	{
-	//		return this.InnerList.Contains(item);
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public bool Contains(ApiLogger item) 
+		{
+			return this.InnerList.Contains(item);
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	/// <param name="items"></param>
-	//	/// <param name="index"></param>
-	//	public void CopyTo(ApiLogger[] items, int index) 
-	//	{
-	//		this.InnerList.CopyTo(items, index);
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="items"></param>
+		/// <param name="index"></param>
+		public void CopyTo(ApiLogger[] items, int index) 
+		{
+			this.InnerList.CopyTo(items, index);
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	/// <param name="item"></param>
-	//	/// <returns></returns>
-	//	public int IndexOf(ApiLogger item) 
-	//	{
-	//		return this.InnerList.IndexOf(item);
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public int IndexOf(ApiLogger item) 
+		{
+			return this.InnerList.IndexOf(item);
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	/// <param name="index"></param>
-	//	/// <param name="item"></param>
-	//	public void Insert(int index, ApiLogger item) 
-	//	{
-	//		this.InnerList.Insert(index, item);
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="index"></param>
+		/// <param name="item"></param>
+		public void Insert(int index, ApiLogger item) 
+		{
+			this.InnerList.Insert(index, item);
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	/// <param name="index"></param>
-	//	/// <returns></returns>
-	//	public ApiLogger ItemAt(int index) 
-	//	{
-	//		return ((ApiLogger)(this.InnerList[index]));
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="index"></param>
+		/// <returns></returns>
+		public ApiLogger ItemAt(int index) 
+		{
+			return ((ApiLogger)(this.InnerList[index]));
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	/// <param name="item"></param>
-	//	public void Remove(ApiLogger item) 
-	//	{
-	//		this.InnerList.Remove(item);
-	//	}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		public void Remove(ApiLogger item) 
+		{
+			this.InnerList.Remove(item);
+		}
         
-	//	/// <summary>
-	//	/// 
-	//	/// </summary>
-	//	/// <returns></returns>
-	//	public ApiLogger[] ToArray() 
-	//	{
-	//		return ((ApiLogger[])(this.InnerList.ToArray(typeof(ApiLogger))));
-	//	}
-	//}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public ApiLogger[] ToArray() 
+		{
+			return ((ApiLogger[])(this.InnerList.ToArray(typeof(ApiLogger))));
+		}
+	}
 	#endregion
 
 }    

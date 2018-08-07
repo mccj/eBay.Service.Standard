@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -55,7 +56,7 @@ namespace eBay.Service.Call
 		/// Sales tax tables are only supported on the eBay US, Candada, and India sites.
 		/// </summary>
 		/// 
-		public TaxJurisdictionType[] GetTaxTable()
+		public List<TaxJurisdictionType> GetTaxTable()
 		{
 
 			Execute();
@@ -103,13 +104,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime LastUpdateTime
 		{ 
-			get { return ApiResponse.LastUpdateTime; }
+			get { return ApiResponse.LastUpdateTime.Value; }
 		}
 		
  		/// <summary>
 		/// Gets the returned <see cref="GetTaxTableResponseType.TaxTable"/> of type <see cref="TaxJurisdictionTypeCollection"/>.
 		/// </summary>
-		public TaxJurisdictionType[] TaxTableList
+		public List<TaxJurisdictionType> TaxTableList
 		{ 
 			get { return ApiResponse.TaxTable; }
 		}

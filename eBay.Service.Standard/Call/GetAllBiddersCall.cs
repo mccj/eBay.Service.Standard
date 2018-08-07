@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -65,7 +66,7 @@ namespace eBay.Service.Call
 		/// The user must include this field and set its value to <code>true</code> if the user wishes to retrieve the  <b>BiddingSummary</b> container for each bidder. The <b>BiddingSummary</b> container consists of more detailed bidding information on each bidder.
 		/// </param>
 		///
-		public OfferType[] GetAllBidders(string ItemID, GetAllBiddersModeCodeType CallMode, bool IncludeBiddingSummary)
+		public List<OfferType> GetAllBidders(string ItemID, GetAllBiddersModeCodeType CallMode, bool IncludeBiddingSummary)
 		{
 			this.ItemID = ItemID;
 			this.CallMode = CallMode;
@@ -79,7 +80,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public OfferType[] GetAllBidders(string ItemID, GetAllBiddersModeCodeType CallMode)
+		public List<OfferType> GetAllBidders(string ItemID, GetAllBiddersModeCodeType CallMode)
 		{
 			this.ItemID = ItemID;
 			this.CallMode = CallMode;
@@ -135,7 +136,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public GetAllBiddersModeCodeType CallMode
 		{ 
-			get { return ApiRequest.CallMode; }
+			get { return ApiRequest.CallMode.Value; }
 			set { ApiRequest.CallMode = value; }
 		}
 		
@@ -144,7 +145,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeBiddingSummary
 		{ 
-			get { return ApiRequest.IncludeBiddingSummary; }
+			get { return ApiRequest.IncludeBiddingSummary.Value; }
 			set { ApiRequest.IncludeBiddingSummary = value; }
 		}
 		
@@ -152,7 +153,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetAllBiddersResponseType.BidArray"/> of type <see cref="OfferTypeCollection"/>.
 		/// </summary>
-		public OfferType[] BidList
+		public List<OfferType> BidList
 		{ 
 			get { return ApiResponse.BidArray; }
 		}
@@ -178,7 +179,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public ListingStatusCodeType ListingStatus
 		{ 
-			get { return ApiResponse.ListingStatus; }
+			get { return ApiResponse.ListingStatus.Value; }
 		}
 		
 

@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -169,7 +170,7 @@ namespace eBay.Service.Call
 		/// Parts Compatibility lists are only applicable to motor parts and accessory categories on the sites that support eBay Motors - US, CA, UK, and DE.
 		/// </param>
 		///
-		public ItemType GetItem(string ItemID, bool IncludeWatchCount, bool IncludeCrossPromotion, bool IncludeItemSpecifics, bool IncludeTaxTable, string SKU, string VariationSKU, NameValueListType[] VariationSpecificList, string TransactionID, bool IncludeItemCompatibilityList)
+		public ItemType GetItem(string ItemID, bool IncludeWatchCount, bool IncludeCrossPromotion, bool IncludeItemSpecifics, bool IncludeTaxTable, string SKU, string VariationSKU, List<NameValueListType> VariationSpecificList, string TransactionID, bool IncludeItemCompatibilityList)
 		{
 			this.ItemID = ItemID;
 			this.IncludeWatchCount = IncludeWatchCount;
@@ -255,7 +256,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeWatchCount
 		{ 
-			get { return ApiRequest.IncludeWatchCount; }
+			get { return ApiRequest.IncludeWatchCount.Value; }
 			set { ApiRequest.IncludeWatchCount = value; }
 		}
 		
@@ -264,7 +265,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeCrossPromotion
 		{ 
-			get { return ApiRequest.IncludeCrossPromotion; }
+			get { return ApiRequest.IncludeCrossPromotion.Value; }
 			set { ApiRequest.IncludeCrossPromotion = value; }
 		}
 		
@@ -273,7 +274,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeItemSpecifics
 		{ 
-			get { return ApiRequest.IncludeItemSpecifics; }
+			get { return ApiRequest.IncludeItemSpecifics.Value; }
 			set { ApiRequest.IncludeItemSpecifics = value; }
 		}
 		
@@ -282,7 +283,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeTaxTable
 		{ 
-			get { return ApiRequest.IncludeTaxTable; }
+			get { return ApiRequest.IncludeTaxTable.Value; }
 			set { ApiRequest.IncludeTaxTable = value; }
 		}
 		
@@ -307,7 +308,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="GetItemRequestType.VariationSpecifics"/> of type <see cref="NameValueListTypeCollection"/>.
 		/// </summary>
-		public NameValueListType[] VariationSpecificList
+		public List<NameValueListType> VariationSpecificList
 		{ 
 			get { return ApiRequest.VariationSpecifics; }
 			set { ApiRequest.VariationSpecifics = value; }
@@ -327,7 +328,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeItemCompatibilityList
 		{ 
-			get { return ApiRequest.IncludeItemCompatibilityList; }
+			get { return ApiRequest.IncludeItemCompatibilityList.Value; }
 			set { ApiRequest.IncludeItemCompatibilityList = value; }
 		}
 		

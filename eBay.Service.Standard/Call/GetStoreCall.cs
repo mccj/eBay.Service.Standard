@@ -144,7 +144,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool CategoryStructureOnly
 		{ 
-			get { return ApiRequest.CategoryStructureOnly; }
+			get { return ApiRequest.CategoryStructureOnly.Value; }
 			set { ApiRequest.CategoryStructureOnly = value; }
 		}
 		
@@ -153,7 +153,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long RootCategoryID
 		{ 
-			get { return ApiRequest.RootCategoryID; }
+			get { return ApiRequest.RootCategoryID.Value; }
 			set { ApiRequest.RootCategoryID = value; }
 		}
 		
@@ -162,7 +162,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int LevelLimit
 		{ 
-			get { return ApiRequest.LevelLimit; }
+			get { return ApiRequest.LevelLimit.Value; }
 			set { ApiRequest.LevelLimit = value; }
 		}
 		

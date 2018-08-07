@@ -146,7 +146,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="AddDisputeRequestType.DisputeExplanation"/> of type <see cref="DisputeExplanationCodeType"/>.
 		/// </summary>
-		public DisputeExplanationCodeType DisputeExplanation
+		public DisputeExplanationCodeType? DisputeExplanation
 		{ 
 			get { return ApiRequest.DisputeExplanation; }
 			set { ApiRequest.DisputeExplanation = value; }
@@ -155,7 +155,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="AddDisputeRequestType.DisputeReason"/> of type <see cref="DisputeReasonCodeType"/>.
 		/// </summary>
-		public DisputeReasonCodeType DisputeReason
+		public DisputeReasonCodeType? DisputeReason
 		{ 
 			get { return ApiRequest.DisputeReason; }
 			set { ApiRequest.DisputeReason = value; }

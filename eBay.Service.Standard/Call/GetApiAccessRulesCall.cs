@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -53,7 +54,7 @@ namespace eBay.Service.Call
 		/// The base request type for the <b>GetApiAccessRules</b> call, which returns details on how many calls your application has made and is allowed to make per hour or day.
 		/// </summary>
 		/// 
-		public ApiAccessRuleType[] GetApiAccessRules()
+		public List<ApiAccessRuleType> GetApiAccessRules()
 		{
 
 			Execute();
@@ -99,7 +100,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetApiAccessRulesResponseType.ApiAccessRule"/> of type <see cref="ApiAccessRuleTypeCollection"/>.
 		/// </summary>
-		public ApiAccessRuleType[] ApiAccessRuleList
+		public List<ApiAccessRuleType> ApiAccessRuleList
 		{ 
 			get { return ApiResponse.ApiAccessRule; }
 		}

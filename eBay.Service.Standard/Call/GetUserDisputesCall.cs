@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -73,7 +74,7 @@ namespace eBay.Service.Call
 		/// The virtual page number of the result set to display. A result set has a number of disputes divided into virtual pages, with 200 disputes per page. The response can only display one page. The first page in the result set is number 1. Required. If not specified, a warning is returned and <b>Pagination.PageNumber</b> is set to 1 by default.
 		/// </param>
 		///
-		public DisputeType[] GetUserDisputes(DisputeFilterTypeCodeType DisputeFilterType, DisputeSortTypeCodeType DisputeSortType, DateTime ModTimeFrom, DateTime ModTimeTo, PaginationType Pagination)
+		public List<DisputeType> GetUserDisputes(DisputeFilterTypeCodeType DisputeFilterType, DisputeSortTypeCodeType DisputeSortType, DateTime ModTimeFrom, DateTime ModTimeTo, PaginationType Pagination)
 		{
 			this.DisputeFilterType = DisputeFilterType;
 			this.DisputeSortType = DisputeSortType;
@@ -89,7 +90,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public DisputeType[] GetUserDisputes(PaginationType Pagination)
+		public List<DisputeType> GetUserDisputes(PaginationType Pagination)
 		{
 			this.Pagination = Pagination;
 			Execute();
@@ -134,7 +135,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DisputeFilterTypeCodeType DisputeFilterType
 		{ 
-			get { return ApiRequest.DisputeFilterType; }
+			get { return ApiRequest.DisputeFilterType.Value; }
 			set { ApiRequest.DisputeFilterType = value; }
 		}
 		
@@ -143,7 +144,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DisputeSortTypeCodeType DisputeSortType
 		{ 
-			get { return ApiRequest.DisputeSortType; }
+			get { return ApiRequest.DisputeSortType.Value; }
 			set { ApiRequest.DisputeSortType = value; }
 		}
 		
@@ -152,7 +153,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime ModTimeFrom
 		{ 
-			get { return ApiRequest.ModTimeFrom; }
+			get { return ApiRequest.ModTimeFrom.Value; }
 			set { ApiRequest.ModTimeFrom = value; }
 		}
 		
@@ -161,7 +162,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime ModTimeTo
 		{ 
-			get { return ApiRequest.ModTimeTo; }
+			get { return ApiRequest.ModTimeTo.Value; }
 			set { ApiRequest.ModTimeTo = value; }
 		}
 		
@@ -190,11 +191,11 @@ namespace eBay.Service.Call
 		{ 
 			get { return ApiResponse.EndingDisputeID; }
 		}
-		
- 		/// <summary>
-		/// Gets the returned <see cref="GetUserDisputesResponseType.DisputeArray"/> of type <see cref="DisputeTypeCollection"/>.
-		/// </summary>
-		public DisputeType[] DisputeList
+
+    /// <summary>
+    /// Gets the returned <see cref="GetUserDisputesResponseType.DisputeArray"/> of type <see cref="List<DisputeType>"/>.
+    /// </summary>
+    public List<DisputeType> DisputeList
 		{ 
 			get { return ApiResponse.DisputeArray; }
 		}
@@ -204,7 +205,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int ItemsPerPage
 		{ 
-			get { return ApiResponse.ItemsPerPage; }
+			get { return ApiResponse.ItemsPerPage.Value; }
 		}
 		
  		/// <summary>
@@ -212,13 +213,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int PageNumber
 		{ 
-			get { return ApiResponse.PageNumber; }
+			get { return ApiResponse.PageNumber.Value; }
 		}
-		
- 		/// <summary>
-		/// Gets the returned <see cref="GetUserDisputesResponseType.DisputeFilterCount"/> of type <see cref="DisputeFilterCountTypeCollection"/>.
-		/// </summary>
-		public DisputeFilterCountType[] DisputeFilterList
+
+/// <summary>
+/// Gets the returned <see cref="GetUserDisputesResponseType.DisputeFilterCount"/> of type <see cref="List<DisputeFilterCountType>"/>.
+/// </summary>
+public List<DisputeFilterCountType> DisputeFilterList
 		{ 
 			get { return ApiResponse.DisputeFilterCount; }
 		}

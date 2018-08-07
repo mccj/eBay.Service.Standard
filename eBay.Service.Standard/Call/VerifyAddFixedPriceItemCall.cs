@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -59,7 +60,7 @@ namespace eBay.Service.Call
 		/// fixed-price listing.
 		/// </param>
 		///
-		public FeeType[] VerifyAddFixedPriceItem(ItemType Item)
+		public List<FeeType> VerifyAddFixedPriceItem(ItemType Item)
 		{
 			this.Item = Item;
 
@@ -81,21 +82,22 @@ namespace eBay.Service.Call
 					Item.UUID = NewUUID();
 				}
 
-				if (ApiContext.EPSServerUrl != null && PictureFileList != null && PictureFileList.Length > 0)
+				if (ApiContext.EPSServerUrl != null && PictureFileList != null && PictureFileList.Count > 0)
 				{
 					if (Item.PictureDetails == null)
 					{
 						Item.PictureDetails = new PictureDetailsType();
 						Item.PictureDetails.PhotoDisplay = PhotoDisplayCodeType.None;
 					} 
-					else if (!Item.PictureDetails.PhotoDisplaySpecified || Item.PictureDetails.PhotoDisplay == PhotoDisplayCodeType.CustomCode)
+					else if (!Item.PictureDetails.PhotoDisplay.HasValue || Item.PictureDetails.PhotoDisplay == PhotoDisplayCodeType.CustomCode)
 					{
 						Item.PictureDetails.PhotoDisplay = PhotoDisplayCodeType.None;
 					}
 
-					string[] pics = new string[mPictureFileList.Length];
+					string[] pics = new string[mPictureFileList.Count];
 
-					Item.PictureDetails.PictureURL = pics;
+					Item.PictureDetails.PictureURL = new List<string>();
+					Item.PictureDetails.PictureURL.AddRange(pics);
 
 					
 				}		
@@ -191,7 +193,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		///
 		/// </summary>
-										public String[] PictureFileList
+										public List<string> PictureFileList
 		{ 
 			get { return mPictureFileList; }
 			set { mPictureFileList = value; }
@@ -217,7 +219,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="VerifyAddFixedPriceItemResponseType.Fees"/> of type <see cref="FeeTypeCollection"/>.
 		/// </summary>
-		public FeeType[] FeeList
+		public List<FeeType> FeeList
 		{ 
 			get { return ApiResponse.Fees; }
 		}
@@ -227,7 +229,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ExpressListing
 		{ 
-			get { return ApiResponse.ExpressListing; }
+			get { return ApiResponse.ExpressListing.Value; }
 		}
 		
  		/// <summary>
@@ -257,7 +259,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="VerifyAddFixedPriceItemResponseType.DiscountReason"/> of type <see cref="DiscountReasonCodeTypeCollection"/>.
 		/// </summary>
-		public DiscountReasonCodeType[] DiscountReasonList
+		public List<DiscountReasonCodeType?> DiscountReasonList
 		{ 
 			get { return ApiResponse.DiscountReason; }
 		}
@@ -275,7 +277,7 @@ namespace eBay.Service.Call
 
 		#region Private Fields
 		private bool mAutoSetItemUUID = false;
-		private String[] mPictureFileList = new string[] { };
+		private List<string> mPictureFileList = new List<string>();
 		#endregion
 		
 	}

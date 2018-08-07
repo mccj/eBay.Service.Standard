@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -65,7 +66,7 @@ namespace eBay.Service.Call
 		/// If neither the <b>PromotionalSaleID</b> nor a <b>PromotionalSaleStatus</b> field is used, then all promotional sales for the eBay store owner are returned.
 		/// </param>
 		///
-		public PromotionalSaleType[] GetPromotionalSaleDetails(long PromotionalSaleID, PromotionalSaleStatusCodeType[] PromotionalSaleStatuList)
+		public List<PromotionalSaleType> GetPromotionalSaleDetails(long PromotionalSaleID, List<PromotionalSaleStatusCodeType?> PromotionalSaleStatuList)
 		{
 			this.PromotionalSaleID = PromotionalSaleID;
 			this.PromotionalSaleStatuList = PromotionalSaleStatuList;
@@ -114,14 +115,14 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long PromotionalSaleID
 		{ 
-			get { return ApiRequest.PromotionalSaleID; }
+			get { return ApiRequest.PromotionalSaleID.Value; }
 			set { ApiRequest.PromotionalSaleID = value; }
 		}
 		
  		/// <summary>
 		/// Gets or sets the <see cref="GetPromotionalSaleDetailsRequestType.PromotionalSaleStatus"/> of type <see cref="PromotionalSaleStatusCodeTypeCollection"/>.
 		/// </summary>
-		public PromotionalSaleStatusCodeType[] PromotionalSaleStatuList
+		public List<PromotionalSaleStatusCodeType?> PromotionalSaleStatuList
 		{ 
 			get { return ApiRequest.PromotionalSaleStatus; }
 			set { ApiRequest.PromotionalSaleStatus = value; }
@@ -131,7 +132,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetPromotionalSaleDetailsResponseType.PromotionalSaleDetails"/> of type <see cref="PromotionalSaleTypeCollection"/>.
 		/// </summary>
-		public PromotionalSaleType[] PromotionalSaleDetailList
+		public List<PromotionalSaleType> PromotionalSaleDetailList
 		{ 
 			get { return ApiResponse.PromotionalSaleDetails; }
 		}

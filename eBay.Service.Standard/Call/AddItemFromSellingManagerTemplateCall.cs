@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -118,7 +119,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long SaleTemplateID
 		{ 
-			get { return ApiRequest.SaleTemplateID; }
+			get { return ApiRequest.SaleTemplateID.Value; }
 			set { ApiRequest.SaleTemplateID = value; }
 		}
 		
@@ -127,7 +128,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime ScheduleTime
 		{ 
-			get { return ApiRequest.ScheduleTime; }
+			get { return ApiRequest.ScheduleTime.Value; }
 			set { ApiRequest.ScheduleTime = value; }
 		}
 		
@@ -154,7 +155,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartTime
 		{ 
-			get { return ApiResponse.StartTime; }
+			get { return ApiResponse.StartTime.Value; }
 		}
 		
  		/// <summary>
@@ -162,13 +163,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTime
 		{ 
-			get { return ApiResponse.EndTime; }
+			get { return ApiResponse.EndTime.Value; }
 		}
 		
  		/// <summary>
-		/// Gets the returned <see cref="AddItemFromSellingManagerTemplateResponseType.Fees"/> of type <see cref="FeeTypeCollection"/>.
+		/// Gets the returned <see cref="AddItemFromSellingManagerTemplateResponseType.Fees"/> of type <see cref="FeesType"/>.
 		/// </summary>
-		public FeeType[] FeeList
+		public List<FeeType> FeeList
 		{ 
 			get { return ApiResponse.Fees; }
 		}

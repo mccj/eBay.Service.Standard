@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -147,7 +148,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetSellerDashboardResponseType.Performance"/> of type <see cref="PerformanceDashboardTypeCollection"/>.
 		/// </summary>
-		public PerformanceDashboardType[] PerformanceList
+		public List<PerformanceDashboardType> PerformanceList
 		{ 
 			get { return ApiResponse.Performance; }
 		}

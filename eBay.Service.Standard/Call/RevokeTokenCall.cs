@@ -137,7 +137,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool UnsubscribeNotification
 		{ 
-			get { return ApiRequest.UnsubscribeNotification; }
+			get { return ApiRequest.UnsubscribeNotification.Value; }
 			set { ApiRequest.UnsubscribeNotification = value; }
 		}
 		

@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -87,7 +88,7 @@ namespace eBay.Service.Call
 		/// This container allows the seller to retrieve orders that were purchased within a specified time range. A time range can be set up to 90 days in the past (or up to 120 days if the <b>Archived</b> field is included and set to <code>true</code>.
 		/// </param>
 		///
-		public SellingManagerSoldOrderType[] GetSellingManagerSoldListings(SellingManagerSearchType Search, long StoreCategoryID, SellingManagerSoldListingsPropertyTypeCodeType[] FilterList, bool Archived, SellingManagerSoldListingsSortTypeCodeType Sort, SortOrderCodeType SortOrder, PaginationType Pagination, TimeRangeType SaleDateRange)
+		public List<SellingManagerSoldOrderType> GetSellingManagerSoldListings(SellingManagerSearchType Search, long StoreCategoryID, List<SellingManagerSoldListingsPropertyTypeCodeType?> FilterList, bool Archived, SellingManagerSoldListingsSortTypeCodeType Sort, SortOrderCodeType SortOrder, PaginationType Pagination, TimeRangeType SaleDateRange)
 		{
 			this.Search = Search;
 			this.StoreCategoryID = StoreCategoryID;
@@ -151,14 +152,14 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long StoreCategoryID
 		{ 
-			get { return ApiRequest.StoreCategoryID; }
+			get { return ApiRequest.StoreCategoryID.Value; }
 			set { ApiRequest.StoreCategoryID = value; }
 		}
 		
  		/// <summary>
 		/// Gets or sets the <see cref="GetSellingManagerSoldListingsRequestType.Filter"/> of type <see cref="SellingManagerSoldListingsPropertyTypeCodeTypeCollection"/>.
 		/// </summary>
-		public SellingManagerSoldListingsPropertyTypeCodeType[] FilterList
+		public List<SellingManagerSoldListingsPropertyTypeCodeType?> FilterList
 		{ 
 			get { return ApiRequest.Filter; }
 			set { ApiRequest.Filter = value; }
@@ -169,7 +170,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool Archived
 		{ 
-			get { return ApiRequest.Archived; }
+			get { return ApiRequest.Archived.Value; }
 			set { ApiRequest.Archived = value; }
 		}
 		
@@ -178,7 +179,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public SellingManagerSoldListingsSortTypeCodeType Sort
 		{ 
-			get { return ApiRequest.Sort; }
+			get { return ApiRequest.Sort.Value; }
 			set { ApiRequest.Sort = value; }
 		}
 		
@@ -187,7 +188,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public SortOrderCodeType SortOrder
 		{ 
-			get { return ApiRequest.SortOrder; }
+			get { return ApiRequest.SortOrder.Value; }
 			set { ApiRequest.SortOrder = value; }
 		}
 		
@@ -213,7 +214,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetSellingManagerSoldListingsResponseType.SaleRecord"/> of type <see cref="SellingManagerSoldOrderTypeCollection"/>.
 		/// </summary>
-		public SellingManagerSoldOrderType[] SaleRecordList
+		public List<SellingManagerSoldOrderType> SaleRecordList
 		{ 
 			get { return ApiResponse.SaleRecord; }
 		}

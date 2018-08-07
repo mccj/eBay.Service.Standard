@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -76,7 +77,7 @@ namespace eBay.Service.Call
 		/// Specifies the store categories on which to act.
 		/// </param>
 		///
-		public long SetStoreCategories(StoreCategoryUpdateActionCodeType Action, long ItemDestinationCategoryID, long DestinationParentCategoryID, StoreCustomCategoryType[] StoreCategoryList)
+		public long SetStoreCategories(StoreCategoryUpdateActionCodeType Action, long ItemDestinationCategoryID, long DestinationParentCategoryID, List<StoreCustomCategoryType> StoreCategoryList)
 		{
 			this.Action = Action;
 			this.ItemDestinationCategoryID = ItemDestinationCategoryID;
@@ -84,17 +85,17 @@ namespace eBay.Service.Call
 			this.StoreCategoryList = StoreCategoryList;
 
 			Execute();
-			return ApiResponse.TaskID;
+			return ApiResponse.TaskID.Value;
 		}
 
 
-		public long SetStoreCategories(StoreCategoryUpdateActionCodeType Action, StoreCustomCategoryType[] StoreCategoryList)
+		public long SetStoreCategories(StoreCategoryUpdateActionCodeType Action, List<StoreCustomCategoryType> StoreCategoryList)
 		{
 			this.Action = Action;
 			this.StoreCategoryList = StoreCategoryList;
 
 			Execute();
-			return ApiResponse.TaskID;
+			return ApiResponse.TaskID.Value;
 		}
 		#endregion
 
@@ -134,7 +135,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public StoreCategoryUpdateActionCodeType Action
 		{ 
-			get { return ApiRequest.Action; }
+			get { return ApiRequest.Action.Value; }
 			set { ApiRequest.Action = value; }
 		}
 		
@@ -143,7 +144,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long ItemDestinationCategoryID
 		{ 
-			get { return ApiRequest.ItemDestinationCategoryID; }
+			get { return ApiRequest.ItemDestinationCategoryID.Value; }
 			set { ApiRequest.ItemDestinationCategoryID = value; }
 		}
 		
@@ -152,14 +153,14 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long DestinationParentCategoryID
 		{ 
-			get { return ApiRequest.DestinationParentCategoryID; }
+			get { return ApiRequest.DestinationParentCategoryID.Value; }
 			set { ApiRequest.DestinationParentCategoryID = value; }
 		}
 		
  		/// <summary>
 		/// Gets or sets the <see cref="SetStoreCategoriesRequestType.StoreCategories"/> of type <see cref="StoreCustomCategoryTypeCollection"/>.
 		/// </summary>
-		public StoreCustomCategoryType[] StoreCategoryList
+		public List<StoreCustomCategoryType> StoreCategoryList
 		{ 
 			get { return ApiRequest.StoreCategories; }
 			set { ApiRequest.StoreCategories = value; }
@@ -171,7 +172,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long TaskID
 		{ 
-			get { return ApiResponse.TaskID; }
+			get { return ApiResponse.TaskID.Value; }
 		}
 		
  		/// <summary>
@@ -179,13 +180,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public TaskStatusCodeType Status
 		{ 
-			get { return ApiResponse.Status; }
+			get { return ApiResponse.Status.Value; }
 		}
 		
  		/// <summary>
 		/// Gets the returned <see cref="SetStoreCategoriesResponseType.CustomCategory"/> of type <see cref="StoreCustomCategoryTypeCollection"/>.
 		/// </summary>
-		public StoreCustomCategoryType[] CustomCategoryList
+		public List<StoreCustomCategoryType> CustomCategoryList
 		{ 
 			get { return ApiResponse.CustomCategory; }
 		}

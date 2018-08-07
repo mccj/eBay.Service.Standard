@@ -156,7 +156,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public CurrencyCodeType CurrencyID
 		{ 
-			get { return ApiRequest.CurrencyID; }
+			get { return ApiRequest.CurrencyID.Value; }
 			set { ApiRequest.CurrencyID = value; }
 		}
 		
@@ -165,7 +165,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public CombinedPaymentPeriodCodeType CombinedDuration
 		{ 
-			get { return ApiRequest.CombinedDuration; }
+			get { return ApiRequest.CombinedDuration.Value; }
 			set { ApiRequest.CombinedDuration = value; }
 		}
 		
@@ -174,7 +174,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public ModifyActionCodeType ModifyActionCode
 		{ 
-			get { return ApiRequest.ModifyActionCode; }
+			get { return ApiRequest.ModifyActionCode.Value; }
 			set { ApiRequest.ModifyActionCode = value; }
 		}
 		

@@ -14,7 +14,7 @@ using System.Reflection;
 using System.Collections;
 //using System.Web.Services.Protocols;
 using System.Runtime.InteropServices;
-using eBay.Service.Call;
+//using eBay.Service.Call;
 using eBay.Service.Util;
 using eBay.Service.Core.Soap;
 using System.Collections.Generic;
@@ -230,11 +230,13 @@ namespace eBay.Service.Core.Sdk
 
         //        if (!mDetailLevelOverride && AbstractRequest.DetailLevel == null)
         //        {
-        //            AbstractRequest.DetailLevel = mDetailLevelList;
+        //            AbstractRequest.DetailLevel = new DetailLevelCodeTypeCollection();
+        //            AbstractRequest.DetailLevel.AddRange(mDetailLevelList);
         //        }
 
         //        //Added OutputSelector to base call JIRA-SDK-561
-        //        AbstractRequest.OutputSelector = mOutputSelector;
+        //        AbstractRequest.OutputSelector = new List<string>();
+        //        AbstractRequest.OutputSelector.AddRange(mOutputSelector);
 
         //        if (ApiContext.ErrorLanguage != ErrorLanguageCodeType.CustomCode)
         //            AbstractRequest.ErrorLanguage = ApiContext.ErrorLanguage.ToString();
@@ -295,9 +297,9 @@ namespace eBay.Service.Core.Sdk
         //                }
 
 
-        //                if (mResponse != null && mResponse.Errors != null && mResponse.Errors.Length > 0)
+        //                if (mResponse != null && mResponse.Errors != null && mResponse.Errors.Count > 0)
         //                {
-        //                    throw new ApiException(new List<ErrorType>(mResponse.Errors));
+        //                    throw new ApiException(new ErrorTypeCollection(mResponse.Errors));
         //                }
         //            }
 
@@ -309,13 +311,12 @@ namespace eBay.Service.Core.Sdk
         //                    // we never care about the outer exception
         //                    Exception iex = ex.InnerException;
 
-        //                    //// Parse Soap Faults
-        //                    //if (iex.GetType() == typeof(SoapException))
-        //                    //{
-        //                    //    ex = ApiException.FromSoapException((SoapException)iex);
-        //                    //}
-        //                    //else
-        //                    if (iex.GetType() == typeof(InvalidOperationException))
+        //                    // Parse Soap Faults
+        //                    if (iex.GetType() == typeof(SoapException))
+        //                    {
+        //                        ex = ApiException.FromSoapException((SoapException)iex);
+        //                    }
+        //                    else if (iex.GetType() == typeof(InvalidOperationException))
         //                    {
         //                        // Go to innermost exception
         //                        while (iex.InnerException != null)
@@ -411,7 +412,7 @@ namespace eBay.Service.Core.Sdk
         /// <param name="Severity">The severity of the message of type <see cref="MessageSeverity"/>/</param>
         protected internal void LogMessage(string Message, MessageType Type, MessageSeverity Severity)
         {
-            if (Message == null || ApiContext == null || ApiContext.ApiLogManager == null || ApiContext.ApiLogManager.ApiLoggerList == null || ApiContext.ApiLogManager.ApiLoggerList.Length == 0)
+            if (Message == null || ApiContext == null || ApiContext.ApiLogManager == null || ApiContext.ApiLogManager.ApiLoggerList == null || ApiContext.ApiLogManager.ApiLoggerList.Count == 0)
                 return;
 
             if (Type == MessageType.ApiMessage)
@@ -433,7 +434,7 @@ namespace eBay.Service.Core.Sdk
         /// <param name="Ex"></param>
         protected internal void LogMessagePayload(string Message, MessageSeverity Severity, Exception Ex)
         {
-            if (Message == null || ApiContext == null || ApiContext.ApiLogManager == null || ApiContext.ApiLogManager.ApiLoggerList == null || ApiContext.ApiLogManager.ApiLoggerList.Length == 0)
+            if (Message == null || ApiContext == null || ApiContext.ApiLogManager == null || ApiContext.ApiLogManager.ApiLoggerList == null || ApiContext.ApiLogManager.ApiLoggerList.Count == 0)
                 return;
 
             Message = MaskPrivateInfo(Message);
@@ -544,7 +545,7 @@ namespace eBay.Service.Core.Sdk
 
 
         /// <summary>
-        /// Gets or sets the <see cref="AbstractRequestType.DetailLevel"/> of type <see cref="DetailLevelCodeType[]"/>. 
+        /// Gets or sets the <see cref="AbstractRequestType.DetailLevel"/> of type <see cref="DetailLevelCodeTypeCollection"/>. 
         /// The DetailLevel is used in some API calls that query eBay, for example, GetUserCall. The detail level specifies which
         /// data is to be returned in the query. For information on which detail levels are supported for a particular API call, 
         /// refer to the eBay Trading API Call Reference
@@ -553,7 +554,7 @@ namespace eBay.Service.Core.Sdk
 
 
 
-        public DetailLevelCodeType[] DetailLevelList
+        public List<DetailLevelCodeType?> DetailLevelList
         {
             get { return mDetailLevelList; }
             set { mDetailLevelList = value; }
@@ -593,7 +594,7 @@ namespace eBay.Service.Core.Sdk
 
         public string OAuth
         {
-            get { return (mOAuth == null || mOAuth.Length == 0) ? ApiContext?.ApiCredential?.oAuthToken : mOAuth; }
+            get { return (mOAuth == null || mOAuth.Length == 0) ? ApiContext.Version : mOAuth; }
             set { mOAuth = value; }
         }
 
@@ -617,21 +618,21 @@ namespace eBay.Service.Core.Sdk
             get { return mResponseTime; }
         }
 
-        /// <summary>
-        /// Gets the last raw web service request of type <see cref="string"/>
-        /// </summary>
-        public string SoapRequest
-        {
-            get { return MaskPrivateInfo(mSoapRequest); }
-        }
+        ///// <summary>
+        ///// Gets the last raw web service request of type <see cref="string"/>
+        ///// </summary>
+        //public string SoapRequest
+        //{
+        //    get { return MaskPrivateInfo(mSoapRequest); }
+        //}
 
-        /// <summary>
-        /// Gets the last raw web service response of type <see cref="string"/>
-        /// </summary>
-        public string SoapResponse
-        {
-            get { return MaskPrivateInfo(mSoapResponse); }
-        }
+        ///// <summary>
+        ///// Gets the last raw web service response of type <see cref="string"/>
+        ///// </summary>
+        //public string SoapResponse
+        //{
+        //    get { return MaskPrivateInfo(mSoapResponse); }
+        //}
 
         /// <summary>
         /// Set to true to ask the server to compress the response data to reduce the transfer size.
@@ -667,7 +668,7 @@ namespace eBay.Service.Core.Sdk
         /// <summary>
         /// OutputSelector to filter the response
         /// </summary>
-        public string[] OutputSelector
+        public List<string> OutputSelector
         {
             get
             {
@@ -694,11 +695,11 @@ namespace eBay.Service.Core.Sdk
         private string mVersion;
         private TimeSpan mResponseTime;
         private SiteCodeType mSite = SiteCodeType.CustomCode;
-        private DetailLevelCodeType[] mDetailLevelList = new DetailLevelCodeType[] { };
-        private string mSoapRequest;
-        private string mSoapResponse;
+        private List<DetailLevelCodeType?> mDetailLevelList = new List<DetailLevelCodeType?>();
+        //private string mSoapRequest;
+        //private string mSoapResponse;
         private string mOAuth;
-        private string[] mOutputSelector = new string[0];
+        private List<string> mOutputSelector = new List<string> { };
         #endregion
 
         #region Public Events

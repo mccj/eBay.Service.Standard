@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -70,7 +71,7 @@ namespace eBay.Service.Call
 		/// for example, Item.ListingEnhancement[BoldTitle].
 		/// </param>
 		///
-		public string VerifyRelistItem(ItemType Item, String[] DeletedFieldList)
+		public string VerifyRelistItem(ItemType Item, List<string> DeletedFieldList)
 		{
 			this.Item = Item;
 			this.DeletedFieldList = DeletedFieldList;
@@ -124,9 +125,9 @@ namespace eBay.Service.Call
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="VerifyRelistItemRequestType.DeletedField"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="VerifyRelistItemRequestType.DeletedField"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] DeletedFieldList
+		public List<string> DeletedFieldList
 		{ 
 			get { return ApiRequest.DeletedField; }
 			set { ApiRequest.DeletedField = value; }
@@ -144,7 +145,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="VerifyRelistItemResponseType.Fees"/> of type <see cref="FeeTypeCollection"/>.
 		/// </summary>
-		public FeeType[] FeeList
+		public List<FeeType> FeeList
 		{ 
 			get { return ApiResponse.Fees; }
 		}
@@ -154,7 +155,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartTime
 		{ 
-			get { return ApiResponse.StartTime; }
+			get { return ApiResponse.StartTime.Value; }
 		}
 		
  		/// <summary>
@@ -162,13 +163,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTime
 		{ 
-			get { return ApiResponse.EndTime; }
+			get { return ApiResponse.EndTime.Value; }
 		}
 		
  		/// <summary>
 		/// Gets the returned <see cref="VerifyRelistItemResponseType.DiscountReason"/> of type <see cref="DiscountReasonCodeTypeCollection"/>.
 		/// </summary>
-		public DiscountReasonCodeType[] DiscountReasonList
+		public List<DiscountReasonCodeType?> DiscountReasonList
 		{ 
 			get { return ApiResponse.DiscountReason; }
 		}

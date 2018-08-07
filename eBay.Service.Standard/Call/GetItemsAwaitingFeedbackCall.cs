@@ -133,7 +133,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public ItemSortTypeCodeType Sort
 		{ 
-			get { return ApiRequest.Sort; }
+			get { return ApiRequest.Sort.Value; }
 			set { ApiRequest.Sort = value; }
 		}
 		

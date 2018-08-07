@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eBay.Service.Standard", "eB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eBay.Service.Standard.Test", "eBay.Service.Standard.Test\eBay.Service.Standard.Test.csproj", "{BF4BC50E-557F-489F-AF3A-3BE0DFDBDF02}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eBay.Service.Standard.Test2", "eBay.Service.Standard.Test2\eBay.Service.Standard.Test2.csproj", "{AB065B75-088E-4DC0-9D1A-59402940B993}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eBay.Service.Standard.Test3", "eBay.Service.Standard.Test3\eBay.Service.Standard.Test3.csproj", "{4FDACD87-9137-4C5C-85D6-F209B940C6EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{BF4BC50E-557F-489F-AF3A-3BE0DFDBDF02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF4BC50E-557F-489F-AF3A-3BE0DFDBDF02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF4BC50E-557F-489F-AF3A-3BE0DFDBDF02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB065B75-088E-4DC0-9D1A-59402940B993}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB065B75-088E-4DC0-9D1A-59402940B993}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB065B75-088E-4DC0-9D1A-59402940B993}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB065B75-088E-4DC0-9D1A-59402940B993}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FDACD87-9137-4C5C-85D6-F209B940C6EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FDACD87-9137-4C5C-85D6-F209B940C6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FDACD87-9137-4C5C-85D6-F209B940C6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FDACD87-9137-4C5C-85D6-F209B940C6EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

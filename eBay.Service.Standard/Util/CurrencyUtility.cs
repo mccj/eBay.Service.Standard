@@ -51,7 +51,7 @@ namespace eBay.Service.Util
         public static string GetAmountString(AmountType amt)
         {
             if (amt == null) return "";
-            string currencySymbol = GetCurrencySymbol(amt.currencyID);
+            string currencySymbol = GetCurrencySymbol(amt.currencyID.Value);
             return currencySymbol + amt.Value;
         }
 

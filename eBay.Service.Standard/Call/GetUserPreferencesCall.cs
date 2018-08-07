@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -260,7 +261,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowBidderNoticePreferences
 		{ 
-			get { return ApiRequest.ShowBidderNoticePreferences; }
+			get { return ApiRequest.ShowBidderNoticePreferences.Value; }
 			set { ApiRequest.ShowBidderNoticePreferences = value; }
 		}
 		
@@ -269,7 +270,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowCombinedPaymentPreferences
 		{ 
-			get { return ApiRequest.ShowCombinedPaymentPreferences; }
+			get { return ApiRequest.ShowCombinedPaymentPreferences.Value; }
 			set { ApiRequest.ShowCombinedPaymentPreferences = value; }
 		}
 		
@@ -278,7 +279,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowCrossPromotionPreferences
 		{ 
-			get { return ApiRequest.ShowCrossPromotionPreferences; }
+			get { return ApiRequest.ShowCrossPromotionPreferences.Value; }
 			set { ApiRequest.ShowCrossPromotionPreferences = value; }
 		}
 		
@@ -287,7 +288,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowSellerPaymentPreferences
 		{ 
-			get { return ApiRequest.ShowSellerPaymentPreferences; }
+			get { return ApiRequest.ShowSellerPaymentPreferences.Value; }
 			set { ApiRequest.ShowSellerPaymentPreferences = value; }
 		}
 		
@@ -296,7 +297,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowEndOfAuctionEmailPreferences
 		{ 
-			get { return ApiRequest.ShowEndOfAuctionEmailPreferences; }
+			get { return ApiRequest.ShowEndOfAuctionEmailPreferences.Value; }
 			set { ApiRequest.ShowEndOfAuctionEmailPreferences = value; }
 		}
 		
@@ -305,7 +306,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowSellerFavoriteItemPreferences
 		{ 
-			get { return ApiRequest.ShowSellerFavoriteItemPreferences; }
+			get { return ApiRequest.ShowSellerFavoriteItemPreferences.Value; }
 			set { ApiRequest.ShowSellerFavoriteItemPreferences = value; }
 		}
 		
@@ -314,7 +315,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowProStoresPreferences
 		{ 
-			get { return ApiRequest.ShowProStoresPreferences; }
+			get { return ApiRequest.ShowProStoresPreferences.Value; }
 			set { ApiRequest.ShowProStoresPreferences = value; }
 		}
 		
@@ -323,7 +324,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowEmailShipmentTrackingNumberPreference
 		{ 
-			get { return ApiRequest.ShowEmailShipmentTrackingNumberPreference; }
+			get { return ApiRequest.ShowEmailShipmentTrackingNumberPreference.Value; }
 			set { ApiRequest.ShowEmailShipmentTrackingNumberPreference = value; }
 		}
 		
@@ -332,7 +333,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowRequiredShipPhoneNumberPreference
 		{ 
-			get { return ApiRequest.ShowRequiredShipPhoneNumberPreference; }
+			get { return ApiRequest.ShowRequiredShipPhoneNumberPreference.Value; }
 			set { ApiRequest.ShowRequiredShipPhoneNumberPreference = value; }
 		}
 		
@@ -341,7 +342,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowSellerExcludeShipToLocationPreference
 		{ 
-			get { return ApiRequest.ShowSellerExcludeShipToLocationPreference; }
+			get { return ApiRequest.ShowSellerExcludeShipToLocationPreference.Value; }
 			set { ApiRequest.ShowSellerExcludeShipToLocationPreference = value; }
 		}
 		
@@ -350,7 +351,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowUnpaidItemAssistancePreference
 		{ 
-			get { return ApiRequest.ShowUnpaidItemAssistancePreference; }
+			get { return ApiRequest.ShowUnpaidItemAssistancePreference.Value; }
 			set { ApiRequest.ShowUnpaidItemAssistancePreference = value; }
 		}
 		
@@ -359,7 +360,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowPurchaseReminderEmailPreferences
 		{ 
-			get { return ApiRequest.ShowPurchaseReminderEmailPreferences; }
+			get { return ApiRequest.ShowPurchaseReminderEmailPreferences.Value; }
 			set { ApiRequest.ShowPurchaseReminderEmailPreferences = value; }
 		}
 		
@@ -368,7 +369,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowUnpaidItemAssistanceExclusionList
 		{ 
-			get { return ApiRequest.ShowUnpaidItemAssistanceExclusionList; }
+			get { return ApiRequest.ShowUnpaidItemAssistanceExclusionList.Value; }
 			set { ApiRequest.ShowUnpaidItemAssistanceExclusionList = value; }
 		}
 		
@@ -377,7 +378,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowSellerProfilePreferences
 		{ 
-			get { return ApiRequest.ShowSellerProfilePreferences; }
+			get { return ApiRequest.ShowSellerProfilePreferences.Value; }
 			set { ApiRequest.ShowSellerProfilePreferences = value; }
 		}
 		
@@ -386,7 +387,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowSellerReturnPreferences
 		{ 
-			get { return ApiRequest.ShowSellerReturnPreferences; }
+			get { return ApiRequest.ShowSellerReturnPreferences.Value; }
 			set { ApiRequest.ShowSellerReturnPreferences = value; }
 		}
 		
@@ -395,7 +396,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowGlobalShippingProgramPreference
 		{ 
-			get { return ApiRequest.ShowGlobalShippingProgramPreference; }
+			get { return ApiRequest.ShowGlobalShippingProgramPreference.Value; }
 			set { ApiRequest.ShowGlobalShippingProgramPreference = value; }
 		}
 		
@@ -404,7 +405,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowDispatchCutoffTimePreferences
 		{ 
-			get { return ApiRequest.ShowDispatchCutoffTimePreferences; }
+			get { return ApiRequest.ShowDispatchCutoffTimePreferences.Value; }
 			set { ApiRequest.ShowDispatchCutoffTimePreferences = value; }
 		}
 		
@@ -413,7 +414,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowGlobalShippingProgramListingPreference
 		{ 
-			get { return ApiRequest.ShowGlobalShippingProgramListingPreference; }
+			get { return ApiRequest.ShowGlobalShippingProgramListingPreference.Value; }
 			set { ApiRequest.ShowGlobalShippingProgramListingPreference = value; }
 		}
 		
@@ -422,7 +423,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowOverrideGSPServiceWithIntlServicePreference
 		{ 
-			get { return ApiRequest.ShowOverrideGSPServiceWithIntlServicePreference; }
+			get { return ApiRequest.ShowOverrideGSPServiceWithIntlServicePreference.Value; }
 			set { ApiRequest.ShowOverrideGSPServiceWithIntlServicePreference = value; }
 		}
 		
@@ -431,7 +432,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowPickupDropoffPreferences
 		{ 
-			get { return ApiRequest.ShowPickupDropoffPreferences; }
+			get { return ApiRequest.ShowPickupDropoffPreferences.Value; }
 			set { ApiRequest.ShowPickupDropoffPreferences = value; }
 		}
 		
@@ -440,7 +441,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShowOutOfStockControlPreference
 		{ 
-			get { return ApiRequest.ShowOutOfStockControlPreference; }
+			get { return ApiRequest.ShowOutOfStockControlPreference.Value; }
 			set { ApiRequest.ShowOutOfStockControlPreference = value; }
 		}
 		
@@ -449,7 +450,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ShoweBayPLUSPreference
 		{ 
-			get { return ApiRequest.ShoweBayPLUSPreference; }
+			get { return ApiRequest.ShoweBayPLUSPreference.Value; }
 			set { ApiRequest.ShoweBayPLUSPreference = value; }
 		}
 		
@@ -507,7 +508,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool EmailShipmentTrackingNumberPreference
 		{ 
-			get { return ApiResponse.EmailShipmentTrackingNumberPreference; }
+			get { return ApiResponse.EmailShipmentTrackingNumberPreference.Value; }
 		}
 		
  		/// <summary>
@@ -515,7 +516,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool RequiredShipPhoneNumberPreference
 		{ 
-			get { return ApiResponse.RequiredShipPhoneNumberPreference; }
+			get { return ApiResponse.RequiredShipPhoneNumberPreference.Value; }
 		}
 		
  		/// <summary>
@@ -555,7 +556,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool SellerThirdPartyCheckoutDisabled
 		{ 
-			get { return ApiResponse.SellerThirdPartyCheckoutDisabled; }
+			get { return ApiResponse.SellerThirdPartyCheckoutDisabled.Value; }
 		}
 		
  		/// <summary>
@@ -579,7 +580,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool OfferGlobalShippingProgramPreference
 		{ 
-			get { return ApiResponse.OfferGlobalShippingProgramPreference; }
+			get { return ApiResponse.OfferGlobalShippingProgramPreference.Value; }
 		}
 		
  		/// <summary>
@@ -595,7 +596,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool GlobalShippingProgramListingPreference
 		{ 
-			get { return ApiResponse.GlobalShippingProgramListingPreference; }
+			get { return ApiResponse.GlobalShippingProgramListingPreference.Value; }
 		}
 		
  		/// <summary>
@@ -603,7 +604,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool OverrideGSPServiceWithIntlServicePreference
 		{ 
-			get { return ApiResponse.OverrideGSPServiceWithIntlServicePreference; }
+			get { return ApiResponse.OverrideGSPServiceWithIntlServicePreference.Value; }
 		}
 		
  		/// <summary>
@@ -611,7 +612,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool PickupDropoffSellerPreference
 		{ 
-			get { return ApiResponse.PickupDropoffSellerPreference; }
+			get { return ApiResponse.PickupDropoffSellerPreference.Value; }
 		}
 		
  		/// <summary>
@@ -619,13 +620,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool OutOfStockControlPreference
 		{ 
-			get { return ApiResponse.OutOfStockControlPreference; }
+			get { return ApiResponse.OutOfStockControlPreference.Value; }
 		}
 		
  		/// <summary>
 		/// Gets the returned <see cref="GetUserPreferencesResponseType.eBayPLUSPreference"/> of type <see cref="eBayPLUSPreferenceTypeCollection"/>.
 		/// </summary>
-		public eBayPLUSPreferenceType[] eBayPLUSPreferenceList
+		public List<eBayPLUSPreferenceType> eBayPLUSPreferenceList
 		{ 
 			get { return ApiResponse.eBayPLUSPreference; }
 		}

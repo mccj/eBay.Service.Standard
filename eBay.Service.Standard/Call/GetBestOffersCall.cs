@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -81,7 +82,7 @@ namespace eBay.Service.Call
 		/// This container can be used if the seller is expecting that the <b>GetBestOffers</b> call will retrieve a large number of results, so that seller wishes to view just a subset (one page of multiple pages) of those results at a time. See this container's child fields for more information on how pagination is used.
 		/// </param>
 		///
-		public BestOfferType[] GetBestOffers(string ItemID, string BestOfferID, BestOfferStatusCodeType BestOfferStatus, PaginationType Pagination)
+		public System.Collections.Generic.List<BestOfferType> GetBestOffers(string ItemID, string BestOfferID, BestOfferStatusCodeType BestOfferStatus, PaginationType Pagination)
 		{
 			this.ItemID = ItemID;
 			this.BestOfferID = BestOfferID;
@@ -96,7 +97,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public BestOfferType[] GetBestOffers(string ItemID)
+		public System.Collections.Generic.List<BestOfferType> GetBestOffers(string ItemID)
 		{
 			this.ItemID = ItemID;
 			Execute();
@@ -106,7 +107,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// Gets the returned <see cref="GetBestOffersResponseType.ItemBestOffersArray"/> of type <see cref="ItemBestOffersTypeCollection"/>.
 		/// </summary>
-		public ItemBestOffersType[] ItemBestOffersList
+		public List<ItemBestOffersType> ItemBestOffersList
 		{ 
 			get {
 				if (ApiResponse.ItemBestOffersArray == null)
@@ -170,7 +171,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public BestOfferStatusCodeType BestOfferStatus
 		{ 
-			get { return ApiRequest.BestOfferStatus; }
+			get { return ApiRequest.BestOfferStatus.Value; }
 			set { ApiRequest.BestOfferStatus = value; }
 		}
 		
@@ -187,7 +188,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetBestOffersResponseType.BestOfferArray"/> of type <see cref="BestOfferTypeCollection"/>.
 		/// </summary>
-		public BestOfferType[] BestOfferList
+		public System.Collections.Generic.List<BestOfferType> BestOfferList
 		{ 
 			get { return ApiResponse.BestOfferArray; }
 		}
@@ -203,9 +204,9 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetBestOffersResponseType.ItemBestOffersArray"/> of type <see cref="ItemBestOffersArrayType"/>.
 		/// </summary>
-		public ItemBestOffersArrayType ItemBestOffersArray
+		public System.Collections.Generic.List<ItemBestOffersType> ItemBestOffersArray
 		{ 
-			get { return ApiResponse.ItemBestOffersArray; }
+			get { return ApiResponse.ItemBestOffersArray.ItemBestOffers; }
 		}
 		
  		/// <summary>
@@ -213,7 +214,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int PageNumber
 		{ 
-			get { return ApiResponse.PageNumber; }
+			get { return ApiResponse.PageNumber.Value; }
 		}
 		
  		/// <summary>

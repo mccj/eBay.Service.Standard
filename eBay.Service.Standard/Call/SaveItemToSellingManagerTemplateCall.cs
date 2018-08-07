@@ -74,7 +74,7 @@ namespace eBay.Service.Call
 			this.TemplateName = TemplateName;
 
 			Execute();
-			return ApiResponse.TemplateID;
+			return ApiResponse.TemplateID.Value;
 		}
 
 
@@ -126,7 +126,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long ProductID
 		{ 
-			get { return ApiRequest.ProductID; }
+			get { return ApiRequest.ProductID.Value; }
 			set { ApiRequest.ProductID = value; }
 		}
 		
@@ -145,7 +145,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long TemplateID
 		{ 
-			get { return ApiResponse.TemplateID; }
+			get { return ApiResponse.TemplateID.Value; }
 		}
 		
 

@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -65,13 +66,13 @@ namespace eBay.Service.Call
 		/// The user must use either one or more <b>ItemID</b> values or one or more <b>VariationKey</b> containers, but the user may not use both of these entities in the same call.
 		/// </param>
 		///
-		public int AddToWatchList(String[] ItemIDList, VariationKeyType[] VariationKeyList)
+		public int AddToWatchList(List<string> ItemIDList, List<VariationKeyType> VariationKeyList)
 		{
 			this.ItemIDList = ItemIDList;
 			this.VariationKeyList = VariationKeyList;
 
 			Execute();
-			return ApiResponse.WatchListCount;
+			return  ApiResponse.WatchListCount.Value;
 		}
 
 
@@ -110,18 +111,18 @@ namespace eBay.Service.Call
 
 		
  		/// <summary>
-		/// Gets or sets the <see cref="AddToWatchListRequestType.ItemID"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="AddToWatchListRequestType.ItemID"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] ItemIDList
+		public List<string> ItemIDList
 		{ 
 			get { return ApiRequest.ItemID; }
 			set { ApiRequest.ItemID = value; }
 		}
-		
- 		/// <summary>
-		/// Gets or sets the <see cref="AddToWatchListRequestType.VariationKey"/> of type <see cref="VariationKeyTypeCollection"/>.
-		/// </summary>
-		public VariationKeyType[] VariationKeyList
+
+        /// <summary>
+        /// Gets or sets the <see cref="AddToWatchListRequestType.VariationKey"/> of type <see cref="List<VariationKeyType>"/>.
+        /// </summary>
+        public List<VariationKeyType> VariationKeyList
 		{ 
 			get { return ApiRequest.VariationKey; }
 			set { ApiRequest.VariationKey = value; }
@@ -133,7 +134,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int WatchListCount
 		{ 
-			get { return ApiResponse.WatchListCount; }
+			get { return ApiResponse.WatchListCount.Value; }
 		}
 		
  		/// <summary>
@@ -141,7 +142,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int WatchListMaximum
 		{ 
-			get { return ApiResponse.WatchListMaximum; }
+			get { return ApiResponse.WatchListMaximum.Value; }
 		}
 		
 

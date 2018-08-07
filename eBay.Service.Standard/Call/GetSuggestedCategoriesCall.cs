@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -60,19 +61,19 @@ namespace eBay.Service.Call
 		/// word.
 		/// </param>
 		///
-		public SuggestedCategoryType[] GetSuggestedCategories(string Query)
+		public List<SuggestedCategoryType> GetSuggestedCategories(string Query)
 		{
 			this.Query = Query;
 
 			Execute();
-			return (ApiResponse.SuggestedCategoryArray==null?null:ApiResponse.SuggestedCategoryArray.SuggestedCategory);
+			return (ApiResponse.SuggestedCategoryArray.SuggestedCategory==null?null:ApiResponse.SuggestedCategoryArray.SuggestedCategory);
 		}
 
 
 		/// <summary>
 		/// Gets the <see cref="SuggestedCategoryArrayType.SuggestedCategory"/> of type <see cref="SuggestedCategoryTypeCollection"/>.
 		/// </summary>
-		public SuggestedCategoryType[] SuggestedCategoryList
+		public List<SuggestedCategoryType> SuggestedCategoryList
 		{ 
 			get {
 				if (ApiResponse.SuggestedCategoryArray == null)
@@ -126,9 +127,9 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetSuggestedCategoriesResponseType.SuggestedCategoryArray"/> of type <see cref="SuggestedCategoryArrayType"/>.
 		/// </summary>
-		public SuggestedCategoryArrayType SuggestedCategoryArray
+		public List<SuggestedCategoryType> SuggestedCategoryArray
 		{ 
-			get { return ApiResponse.SuggestedCategoryArray; }
+			get { return ApiResponse.SuggestedCategoryArray.SuggestedCategory; }
 		}
 		
  		/// <summary>
@@ -136,7 +137,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int CategoryCount
 		{ 
-			get { return ApiResponse.CategoryCount; }
+			get { return ApiResponse.CategoryCount.Value; }
 		}
 		
 

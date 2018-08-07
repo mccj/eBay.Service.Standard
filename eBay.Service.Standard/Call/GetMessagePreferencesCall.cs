@@ -124,7 +124,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeASQPreferences
 		{ 
-			get { return ApiRequest.IncludeASQPreferences; }
+			get { return ApiRequest.IncludeASQPreferences.Value; }
 			set { ApiRequest.IncludeASQPreferences = value; }
 		}
 		

@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -55,7 +56,7 @@ namespace eBay.Service.Call
 		/// inapplicable to this call.
 		/// </summary>
 		/// 
-		public SellingManagerAlertType[] GetSellingManagerAlerts()
+		public List<SellingManagerAlertType> GetSellingManagerAlerts()
 		{
 
 			Execute();
@@ -101,7 +102,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetSellingManagerAlertsResponseType.Alert"/> of type <see cref="SellingManagerAlertTypeCollection"/>.
 		/// </summary>
-		public SellingManagerAlertType[] AlertList
+		public List<SellingManagerAlertType> AlertList
 		{ 
 			get { return ApiResponse.Alert; }
 		}

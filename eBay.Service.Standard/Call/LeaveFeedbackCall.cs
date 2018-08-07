@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -123,7 +124,7 @@ namespace eBay.Service.Call
 		/// <span class="tablenote"><b>Note:</b> A new "Late shipment rate" metric became a new component of Seller Standards beginning in February 2016. On-time shipping means that the seller shipped the item before the "handling time" expired and/or the item was received by the buyer within the estimated delivery date window, which is established once the buyer pays for the order line item. Previously, a seller's account could be dinged just for getting a low rating for the "shippping time" Detailed Seller Rating. </span>
 		/// </param>
 		///
-		public string LeaveFeedback(string ItemID, string CommentText, CommentTypeCodeType CommentType, string TransactionID, string TargetUser, ItemRatingDetailsType[] SellerItemRatingDetailArrayList, string OrderLineItemID, ItemArrivedWithinEDDCodeType ItemArrivedWithinEDDType, bool ItemDeliveredWithinEDD)
+		public string LeaveFeedback(string ItemID, string CommentText, CommentTypeCodeType CommentType, string TransactionID, string TargetUser, List<ItemRatingDetailsType> SellerItemRatingDetailArrayList, string OrderLineItemID, ItemArrivedWithinEDDCodeType ItemArrivedWithinEDDType, bool ItemDeliveredWithinEDD)
 		{
 			this.ItemID = ItemID;
 			this.CommentText = CommentText;
@@ -239,7 +240,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public CommentTypeCodeType CommentType
 		{ 
-			get { return ApiRequest.CommentType; }
+			get { return ApiRequest.CommentType.Value; }
 			set { ApiRequest.CommentType = value; }
 		}
 		
@@ -264,7 +265,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="LeaveFeedbackRequestType.SellerItemRatingDetailArray"/> of type <see cref="ItemRatingDetailsTypeCollection"/>.
 		/// </summary>
-		public ItemRatingDetailsType[] SellerItemRatingDetailArrayList
+		public List<ItemRatingDetailsType> SellerItemRatingDetailArrayList
 		{ 
 			get { return ApiRequest.SellerItemRatingDetailArray; }
 			set { ApiRequest.SellerItemRatingDetailArray = value; }
@@ -284,7 +285,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public ItemArrivedWithinEDDCodeType ItemArrivedWithinEDDType
 		{ 
-			get { return ApiRequest.ItemArrivedWithinEDDType; }
+			get { return ApiRequest.ItemArrivedWithinEDDType.Value; }
 			set { ApiRequest.ItemArrivedWithinEDDType = value; }
 		}
 		
@@ -293,7 +294,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ItemDeliveredWithinEDD
 		{ 
-			get { return ApiRequest.ItemDeliveredWithinEDD; }
+			get { return ApiRequest.ItemDeliveredWithinEDD.Value; }
 			set { ApiRequest.ItemDeliveredWithinEDD = value; }
 		}
 		

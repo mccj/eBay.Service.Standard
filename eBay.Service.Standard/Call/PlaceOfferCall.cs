@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -84,7 +85,7 @@ namespace eBay.Service.Call
 		/// This container is used to identify a specific variation within a multiple-variation listing identified by the <b>ItemID</b> value. This container is required when attempting to perform an action on a multiple-variation listing.
 		/// </param>
 		///
-		public SellingStatusType PlaceOffer(OfferType Offer, string ItemID, bool BlockOnWarning, AffiliateTrackingDetailsType AffiliateTrackingDetails, NameValueListType[] VariationSpecificList)
+		public SellingStatusType PlaceOffer(OfferType Offer, string ItemID, bool BlockOnWarning, AffiliateTrackingDetailsType AffiliateTrackingDetails, List<NameValueListType> VariationSpecificList)
 		{
 			this.Offer = Offer;
 			this.ItemID = ItemID;
@@ -166,7 +167,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool BlockOnWarning
 		{ 
-			get { return ApiRequest.BlockOnWarning; }
+			get { return ApiRequest.BlockOnWarning.Value; }
 			set { ApiRequest.BlockOnWarning = value; }
 		}
 		
@@ -182,7 +183,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="PlaceOfferRequestType.VariationSpecifics"/> of type <see cref="NameValueListTypeCollection"/>.
 		/// </summary>
-		public NameValueListType[] VariationSpecificList
+		public List<NameValueListType> VariationSpecificList
 		{ 
 			get { return ApiRequest.VariationSpecifics; }
 			set { ApiRequest.VariationSpecifics = value; }

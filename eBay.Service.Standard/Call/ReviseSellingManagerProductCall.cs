@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -81,7 +82,7 @@ namespace eBay.Service.Call
 		/// (which may be used to create multi-variation listings).
 		/// </param>
 		///
-		public SellingManagerProductDetailsType ReviseSellingManagerProduct(SellingManagerProductDetailsType SellingManagerProductDetails, SellingManagerFolderDetailsType SellingManagerFolderDetails, String[] DeletedFieldList, SellingManagerProductSpecificsType SellingManagerProductSpecifics)
+		public SellingManagerProductDetailsType ReviseSellingManagerProduct(SellingManagerProductDetailsType SellingManagerProductDetails, SellingManagerFolderDetailsType SellingManagerFolderDetails, List<string> DeletedFieldList, SellingManagerProductSpecificsType SellingManagerProductSpecifics)
 		{
 			this.SellingManagerProductDetails = SellingManagerProductDetails;
 			this.SellingManagerFolderDetails = SellingManagerFolderDetails;
@@ -146,9 +147,9 @@ namespace eBay.Service.Call
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="ReviseSellingManagerProductRequestType.DeletedField"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="ReviseSellingManagerProductRequestType.DeletedField"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] DeletedFieldList
+		public List<string> DeletedFieldList
 		{ 
 			get { return ApiRequest.DeletedField; }
 			set { ApiRequest.DeletedField = value; }

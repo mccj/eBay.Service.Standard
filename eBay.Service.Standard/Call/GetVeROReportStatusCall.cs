@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -158,7 +159,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long VeROReportPacketID
 		{ 
-			get { return ApiRequest.VeROReportPacketID; }
+			get { return ApiRequest.VeROReportPacketID.Value; }
 			set { ApiRequest.VeROReportPacketID = value; }
 		}
 		
@@ -176,7 +177,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeReportedItemDetails
 		{ 
-			get { return ApiRequest.IncludeReportedItemDetails; }
+			get { return ApiRequest.IncludeReportedItemDetails.Value; }
 			set { ApiRequest.IncludeReportedItemDetails = value; }
 		}
 		
@@ -185,7 +186,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime TimeFrom
 		{ 
-			get { return ApiRequest.TimeFrom; }
+			get { return ApiRequest.TimeFrom.Value; }
 			set { ApiRequest.TimeFrom = value; }
 		}
 		
@@ -194,7 +195,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime TimeTo
 		{ 
-			get { return ApiRequest.TimeTo; }
+			get { return ApiRequest.TimeTo.Value; }
 			set { ApiRequest.TimeTo = value; }
 		}
 		
@@ -221,7 +222,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool HasMoreItems
 		{ 
-			get { return ApiResponse.HasMoreItems; }
+			get { return ApiResponse.HasMoreItems.Value; }
 		}
 		
  		/// <summary>
@@ -229,7 +230,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int ItemsPerPage
 		{ 
-			get { return ApiResponse.ItemsPerPage; }
+			get { return ApiResponse.ItemsPerPage.Value; }
 		}
 		
  		/// <summary>
@@ -237,7 +238,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int PageNumber
 		{ 
-			get { return ApiResponse.PageNumber; }
+			get { return ApiResponse.PageNumber.Value; }
 		}
 		
  		/// <summary>
@@ -245,7 +246,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long VeROReportPacketIDReturn
 		{ 
-			get { return ApiResponse.VeROReportPacketID; }
+			get { return ApiResponse.VeROReportPacketID.Value; }
 		}
 		
  		/// <summary>
@@ -253,13 +254,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public VeROReportPacketStatusCodeType VeROReportPacketStatus
 		{ 
-			get { return ApiResponse.VeROReportPacketStatus; }
+			get { return ApiResponse.VeROReportPacketStatus.Value; }
 		}
 		
  		/// <summary>
 		/// Gets the returned <see cref="GetVeROReportStatusResponseType.ReportedItemDetails"/> of type <see cref="VeROReportedItemTypeCollection"/>.
 		/// </summary>
-		public VeROReportedItemType[] ReportedItemDetailList
+		public List<VeROReportedItemType> ReportedItemDetailList
 		{ 
 			get { return ApiResponse.ReportedItemDetails; }
 		}

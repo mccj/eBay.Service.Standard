@@ -73,7 +73,7 @@ namespace eBay.Service.Call
 			this.KeepTokenValid = KeepTokenValid;
 
 			Execute();
-			return ApiResponse.ValidToken;
+			return ApiResponse.ValidToken.Value;
 		}
 
 
@@ -134,7 +134,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool KeepTokenValid
 		{ 
-			get { return ApiRequest.KeepTokenValid; }
+			get { return ApiRequest.KeepTokenValid.Value; }
 			set { ApiRequest.KeepTokenValid = value; }
 		}
 		
@@ -144,7 +144,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ValidToken
 		{ 
-			get { return ApiResponse.ValidToken; }
+			get { return ApiResponse.ValidToken.Value; }
 		}
 		
 

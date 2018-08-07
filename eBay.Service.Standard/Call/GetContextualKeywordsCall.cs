@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -67,7 +68,7 @@ namespace eBay.Service.Call
 		/// Zero or more category IDs can be specified.
 		/// </param>
 		///
-		public ContextSearchAssetType[] GetContextualKeywords(string URL, string Encoding, String[] CategoryIDList)
+		public List<ContextSearchAssetType> GetContextualKeywords(string URL, string Encoding, List<string> CategoryIDList)
 		{
 			this.URL = URL;
 			this.Encoding = Encoding;
@@ -131,9 +132,9 @@ namespace eBay.Service.Call
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="GetContextualKeywordsRequestType.CategoryID"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="GetContextualKeywordsRequestType.CategoryID"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] CategoryIDList
+		public List<string> CategoryIDList
 		{ 
 			get { return ApiRequest.CategoryID; }
 			set { ApiRequest.CategoryID = value; }
@@ -143,7 +144,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetContextualKeywordsResponseType.ContextSearchAsset"/> of type <see cref="ContextSearchAssetTypeCollection"/>.
 		/// </summary>
-		public ContextSearchAssetType[] ContextSearchAssetList
+		public List<ContextSearchAssetType> ContextSearchAssetList
 		{ 
 			get { return ApiResponse.ContextSearchAsset; }
 		}

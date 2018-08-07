@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -115,7 +116,7 @@ namespace eBay.Service.Call
 		/// Use this field to verify the template instead of revising it.
 		/// </param>
 		///
-		public long ReviseSellingManagerTemplate(long SaleTemplateID, long ProductID, string SaleTemplateName, ItemType Item, String[] DeletedFieldList, bool VerifyOnly)
+		public long ReviseSellingManagerTemplate(long SaleTemplateID, long ProductID, string SaleTemplateName, ItemType Item, List<string> DeletedFieldList, bool VerifyOnly)
 		{
 			this.SaleTemplateID = SaleTemplateID;
 			this.ProductID = ProductID;
@@ -125,7 +126,7 @@ namespace eBay.Service.Call
 			this.VerifyOnly = VerifyOnly;
 
 			Execute();
-			return ApiResponse.SaleTemplateID;
+			return ApiResponse.SaleTemplateID.Value;
 		}
 
 
@@ -168,7 +169,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long SaleTemplateID
 		{ 
-			get { return ApiRequest.SaleTemplateID; }
+			get { return ApiRequest.SaleTemplateID.Value; }
 			set { ApiRequest.SaleTemplateID = value; }
 		}
 		
@@ -177,7 +178,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long ProductID
 		{ 
-			get { return ApiRequest.ProductID; }
+			get { return ApiRequest.ProductID.Value; }
 			set { ApiRequest.ProductID = value; }
 		}
 		
@@ -200,9 +201,9 @@ namespace eBay.Service.Call
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="ReviseSellingManagerTemplateRequestType.DeletedField"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="ReviseSellingManagerTemplateRequestType.DeletedField"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] DeletedFieldList
+		public List<string> DeletedFieldList
 		{ 
 			get { return ApiRequest.DeletedField; }
 			set { ApiRequest.DeletedField = value; }
@@ -213,7 +214,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool VerifyOnly
 		{ 
-			get { return ApiRequest.VerifyOnly; }
+			get { return ApiRequest.VerifyOnly.Value; }
 			set { ApiRequest.VerifyOnly = value; }
 		}
 		
@@ -223,13 +224,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long SaleTemplateIDReturn
 		{ 
-			get { return ApiResponse.SaleTemplateID; }
+			get { return ApiResponse.SaleTemplateID.Value; }
 		}
 		
  		/// <summary>
-		/// Gets the returned <see cref="ReviseSellingManagerTemplateResponseType.Fees"/> of type <see cref="FeeTypeCollection"/>.
+		/// Gets the returned <see cref="ReviseSellingManagerTemplateResponseType.Fees"/> of type <see cref="List<FeeType>"/>.
 		/// </summary>
-		public FeeType[] FeeList
+		public List<FeeType> FeeList
 		{ 
 			get { return ApiResponse.Fees; }
 		}
@@ -255,7 +256,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool VerifyOnlyReturn
 		{ 
-			get { return ApiResponse.VerifyOnly; }
+			get { return ApiResponse.VerifyOnly.Value; }
 		}
 		
  		/// <summary>

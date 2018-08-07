@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -78,7 +79,7 @@ namespace eBay.Service.Call
 		/// for example, Item.ListingEnhancement[BoldTitle].
 		/// </param>
 		///
-		public FeeType[] RelistFixedPriceItem(ItemType Item, String[] DeletedFieldList)
+		public List<FeeType> RelistFixedPriceItem(ItemType Item, List<string> DeletedFieldList)
 		{
 			this.Item = Item;
 			this.DeletedFieldList = DeletedFieldList;
@@ -99,7 +100,7 @@ namespace eBay.Service.Call
 				{
 					Item.UUID = NewUUID();
 				}
-				if (ApiContext.EPSServerUrl != null && PictureFileList != null && PictureFileList.Length > 0)
+				if (ApiContext.EPSServerUrl != null && PictureFileList != null && PictureFileList.Count > 0)
 				{
 					eBayPictureService eps = new eBayPictureService(ApiContext);
 					if (Item.PictureDetails == null)
@@ -107,14 +108,15 @@ namespace eBay.Service.Call
 						Item.PictureDetails = new PictureDetailsType();
 						Item.PictureDetails.PhotoDisplay = PhotoDisplayCodeType.None;
 					} 
-					else if (!Item.PictureDetails.PhotoDisplaySpecified || Item.PictureDetails.PhotoDisplay == PhotoDisplayCodeType.CustomCode)
+					else if (!Item.PictureDetails.PhotoDisplay.HasValue || Item.PictureDetails.PhotoDisplay == PhotoDisplayCodeType.CustomCode)
 					{
 						Item.PictureDetails.PhotoDisplay = PhotoDisplayCodeType.None;
 					}
 
 					try
 					{
-						Item.PictureDetails.PictureURL = eps.UpLoadPictureFiles(Item.PictureDetails.PhotoDisplay, PictureFileList);
+						Item.PictureDetails.PictureURL = new List<string>();
+						Item.PictureDetails.PictureURL.AddRange(eps.UpLoadPictureFiles(Item.PictureDetails.PhotoDisplay.Value, PictureFileList.ToArray()));
 					} 
 					catch (Exception ex)
 					{
@@ -216,9 +218,9 @@ namespace eBay.Service.Call
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="RelistFixedPriceItemRequestType.DeletedField"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="RelistFixedPriceItemRequestType.DeletedField"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] DeletedFieldList
+		public List<string> DeletedFieldList
 		{ 
 			get { return ApiRequest.DeletedField; }
 			set { ApiRequest.DeletedField = value; }
@@ -234,7 +236,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		///
 		/// </summary>
-										public String[] PictureFileList
+										public List<string> PictureFileList
 		{ 
 			get { return mPictureFileList; }
 			set { mPictureFileList = value; }
@@ -258,9 +260,9 @@ namespace eBay.Service.Call
 		}
 		
  		/// <summary>
-		/// Gets the returned <see cref="RelistFixedPriceItemResponseType.Fees"/> of type <see cref="FeeTypeCollection"/>.
+		/// Gets the returned <see cref="RelistFixedPriceItemResponseType.Fees"/> of type <see cref="List<FeeType>"/>.
 		/// </summary>
-		public FeeType[] FeeList
+		public List<FeeType> FeeList
 		{ 
 			get { return ApiResponse.Fees; }
 		}
@@ -270,7 +272,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartTime
 		{ 
-			get { return ApiResponse.StartTime; }
+			get { return ApiResponse.StartTime.Value; }
 		}
 		
  		/// <summary>
@@ -278,7 +280,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTime
 		{ 
-			get { return ApiResponse.EndTime; }
+			get { return ApiResponse.EndTime.Value; }
 		}
 		
  		/// <summary>
@@ -298,9 +300,9 @@ namespace eBay.Service.Call
 		}
 		
  		/// <summary>
-		/// Gets the returned <see cref="RelistFixedPriceItemResponseType.DiscountReason"/> of type <see cref="DiscountReasonCodeTypeCollection"/>.
+		/// Gets the returned <see cref="RelistFixedPriceItemResponseType.DiscountReason"/> of type <see cref="List<DiscountReasonCodeType?>"/>.
 		/// </summary>
-		public DiscountReasonCodeType[] DiscountReasonList
+		public List<DiscountReasonCodeType?> DiscountReasonList
 		{ 
 			get { return ApiResponse.DiscountReason; }
 		}
@@ -326,7 +328,7 @@ namespace eBay.Service.Call
 
 		#region Private Fields
 		private bool mAutoSetItemUUID = false;
-		private String[] mPictureFileList = new string[] { };
+		private List<string> mPictureFileList = new List<string>();
 		#endregion
 		
 	}

@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -107,7 +108,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public NotificationRoleCodeType PreferenceLevel
 		{ 
-			get { return ApiRequest.PreferenceLevel; }
+			get { return ApiRequest.PreferenceLevel.Value; }
 			set { ApiRequest.PreferenceLevel = value; }
 		}
 		
@@ -131,7 +132,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetNotificationPreferencesResponseType.UserDeliveryPreferenceArray"/> of type <see cref="NotificationEnableTypeCollection"/>.
 		/// </summary>
-		public NotificationEnableType[] UserDeliveryPreferenceList
+		public List<NotificationEnableType> UserDeliveryPreferenceList
 		{ 
 			get { return ApiResponse.UserDeliveryPreferenceArray; }
 		}
@@ -147,7 +148,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetNotificationPreferencesResponseType.EventProperty"/> of type <see cref="NotificationEventPropertyTypeCollection"/>.
 		/// </summary>
-		public NotificationEventPropertyType[] EventPropertyList
+		public List<NotificationEventPropertyType> EventPropertyList
 		{ 
 			get { return ApiResponse.EventProperty; }
 		}

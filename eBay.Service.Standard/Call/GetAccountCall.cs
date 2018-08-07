@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -46,79 +47,80 @@ namespace eBay.Service.Call
 			ApiRequest = new GetAccountRequestType();
 			this.ApiContext = ApiContext;
 		}
-		#endregion
+        #endregion
 
-		#region Public Methods
-		/// <summary>
-		/// Returns a seller's invoice data for their eBay account, including the account's
-		/// summary data.
-		/// </summary>
-		/// 
-		/// <param name="AccountHistorySelection">
-		/// Specifies the report format in which to return account entries.
-		/// </param>
-		///
-		/// <param name="InvoiceDate">
-		/// This field is used to retrieve all account entries from a specific invoice, which is identified through this <b>InvoiceDate</b> field with the timestamp of the account invoice. This field is only applicable if the  <b>AccountHistorySelection</b> value is set to 'SpecifiedInvoice'; otherwise, this field will be ignored.
-		/// </param>
-		///
-		/// <param name="BeginDate">
-		/// This field is used to retrieve all account entries dating back to the timestamp passed into this <b>BeginDate</b> field up until the timestamp passed into the <b>EndDate</b> field. The <b>BeginDate</b> value can not be set back any further than four months into the past.
-		/// <br/><br/>
-		/// The allowed date formats are <em>YYYY-MM-DD</em> and <em>YYYY-MM-DD HH:mm:ss</em> The <b>BeginDate</b> value must be less than or equal to the <b>EndDate</b> value. The user might use the same values in both fields if that user wanted to retrieve all account entries from a specific day (if <em>YYYY-MM-DD</em> format used) or wanted to retrieve a specific account entry (if <em>YYYY-MM-DD HH:mm:ss</em> format used).
-		/// <br/><br/>
-		/// This field is only applicable if the  <b>AccountHistorySelection</b> value is set to 'BetweenSpecifiedDates'; otherwise, this field will be ignored. fiedDates' is used, both the <b>BeginDate</b> and <b>EndDate</b> must be included.
-		/// </param>
-		///
-		/// <param name="EndDate">
-		/// This field is used to retrieve all account entries dating up to the timestamp passed into this <b>EndDate</b> field dating back to the timestamp passed into the <b>BeginDate</b> field. The <b>EndDate</b> value can not be set for a future date.
-		/// <br/><br/>
-		/// The allowed date formats are <em>YYYY-MM-DD</em> and <em>YYYY-MM-DD HH:mm:ss</em> The <b>EndDate</b> value must be more than or equal to the <b>BeginDate</b> value. The user might use the same values in both fields if that user wanted to retrieve all account entries from a specific day (if <em>YYYY-MM-DD</em> format used) or wanted to retrieve a specific account entry (if <em>YYYY-MM-DD HH:mm:ss</em> format used).
-		/// <br/><br/>
-		/// This field is only applicable if the  <b>AccountHistorySelection</b> value is set to 'BetweenSpecifiedDates'; otherwise, this field will be ignored. If 'BetweenSpecifiedDates' is used, both the <b>BeginDate</b> and <b>EndDate</b> must be included.
-		/// </param>
-		///
-		/// <param name="Pagination">
-		/// This container is used to control how many account entries are returned on each page of data in the response. <b>PaginationType</b> is used by numerous Trading API calls, and the default and maximum values for the <b>EntriesPerPage</b> field differs with each call. For the <b>GetAccount</b> call, the default value is 500 (account entries) per page, and maximum allowed value is 2000 (account entries) per page.
-		/// </param>
-		///
-		/// <param name="ExcludeBalance">
-		/// By default, the current balance of the user's account will not be returned in the call response. To retrieve the current balance of their account, the user should include the <b>ExcludeBalance</b> flag in the request and set its value to 'false'. The current balance on the account will be shown in the <b>AccountSummary.CurrentBalance</b> field in the call response.
-		/// </param>
-		///
-		/// <param name="ExcludeSummary">
-		/// Specifies whether to return account summary information in an
-		/// AccountSummary node. Default is true, to return AccountSummary.
-		/// </param>
-		///
-		/// <param name="IncludeConversionRate">
-		/// Specifies whether to retrieve the rate used for the currency conversion for usage transactions.
-		/// </param>
-		///
-		/// <param name="AccountEntrySortType">
-		/// Specifies how account entries should be sorted in the response, by an
-		/// element and then in ascending or descending order.
-		/// </param>
-		///
-		/// <param name="Currency">
-		/// Specifies the currency used in the account report. Do not specify Currency
-		/// in the request unless the following conditions are met. First, the user has
-		/// or had multiple accounts under the same UserID. Second, the account
-		/// identified in the request uses the currency you specify in the request. An
-		/// error is returned if no account is found that uses the currency you specify
-		/// in the request.
-		/// </param>
-		///
-		/// <param name="ItemID">
-		/// Specifies the item ID for which to return account entries. If ItemID is
-		/// used, all other filters in the request are ignored. If the specified item
-		/// does not exist or if the requesting user is not the seller of the item, an
-		/// error is returned.
-		/// </param>
-		///
-		public AccountEntryType[] GetAccount(AccountHistorySelectionCodeType AccountHistorySelection, DateTime InvoiceDate, DateTime BeginDate, DateTime EndDate, PaginationType Pagination, bool ExcludeBalance, bool ExcludeSummary, bool IncludeConversionRate, AccountEntrySortTypeCodeType AccountEntrySortType, CurrencyCodeType Currency, string ItemID)
+        #region Public Methods
+        /// <summary>
+        /// Returns a seller's invoice data for their eBay account, including the account's
+        /// summary data.
+        /// </summary>
+        /// 
+        /// <param name="AccountHistorySelection">
+        /// Specifies the report format in which to return account entries.
+        /// </param>
+        ///
+        /// <param name="InvoiceDate">
+        /// This field is used to retrieve all account entries from a specific invoice, which is identified through this <b>InvoiceDate</b> field with the timestamp of the account invoice. This field is only applicable if the  <b>AccountHistorySelection</b> value is set to 'SpecifiedInvoice'; otherwise, this field will be ignored.
+        /// </param>
+        ///
+        /// <param name="BeginDate">
+        /// This field is used to retrieve all account entries dating back to the timestamp passed into this <b>BeginDate</b> field up until the timestamp passed into the <b>EndDate</b> field. The <b>BeginDate</b> value can not be set back any further than four months into the past.
+        /// <br/><br/>
+        /// The allowed date formats are <em>YYYY-MM-DD</em> and <em>YYYY-MM-DD HH:mm:ss</em> The <b>BeginDate</b> value must be less than or equal to the <b>EndDate</b> value. The user might use the same values in both fields if that user wanted to retrieve all account entries from a specific day (if <em>YYYY-MM-DD</em> format used) or wanted to retrieve a specific account entry (if <em>YYYY-MM-DD HH:mm:ss</em> format used).
+        /// <br/><br/>
+        /// This field is only applicable if the  <b>AccountHistorySelection</b> value is set to 'BetweenSpecifiedDates'; otherwise, this field will be ignored. fiedDates' is used, both the <b>BeginDate</b> and <b>EndDate</b> must be included.
+        /// </param>
+        ///
+        /// <param name="EndDate">
+        /// This field is used to retrieve all account entries dating up to the timestamp passed into this <b>EndDate</b> field dating back to the timestamp passed into the <b>BeginDate</b> field. The <b>EndDate</b> value can not be set for a future date.
+        /// <br/><br/>
+        /// The allowed date formats are <em>YYYY-MM-DD</em> and <em>YYYY-MM-DD HH:mm:ss</em> The <b>EndDate</b> value must be more than or equal to the <b>BeginDate</b> value. The user might use the same values in both fields if that user wanted to retrieve all account entries from a specific day (if <em>YYYY-MM-DD</em> format used) or wanted to retrieve a specific account entry (if <em>YYYY-MM-DD HH:mm:ss</em> format used).
+        /// <br/><br/>
+        /// This field is only applicable if the  <b>AccountHistorySelection</b> value is set to 'BetweenSpecifiedDates'; otherwise, this field will be ignored. If 'BetweenSpecifiedDates' is used, both the <b>BeginDate</b> and <b>EndDate</b> must be included.
+        /// </param>
+        ///
+        /// <param name="Pagination">
+        /// This container is used to control how many account entries are returned on each page of data in the response. <b>PaginationType</b> is used by numerous Trading API calls, and the default and maximum values for the <b>EntriesPerPage</b> field differs with each call. For the <b>GetAccount</b> call, the default value is 500 (account entries) per page, and maximum allowed value is 2000 (account entries) per page.
+        /// </param>
+        ///
+        /// <param name="ExcludeBalance">
+        /// By default, the current balance of the user's account will not be returned in the call response. To retrieve the current balance of their account, the user should include the <b>ExcludeBalance</b> flag in the request and set its value to 'false'. The current balance on the account will be shown in the <b>AccountSummary.CurrentBalance</b> field in the call response.
+        /// </param>
+        ///
+        /// <param name="ExcludeSummary">
+        /// Specifies whether to return account summary information in an
+        /// AccountSummary node. Default is true, to return AccountSummary.
+        /// </param>
+        ///
+        /// <param name="IncludeConversionRate">
+        /// Specifies whether to retrieve the rate used for the currency conversion for usage transactions.
+        /// </param>
+        ///
+        /// <param name="AccountEntrySortType">
+        /// Specifies how account entries should be sorted in the response, by an
+        /// element and then in ascending or descending order.
+        /// </param>
+        ///
+        /// <param name="Currency">
+        /// Specifies the currency used in the account report. Do not specify Currency
+        /// in the request unless the following conditions are met. First, the user has
+        /// or had multiple accounts under the same UserID. Second, the account
+        /// identified in the request uses the currency you specify in the request. An
+        /// error is returned if no account is found that uses the currency you specify
+        /// in the request.
+        /// </param>
+        ///
+        /// <param name="ItemID">
+        /// Specifies the item ID for which to return account entries. If ItemID is
+        /// used, all other filters in the request are ignored. If the specified item
+        /// does not exist or if the requesting user is not the seller of the item, an
+        /// error is returned.
+        /// </param>
+        ///
+        public List<AccountEntryType> GetAccount(AccountHistorySelectionCodeType AccountHistorySelection, DateTime InvoiceDate, DateTime BeginDate, DateTime EndDate, PaginationType Pagination, bool ExcludeBalance, bool ExcludeSummary, bool IncludeConversionRate, AccountEntrySortTypeCodeType AccountEntrySortType, CurrencyCodeType Currency, string ItemID)
 		{
-			this.AccountHistorySelection = AccountHistorySelection;
+           
+               this.AccountHistorySelection = AccountHistorySelection;
 			this.InvoiceDate = InvoiceDate;
 			this.BeginDate = BeginDate;
 			this.EndDate = EndDate;
@@ -135,10 +137,10 @@ namespace eBay.Service.Call
 		}
 
 
-		/// <summary>
-		/// For backward compatibility with old wrappers.
-		/// </summary>
-		public AccountEntryType[] GetAccount(AccountHistorySelectionCodeType AccountHistorySelection)
+        /// <summary>
+        /// For backward compatibility with old wrappers.
+        /// </summary>
+        public List<AccountEntryType> GetAccount(AccountHistorySelectionCodeType AccountHistorySelection)
 		{
 			this.AccountHistorySelection = AccountHistorySelection;
 			Execute();
@@ -183,7 +185,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public AccountHistorySelectionCodeType AccountHistorySelection
 		{ 
-			get { return ApiRequest.AccountHistorySelection; }
+			get { return ApiRequest.AccountHistorySelection.Value; }
 			set { ApiRequest.AccountHistorySelection = value; }
 		}
 		
@@ -192,7 +194,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime InvoiceDate
 		{ 
-			get { return ApiRequest.InvoiceDate; }
+			get { return ApiRequest.InvoiceDate.Value; }
 			set { ApiRequest.InvoiceDate = value; }
 		}
 		
@@ -201,7 +203,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime BeginDate
 		{ 
-			get { return ApiRequest.BeginDate; }
+			get { return ApiRequest.BeginDate.Value; }
 			set { ApiRequest.BeginDate = value; }
 		}
 		
@@ -210,7 +212,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndDate
 		{ 
-			get { return ApiRequest.EndDate; }
+			get { return ApiRequest.EndDate.Value; }
 			set { ApiRequest.EndDate = value; }
 		}
 		
@@ -228,7 +230,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ExcludeBalance
 		{ 
-			get { return ApiRequest.ExcludeBalance; }
+			get { return ApiRequest.ExcludeBalance.Value; }
 			set { ApiRequest.ExcludeBalance = value; }
 		}
 		
@@ -237,7 +239,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ExcludeSummary
 		{ 
-			get { return ApiRequest.ExcludeSummary; }
+			get { return ApiRequest.ExcludeSummary.Value; }
 			set { ApiRequest.ExcludeSummary = value; }
 		}
 		
@@ -246,7 +248,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeConversionRate
 		{ 
-			get { return ApiRequest.IncludeConversionRate; }
+			get { return ApiRequest.IncludeConversionRate.Value; }
 			set { ApiRequest.IncludeConversionRate = value; }
 		}
 		
@@ -255,7 +257,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public AccountEntrySortTypeCodeType AccountEntrySortType
 		{ 
-			get { return ApiRequest.AccountEntrySortType; }
+			get { return ApiRequest.AccountEntrySortType.Value; }
 			set { ApiRequest.AccountEntrySortType = value; }
 		}
 		
@@ -264,7 +266,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public CurrencyCodeType Currency
 		{ 
-			get { return ApiRequest.Currency; }
+			get { return ApiRequest.Currency.Value; }
 			set { ApiRequest.Currency = value; }
 		}
 		
@@ -276,29 +278,29 @@ namespace eBay.Service.Call
 			get { return ApiRequest.ItemID; }
 			set { ApiRequest.ItemID = value; }
 		}
-		//		/// <summary>
-		///// Gets or sets the <see cref="GetAccountRequestType.BeginDate"/> and <see cref="GetAccountRequestType.EndDate"/> of type <see cref="TimeFilter"/>.
-		///// </summary>
-		//public TimeFilter StartTimeFilter
-		//{ 
-		//	get 
-		//	{ 
-		//		return new TimeFilter(ApiRequest.BeginDate, ApiRequest.EndDate); 
-		//	}
-		//	set 
-		//	{ 
-		//		if (value.TimeFrom > DateTime.MinValue)
-		//			ApiRequest.BeginDate = value.TimeFrom;
-
-		//		if (value.TimeTo > DateTime.MinValue)
-		//			ApiRequest.EndDate = value.TimeTo;
-		//	}
-		//}
-		
-		/// <summary>
-		/// Gets the <see cref="GetAccountResponseType.AccountEntries.AccountEntry"/> of type <see cref="AccountEntryList"/>.
+				/// <summary>
+		/// Gets or sets the <see cref="GetAccountRequestType.BeginDate"/> and <see cref="GetAccountRequestType.EndDate"/> of type <see cref="TimeFilter"/>.
 		/// </summary>
-		public AccountEntryType[] AccountEntryList
+		public TimeFilter StartTimeFilter
+		{ 
+			get 
+			{ 
+				return new TimeFilter(ApiRequest.BeginDate.Value, ApiRequest.EndDate.Value); 
+			}
+			set 
+			{ 
+				if (value.TimeFrom > DateTime.MinValue)
+					ApiRequest.BeginDate = value.TimeFrom;
+
+				if (value.TimeTo > DateTime.MinValue)
+					ApiRequest.EndDate = value.TimeTo;
+			}
+		}
+
+        /// <summary>
+        /// Gets the <see cref="GetAccountResponseType.AccountEntries.AccountEntry"/> of type <see cref="AccountEntryList"/>.
+        /// </summary>
+        public List<AccountEntryType> AccountEntryList
 		{ 
 			get 
 			{
@@ -348,7 +350,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool HasMoreEntries
 		{ 
-			get { return ApiResponse.HasMoreEntries; }
+			get { return ApiResponse.HasMoreEntries.Value; }
 		}
 		
  		/// <summary>
@@ -356,7 +358,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int EntriesPerPage
 		{ 
-			get { return ApiResponse.EntriesPerPage; }
+			get { return ApiResponse.EntriesPerPage.Value; }
 		}
 		
  		/// <summary>
@@ -364,7 +366,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int PageNumber
 		{ 
-			get { return ApiResponse.PageNumber; }
+			get { return ApiResponse.PageNumber.Value; }
 		}
 		
 

@@ -233,7 +233,7 @@ namespace eBay.Service.Core.Sdk
 		}
 
 		/// <summary>
-		/// If set to <b>true</b>, enables [] of data about total call latency, network latency, and server-side latency.
+		/// If set to <b>true</b>, enables collection of data about total call latency, network latency, and server-side latency.
         /// All API calls will be tracked if you use this. 
 		/// </summary>
 		public bool EnableMetrics

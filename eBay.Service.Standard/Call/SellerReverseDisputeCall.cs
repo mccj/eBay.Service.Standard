@@ -130,7 +130,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DisputeResolutionReasonCodeType DisputeResolutionReason
 		{ 
-			get { return ApiRequest.DisputeResolutionReason; }
+			get { return ApiRequest.DisputeResolutionReason.Value; }
 			set { ApiRequest.DisputeResolutionReason = value; }
 		}
 		

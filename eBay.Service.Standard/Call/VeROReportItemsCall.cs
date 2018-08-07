@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -65,13 +66,13 @@ namespace eBay.Service.Call
 		/// more than once in a packet if a different reason code is used each time.
 		/// </param>
 		///
-		public long VeROReportItems(string RightsOwnerID, VeROReportItemType[] ReportItemList)
+		public long VeROReportItems(string RightsOwnerID, List<VeROReportItemType> ReportItemList)
 		{
 			this.RightsOwnerID = RightsOwnerID;
 			this.ReportItemList = ReportItemList;
 
 			Execute();
-			return ApiResponse.VeROReportPacketID;
+			return ApiResponse.VeROReportPacketID.Value;
 		}
 
 
@@ -121,7 +122,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="VeROReportItemsRequestType.ReportItems"/> of type <see cref="VeROReportItemTypeCollection"/>.
 		/// </summary>
-		public VeROReportItemType[] ReportItemList
+		public List<VeROReportItemType> ReportItemList
 		{ 
 			get { return ApiRequest.ReportItems; }
 			set { ApiRequest.ReportItems = value; }
@@ -133,7 +134,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long VeROReportPacketID
 		{ 
-			get { return ApiResponse.VeROReportPacketID; }
+			get { return ApiResponse.VeROReportPacketID.Value; }
 		}
 		
  		/// <summary>
@@ -141,7 +142,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public VeROReportPacketStatusCodeType VeROReportPacketStatus
 		{ 
-			get { return ApiResponse.VeROReportPacketStatus; }
+			get { return ApiResponse.VeROReportPacketStatus.Value; }
 		}
 		
 

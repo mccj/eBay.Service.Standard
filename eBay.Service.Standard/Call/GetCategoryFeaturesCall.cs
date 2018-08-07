@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -110,7 +111,7 @@ namespace eBay.Service.Call
 		/// features only, for the specified category.
 		/// </param>
 		///
-		public CategoryFeatureType[] GetCategoryFeatures(string CategoryID, int LevelLimit, bool ViewAllNodes, FeatureIDCodeType[] FeatureIDList, bool AllFeaturesForCategory)
+		public List<CategoryFeatureType> GetCategoryFeatures(string CategoryID, int LevelLimit, bool ViewAllNodes, List<FeatureIDCodeType?> FeatureIDList, bool AllFeaturesForCategory)
 		{
 			this.CategoryID = CategoryID;
 			this.LevelLimit = LevelLimit;
@@ -138,7 +139,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public CategoryFeatureType[] GetCategoryFeatures(/*FeatureIDCodeType[] FeatureIDList*/)
+		public List<CategoryFeatureType> GetCategoryFeatures(/*List<FeatureIDCodeType> FeatureIDList*/)
 		{
 			Execute();
 			return CategoryList;
@@ -191,7 +192,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int LevelLimit
 		{ 
-			get { return ApiRequest.LevelLimit; }
+			get { return ApiRequest.LevelLimit.Value; }
 			set { ApiRequest.LevelLimit = value; }
 		}
 		
@@ -200,14 +201,14 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool ViewAllNodes
 		{ 
-			get { return ApiRequest.ViewAllNodes; }
+			get { return ApiRequest.ViewAllNodes.Value; }
 			set { ApiRequest.ViewAllNodes = value; }
 		}
-		
- 		/// <summary>
-		/// Gets or sets the <see cref="GetCategoryFeaturesRequestType.FeatureID"/> of type <see cref="FeatureIDCodeTypeCollection"/>.
-		/// </summary>
-		public FeatureIDCodeType[] FeatureIDList
+
+    /// <summary>
+    /// Gets or sets the <see cref="GetCategoryFeaturesRequestType.FeatureID"/> of type <see cref="List<FeatureIDCodeType>"/>.
+    /// </summary>
+    public List<FeatureIDCodeType?> FeatureIDList
 		{ 
 			get { return ApiRequest.FeatureID; }
 			set { ApiRequest.FeatureID = value; }
@@ -218,7 +219,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool AllFeaturesForCategory
 		{ 
-			get { return ApiRequest.AllFeaturesForCategory; }
+			get { return ApiRequest.AllFeaturesForCategory.Value; }
 			set { ApiRequest.AllFeaturesForCategory = value; }
 		}
 		
@@ -236,13 +237,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime UpdateTime
 		{ 
-			get { return ApiResponse.UpdateTime; }
+			get { return ApiResponse.UpdateTime.Value; }
 		}
-		
- 		/// <summary>
-		/// Gets the returned <see cref="GetCategoryFeaturesResponseType.Category"/> of type <see cref="CategoryFeatureTypeCollection"/>.
-		/// </summary>
-		public CategoryFeatureType[] CategoryList
+
+        /// <summary>
+        /// Gets the returned <see cref="GetCategoryFeaturesResponseType.Category"/> of type <see cref="List<CategoryFeatureType>"/>.
+        /// </summary>
+        public List<CategoryFeatureType> CategoryList
 		{ 
 			get { return ApiResponse.Category; }
 		}

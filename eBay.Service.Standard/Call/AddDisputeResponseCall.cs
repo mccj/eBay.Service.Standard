@@ -157,7 +157,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="AddDisputeResponseRequestType.DisputeActivity"/> of type <see cref="DisputeActivityCodeType"/>.
 		/// </summary>
-		public DisputeActivityCodeType DisputeActivity
+		public DisputeActivityCodeType? DisputeActivity
 		{ 
 			get { return ApiRequest.DisputeActivity; }
 			set { ApiRequest.DisputeActivity = value; }
@@ -184,7 +184,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="AddDisputeResponseRequestType.ShippingTime"/> of type <see cref="DateTime"/>.
 		/// </summary>
-		public DateTime ShippingTime
+		public DateTime? ShippingTime
 		{ 
 			get { return ApiRequest.ShippingTime; }
 			set { ApiRequest.ShippingTime = value; }

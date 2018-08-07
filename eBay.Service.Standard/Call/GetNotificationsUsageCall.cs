@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -117,7 +118,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartTime
 		{ 
-			get { return ApiRequest.StartTime; }
+			get { return ApiRequest.StartTime.Value; }
 			set { ApiRequest.StartTime = value; }
 		}
 		
@@ -126,7 +127,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTime
 		{ 
-			get { return ApiRequest.EndTime; }
+			get { return ApiRequest.EndTime.Value; }
 			set { ApiRequest.EndTime = value; }
 		}
 		
@@ -145,7 +146,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartTimeReturn
 		{ 
-			get { return ApiResponse.StartTime; }
+			get { return ApiResponse.StartTime.Value; }
 		}
 		
  		/// <summary>
@@ -153,13 +154,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTimeReturn
 		{ 
-			get { return ApiResponse.EndTime; }
+			get { return ApiResponse.EndTime.Value; }
 		}
 		
  		/// <summary>
 		/// Gets the returned <see cref="GetNotificationsUsageResponseType.NotificationDetailsArray"/> of type <see cref="NotificationDetailsTypeCollection"/>.
 		/// </summary>
-		public NotificationDetailsType[] NotificationDetailsList
+		public List<NotificationDetailsType> NotificationDetailsList
 		{ 
 			get { return ApiResponse.NotificationDetailsArray; }
 		}
@@ -167,7 +168,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetNotificationsUsageResponseType.MarkUpMarkDownHistory"/> of type <see cref="MarkUpMarkDownEventTypeCollection"/>.
 		/// </summary>
-		public MarkUpMarkDownEventType[] MarkUpMarkDownHistoryList
+		public List<MarkUpMarkDownEventType> MarkUpMarkDownHistoryList
 		{ 
 			get { return ApiResponse.MarkUpMarkDownHistory; }
 		}

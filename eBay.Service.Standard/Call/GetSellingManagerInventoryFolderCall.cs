@@ -118,7 +118,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long FolderID
 		{ 
-			get { return ApiRequest.FolderID; }
+			get { return ApiRequest.FolderID.Value; }
 			set { ApiRequest.FolderID = value; }
 		}
 		
@@ -127,7 +127,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int MaxDepth
 		{ 
-			get { return ApiRequest.MaxDepth; }
+			get { return ApiRequest.MaxDepth.Value; }
 			set { ApiRequest.MaxDepth = value; }
 		}
 		
@@ -136,7 +136,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool FullRecursion
 		{ 
-			get { return ApiRequest.FullRecursion; }
+			get { return ApiRequest.FullRecursion.Value; }
 			set { ApiRequest.FullRecursion = value; }
 		}
 		

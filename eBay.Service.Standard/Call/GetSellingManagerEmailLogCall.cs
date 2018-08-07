@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -115,7 +116,7 @@ namespace eBay.Service.Call
 		/// 
 		/// </param>
 		///
-		public SellingManagerEmailLogType[] GetSellingManagerEmailLog(string ItemID, long TransactionID, string OrderID, TimeRangeType EmailDateRange, string OrderLineItemID)
+		public List<SellingManagerEmailLogType> GetSellingManagerEmailLog(string ItemID, long TransactionID, string OrderID, TimeRangeType EmailDateRange, string OrderLineItemID)
 		{
 			this.ItemID = ItemID;
 			this.TransactionID = TransactionID;
@@ -176,7 +177,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long TransactionID
 		{ 
-			get { return ApiRequest.TransactionID; }
+			get { return ApiRequest.TransactionID.Value; }
 			set { ApiRequest.TransactionID = value; }
 		}
 		
@@ -211,7 +212,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetSellingManagerEmailLogResponseType.EmailLog"/> of type <see cref="SellingManagerEmailLogTypeCollection"/>.
 		/// </summary>
-		public SellingManagerEmailLogType[] EmailLogList
+		public List<SellingManagerEmailLogType> EmailLogList
 		{ 
 			get { return ApiResponse.EmailLog; }
 		}

@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -98,7 +99,7 @@ namespace eBay.Service.Call
 		/// Reserved for future use.
 		/// </param>
 		///
-		public CharityInfoType[] GetCharities(string CharityID, string CharityName, string Query, int CharityRegion, int CharityDomain, bool IncludeDescription, StringMatchCodeType MatchType, bool Featured, long CampaignID)
+		public List<CharityInfoType> GetCharities(string CharityID, string CharityName, string Query, int CharityRegion, int CharityDomain, bool IncludeDescription, StringMatchCodeType MatchType, bool Featured, long CampaignID)
 		{
 			this.CharityID = CharityID;
 			this.CharityName = CharityName;
@@ -118,7 +119,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// to support the call with out parameters.
 		/// </summary>
-		public CharityInfoType[] GetCharities()
+		public List<CharityInfoType> GetCharities()
 		{
 			Execute();
 			return ApiResponse.Charity;
@@ -189,7 +190,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int CharityRegion
 		{ 
-			get { return ApiRequest.CharityRegion; }
+			get { return ApiRequest.CharityRegion.Value; }
 			set { ApiRequest.CharityRegion = value; }
 		}
 		
@@ -198,7 +199,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int CharityDomain
 		{ 
-			get { return ApiRequest.CharityDomain; }
+			get { return ApiRequest.CharityDomain.Value; }
 			set { ApiRequest.CharityDomain = value; }
 		}
 		
@@ -207,7 +208,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeDescription
 		{ 
-			get { return ApiRequest.IncludeDescription; }
+			get { return ApiRequest.IncludeDescription.Value; }
 			set { ApiRequest.IncludeDescription = value; }
 		}
 		
@@ -216,7 +217,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public StringMatchCodeType MatchType
 		{ 
-			get { return ApiRequest.MatchType; }
+			get { return ApiRequest.MatchType.Value; }
 			set { ApiRequest.MatchType = value; }
 		}
 		
@@ -225,7 +226,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool Featured
 		{ 
-			get { return ApiRequest.Featured; }
+			get { return ApiRequest.Featured.Value; }
 			set { ApiRequest.Featured = value; }
 		}
 		
@@ -234,7 +235,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long CampaignID
 		{ 
-			get { return ApiRequest.CampaignID; }
+			get { return ApiRequest.CampaignID.Value; }
 			set { ApiRequest.CampaignID = value; }
 		}
 		
@@ -242,7 +243,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetCharitiesResponseType.Charity"/> of type <see cref="CharityInfoTypeCollection"/>.
 		/// </summary>
-		public CharityInfoType[] CharityList
+		public List<CharityInfoType> CharityList
 		{ 
 			get { return ApiResponse.Charity; }
 		}

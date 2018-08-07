@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -79,7 +80,7 @@ namespace eBay.Service.Call
 		/// time.
 		/// </param>
 		///
-		public AdFormatLeadType[] GetAdFormatLeads(string ItemID, MessageStatusTypeCodeType Status, bool IncludeMemberMessages, DateTime StartCreationTime, DateTime EndCreationTime)
+		public List<AdFormatLeadType> GetAdFormatLeads(string ItemID, MessageStatusTypeCodeType Status, bool IncludeMemberMessages, DateTime StartCreationTime, DateTime EndCreationTime)
 		{
 			this.ItemID = ItemID;
 			this.Status = Status;
@@ -104,7 +105,7 @@ namespace eBay.Service.Call
 		/// to an ad format item.
 		/// </param>
 		///
-		public AdFormatLeadType[] GetAdFormatLeads(string ItemID)
+		public List<AdFormatLeadType> GetAdFormatLeads(string ItemID)
 		{
 			this.ItemID = ItemID;
 
@@ -158,7 +159,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public MessageStatusTypeCodeType Status
 		{ 
-			get { return ApiRequest.Status; }
+			get { return ApiRequest.Status.Value; }
 			set { ApiRequest.Status = value; }
 		}
 		
@@ -167,7 +168,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeMemberMessages
 		{ 
-			get { return ApiRequest.IncludeMemberMessages; }
+			get { return ApiRequest.IncludeMemberMessages.Value; }
 			set { ApiRequest.IncludeMemberMessages = value; }
 		}
 		
@@ -176,7 +177,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartCreationTime
 		{ 
-			get { return ApiRequest.StartCreationTime; }
+			get { return ApiRequest.StartCreationTime.Value; }
 			set { ApiRequest.StartCreationTime = value; }
 		}
 		
@@ -185,7 +186,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndCreationTime
 		{ 
-			get { return ApiRequest.EndCreationTime; }
+			get { return ApiRequest.EndCreationTime.Value; }
 			set { ApiRequest.EndCreationTime = value; }
 		}
 		
@@ -193,7 +194,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetAdFormatLeadsResponseType.AdFormatLead"/> of type <see cref="AdFormatLeadTypeCollection"/>.
 		/// </summary>
-		public AdFormatLeadType[] AdFormatLeadList
+		public List<AdFormatLeadType>  AdFormatLeadList
 		{ 
 			get { return ApiResponse.AdFormatLead; }
 		}
@@ -203,7 +204,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int AdFormatLeadCount
 		{ 
-			get { return ApiResponse.AdFormatLeadCount; }
+			get { return ApiResponse.AdFormatLeadCount.Value; }
 		}
 		
 

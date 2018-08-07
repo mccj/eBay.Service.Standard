@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -327,7 +328,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool HideVariations
 		{ 
-			get { return ApiRequest.HideVariations; }
+			get { return ApiRequest.HideVariations.Value; }
 			set { ApiRequest.HideVariations = value; }
 		}
 		
@@ -399,7 +400,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetMyeBayBuyingResponseType.SecondChanceOffer"/> of type <see cref="ItemTypeCollection"/>.
 		/// </summary>
-		public ItemType[] SecondChanceOfferReturn
+		public List<ItemType> SecondChanceOfferReturn
 		{ 
 			get { return ApiResponse.SecondChanceOffer; }
 		}
@@ -407,7 +408,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetMyeBayBuyingResponseType.BidAssistantList"/> of type <see cref="BidGroupTypeCollection"/>.
 		/// </summary>
-		public BidGroupType[] BidAssistantListList
+		public List<BidGroupType> BidAssistantListList
 		{ 
 			get { return ApiResponse.BidAssistantList; }
 		}
@@ -431,7 +432,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetMyeBayBuyingResponseType.UserDefinedList"/> of type <see cref="UserDefinedListTypeCollection"/>.
 		/// </summary>
-		public UserDefinedListType[] UserDefinedListList
+		public List<UserDefinedListType> UserDefinedListList
 		{ 
 			get { return ApiResponse.UserDefinedList; }
 		}

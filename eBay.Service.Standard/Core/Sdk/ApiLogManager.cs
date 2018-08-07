@@ -51,11 +51,9 @@ namespace eBay.Service.Core.Sdk
 		/// <summary>
 		/// 
 		/// </summary>
-		public ApiLogManager(ApiLogger[] ApiLoggerList)
+		public ApiLogManager(ApiLoggerCollection ApiLoggerList)
 		{
-            mApiLoggerList = ApiLoggerList;
-
-            //mApiLoggerList.AddRange(ApiLoggerList);
+			mApiLoggerList.AddRange(ApiLoggerList);
 		}
 		#endregion
 
@@ -132,7 +130,7 @@ namespace eBay.Service.Core.Sdk
 		/// Gets or sets the list of loggers to be used in the ApiLogManager. Type <see cref="ApiLoggerCollection"/>.
         /// The individual file, console, or event loggers are added to this list using <see cref="eBay.Service.Core.Sdk.ApiLogManager.ApiLoggerList"/> Add.
 		/// </summary>
-		public ApiLogger[] ApiLoggerList
+		public ApiLoggerCollection ApiLoggerList
 		{ 
 			get { return mApiLoggerList; }
 			set { mApiLoggerList = value; }
@@ -213,7 +211,7 @@ namespace eBay.Service.Core.Sdk
 		#endregion
 
 		#region Private Fields
-		private ApiLogger[] mApiLoggerList = new ApiLogger[] { };
+		private ApiLoggerCollection mApiLoggerList = new ApiLoggerCollection();
 		private bool mEnableLogging = true;
 		private ExceptionFilter mMessageLoggingFilter = null;
 		#endregion

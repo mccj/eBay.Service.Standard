@@ -152,7 +152,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int QuantitySold
 		{ 
-			get { return ApiRequest.QuantitySold; }
+			get { return ApiRequest.QuantitySold.Value; }
 			set { ApiRequest.QuantitySold = value; }
 		}
 		
@@ -170,7 +170,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public CountryCodeType DestinationCountryCode
 		{ 
-			get { return ApiRequest.DestinationCountryCode; }
+			get { return ApiRequest.DestinationCountryCode.Value; }
 			set { ApiRequest.DestinationCountryCode = value; }
 		}
 		

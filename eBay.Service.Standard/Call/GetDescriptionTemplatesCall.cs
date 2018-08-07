@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -67,7 +68,7 @@ namespace eBay.Service.Call
 		/// This boolean field should be included and set to <code>true</code> if the user would only like to see the Listing Designer templates that are available for motor vehicle categories. This field will override any <b>CategoryID</b> value that is specified in the call request.
 		/// </param>
 		///
-		public DescriptionTemplateType[] GetDescriptionTemplates(string CategoryID, DateTime LastModifiedTime, bool MotorVehicles)
+		public List<DescriptionTemplateType> GetDescriptionTemplates(string CategoryID, DateTime LastModifiedTime, bool MotorVehicles)
 		{
 			this.CategoryID = CategoryID;
 			this.LastModifiedTime = LastModifiedTime;
@@ -126,7 +127,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime LastModifiedTime
 		{ 
-			get { return ApiRequest.LastModifiedTime; }
+			get { return ApiRequest.LastModifiedTime.Value; }
 			set { ApiRequest.LastModifiedTime = value; }
 		}
 		
@@ -135,7 +136,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool MotorVehicles
 		{ 
-			get { return ApiRequest.MotorVehicles; }
+			get { return ApiRequest.MotorVehicles.Value; }
 			set { ApiRequest.MotorVehicles = value; }
 		}
 		
@@ -143,7 +144,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetDescriptionTemplatesResponseType.DescriptionTemplate"/> of type <see cref="DescriptionTemplateTypeCollection"/>.
 		/// </summary>
-		public DescriptionTemplateType[] DescriptionTemplateList
+		public List<DescriptionTemplateType> DescriptionTemplateList
 		{ 
 			get { return ApiResponse.DescriptionTemplate; }
 		}
@@ -153,13 +154,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int LayoutTotal
 		{ 
-			get { return ApiResponse.LayoutTotal; }
+			get { return ApiResponse.LayoutTotal.Value; }
 		}
 		
  		/// <summary>
 		/// Gets the returned <see cref="GetDescriptionTemplatesResponseType.ObsoleteLayoutID"/> of type <see cref="Int32Collection"/>.
 		/// </summary>
-		public Int32[] ObsoleteLayoutIDList
+		public List<Int32?> ObsoleteLayoutIDList
 		{ 
 			get { return ApiResponse.ObsoleteLayoutID; }
 		}
@@ -167,7 +168,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetDescriptionTemplatesResponseType.ObsoleteThemeID"/> of type <see cref="Int32Collection"/>.
 		/// </summary>
-		public Int32[] ObsoleteThemeIDList
+		public List<Int32?> ObsoleteThemeIDList
 		{ 
 			get { return ApiResponse.ObsoleteThemeID; }
 		}
@@ -175,7 +176,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetDescriptionTemplatesResponseType.ThemeGroup"/> of type <see cref="ThemeGroupTypeCollection"/>.
 		/// </summary>
-		public ThemeGroupType[] ThemeGroupList
+		public List<ThemeGroupType> ThemeGroupList
 		{ 
 			get { return ApiResponse.ThemeGroup; }
 		}
@@ -185,7 +186,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int ThemeTotal
 		{ 
-			get { return ApiResponse.ThemeTotal; }
+			get { return ApiResponse.ThemeTotal.Value; }
 		}
 		
 

@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -60,7 +61,7 @@ namespace eBay.Service.Call
 		/// One <b>InventoryStatus</b> container is required for each item or item variation that is being revised. Whether updating the price and/or quantity of a single-variation listing or a specific variation within a multiple-variation listing, the limit of items or item variations that can be modified with one call is four.
 		/// </param>
 		///
-		public InventoryStatusType[] ReviseInventoryStatus(InventoryStatusType[] InventoryStatuList)
+		public List<InventoryStatusType> ReviseInventoryStatus(List<InventoryStatusType> InventoryStatuList)
 		{
 			this.InventoryStatuList = InventoryStatuList;
 
@@ -106,7 +107,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="ReviseInventoryStatusRequestType.InventoryStatus"/> of type <see cref="InventoryStatusTypeCollection"/>.
 		/// </summary>
-		public InventoryStatusType[] InventoryStatuList
+		public List<InventoryStatusType> InventoryStatuList
 		{ 
 			get { return ApiRequest.InventoryStatus; }
 			set { ApiRequest.InventoryStatus = value; }
@@ -116,7 +117,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="ReviseInventoryStatusResponseType.InventoryStatus"/> of type <see cref="InventoryStatusTypeCollection"/>.
 		/// </summary>
-		public InventoryStatusType[] InventoryStatuListReturn
+		public List<InventoryStatusType> InventoryStatuListReturn
 		{ 
 			get { return ApiResponse.InventoryStatus; }
 		}
@@ -124,7 +125,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="ReviseInventoryStatusResponseType.Fees"/> of type <see cref="InventoryFeesTypeCollection"/>.
 		/// </summary>
-		public InventoryFeesType[] FeeList
+		public List<InventoryFeesType> FeeList
 		{ 
 			get { return ApiResponse.Fees; }
 		}

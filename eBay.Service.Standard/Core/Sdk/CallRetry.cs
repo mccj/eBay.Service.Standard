@@ -11,6 +11,7 @@
 #region Namespaces
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Soap;
 
@@ -89,30 +90,30 @@ namespace eBay.Service.Core.Sdk
 		}
 
 		/// <summary>
-		/// If using the getter, this gets the error codes that will result in a retry. Type <see cref="StringCollection"/>.
+		/// If using the getter, this gets the error codes that will result in a retry. Type <see cref="List<string>"/>.
         /// If using the setter, this specifies the error codes that are to cause a retry.
 		/// </summary>
-		public String[] TriggerErrorCodes
+		public List<string> TriggerErrorCodes
 		{
 			get { return mFilter.TriggerErrorCodes; }
 			set { mFilter.TriggerErrorCodes = value ; }
 		}
 
 		/// <summary>
-		/// If using the getter, this gets the status codes that will result in a retry. Type <see cref="StringCollection"/>.
+		/// If using the getter, this gets the status codes that will result in a retry. Type <see cref="List<string>"/>.
         /// If using the setter, this specifies the status codes that are to cause a retry.
 		/// </summary>
-		public Int32[] TriggerHttpStatusCodes
+		public List<Int32> TriggerHttpStatusCodes
 		{
 			get { return mFilter.TriggerHttpStatusCodes; }
 			set { mFilter.TriggerHttpStatusCodes = value ; }
 		}
 
-		/// <summary>
-        /// If using the getter, this gets the exceptions that will result in a retry. Type <see cref="TypeCollection"/>..
+        /// <summary>
+        /// If using the getter, this gets the exceptions that will result in a retry. Type <see cref="List<Type>"/>..
         /// If using the setter, this specifies the exceptions that are to cause a retry.
-		/// </summary>
-		public Type[] TriggerExceptions
+        /// </summary>
+        public List<Type> TriggerExceptions
 		{
 			get { return mFilter.TriggerExceptions; }
 			set { mFilter.TriggerExceptions = value ; }

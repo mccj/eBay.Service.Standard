@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -70,21 +71,21 @@ namespace eBay.Service.Call
 		/// This container is used if the user want to remove one or more product variations within a multiple-variation listing. Note that if the <b>VariationKey</b> container is used, one or more <b>ItemID</b> fields or the <b>RemoveAllItems</b> field cannot be used.
 		/// </param>
 		///
-		public int RemoveFromWatchList(String[] ItemIDList, bool RemoveAllItems, VariationKeyType[] VariationKeyList)
+		public int RemoveFromWatchList(List<string> ItemIDList, bool RemoveAllItems, List<VariationKeyType> VariationKeyList)
 		{
 			this.ItemIDList = ItemIDList;
 			this.RemoveAllItems = RemoveAllItems;
 			this.VariationKeyList = VariationKeyList;
 
 			Execute();
-			return ApiResponse.WatchListCount;
+			return ApiResponse.WatchListCount.Value;
 		}
 
 
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public int RemoveFromWatchList(String[] ItemIDList)
+		public int RemoveFromWatchList(List<string> ItemIDList)
 		{
 			this.ItemIDList = ItemIDList;
 			Execute();
@@ -125,9 +126,9 @@ namespace eBay.Service.Call
 
 		
  		/// <summary>
-		/// Gets or sets the <see cref="RemoveFromWatchListRequestType.ItemID"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="RemoveFromWatchListRequestType.ItemID"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] ItemIDList
+		public List<string> ItemIDList
 		{ 
 			get { return ApiRequest.ItemID; }
 			set { ApiRequest.ItemID = value; }
@@ -138,14 +139,14 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool RemoveAllItems
 		{ 
-			get { return ApiRequest.RemoveAllItems; }
+			get { return ApiRequest.RemoveAllItems.Value; }
 			set { ApiRequest.RemoveAllItems = value; }
 		}
 		
  		/// <summary>
 		/// Gets or sets the <see cref="RemoveFromWatchListRequestType.VariationKey"/> of type <see cref="VariationKeyTypeCollection"/>.
 		/// </summary>
-		public VariationKeyType[] VariationKeyList
+		public List<VariationKeyType> VariationKeyList
 		{ 
 			get { return ApiRequest.VariationKey; }
 			set { ApiRequest.VariationKey = value; }
@@ -157,7 +158,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int WatchListCount
 		{ 
-			get { return ApiResponse.WatchListCount; }
+			get { return ApiResponse.WatchListCount.Value; }
 		}
 		
  		/// <summary>
@@ -165,7 +166,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int WatchListMaximum
 		{ 
-			get { return ApiResponse.WatchListMaximum; }
+			get { return ApiResponse.WatchListMaximum.Value; }
 		}
 		
 

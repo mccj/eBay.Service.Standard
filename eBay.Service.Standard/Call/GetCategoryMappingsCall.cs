@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -67,7 +68,7 @@ namespace eBay.Service.Call
 		/// only compare whether the value has changed.
 		/// </param>
 		///
-		public CategoryMappingType[] GetCategoryMappings(string CategoryVersion)
+		public List<CategoryMappingType> GetCategoryMappings(string CategoryVersion)
 		{
 			this.CategoryVersion = CategoryVersion;
 
@@ -91,7 +92,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public CategoryMappingType[] GetCategoryMappings()
+		public List<CategoryMappingType> GetCategoryMappings()
 		{
 			Execute();
 			return CategoryMappingList;
@@ -143,7 +144,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetCategoryMappingsResponseType.CategoryMapping"/> of type <see cref="CategoryMappingTypeCollection"/>.
 		/// </summary>
-		public CategoryMappingType[] CategoryMappingList
+		public List<CategoryMappingType> CategoryMappingList
 		{ 
 			get { return ApiResponse.CategoryMapping; }
 		}

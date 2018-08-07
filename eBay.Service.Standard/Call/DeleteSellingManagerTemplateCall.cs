@@ -108,7 +108,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long SaleTemplateID
 		{ 
-			get { return ApiRequest.SaleTemplateID; }
+			get { return ApiRequest.SaleTemplateID.Value; }
 			set { ApiRequest.SaleTemplateID = value; }
 		}
 		

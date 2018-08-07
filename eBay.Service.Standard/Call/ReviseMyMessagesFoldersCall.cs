@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -74,7 +75,7 @@ namespace eBay.Service.Call
 		/// FolderID = 1.
 		/// </param>
 		///
-		public void ReviseMyMessagesFolders(MyMessagesFolderOperationCodeType Operation, Int64[] FolderIDList, String[] FolderNameList)
+		public void ReviseMyMessagesFolders(MyMessagesFolderOperationCodeType Operation, List<Int64?> FolderIDList, List<string> FolderNameList)
 		{
 			this.Operation = Operation;
 			this.FolderIDList = FolderIDList;
@@ -88,7 +89,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public void ReviseMyMessagesFolders(MyMessagesFolderOperationCodeType Operation, String[] FolderNameList, Int64[] FolderIDList)
+		public void ReviseMyMessagesFolders(MyMessagesFolderOperationCodeType Operation, List<string> FolderNameList, List<Int64?> FolderIDList)
 		{
 			this.Operation = Operation;
 			this.FolderNameList = FolderNameList;
@@ -134,23 +135,23 @@ namespace eBay.Service.Call
 		/// </summary>
 		public MyMessagesFolderOperationCodeType Operation
 		{ 
-			get { return ApiRequest.Operation; }
+			get { return ApiRequest.Operation.Value; }
 			set { ApiRequest.Operation = value; }
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="ReviseMyMessagesFoldersRequestType.FolderID"/> of type <see cref="Int64Collection"/>.
+		/// Gets or sets the <see cref="ReviseMyMessagesFoldersRequestType.FolderID"/> of type <see cref="List<Int64>"/>.
 		/// </summary>
-		public Int64[] FolderIDList
+		public List<Int64?> FolderIDList
 		{ 
 			get { return ApiRequest.FolderID; }
 			set { ApiRequest.FolderID = value; }
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="ReviseMyMessagesFoldersRequestType.FolderName"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="ReviseMyMessagesFoldersRequestType.FolderName"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] FolderNameList
+		public List<string> FolderNameList
 		{ 
 			get { return ApiRequest.FolderName; }
 			set { ApiRequest.FolderName = value; }

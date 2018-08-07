@@ -102,7 +102,7 @@ namespace eBay.Service.Call
 			this.AllAuctionItems = AllAuctionItems;
 
 			Execute();
-			return ApiResponse.Status;
+			return ApiResponse.Status.Value;
 		}
 
 
@@ -145,7 +145,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long PromotionalSaleID
 		{ 
-			get { return ApiRequest.PromotionalSaleID; }
+			get { return ApiRequest.PromotionalSaleID.Value; }
 			set { ApiRequest.PromotionalSaleID = value; }
 		}
 		
@@ -154,7 +154,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public ModifyActionCodeType Action
 		{ 
-			get { return ApiRequest.Action; }
+			get { return ApiRequest.Action.Value; }
 			set { ApiRequest.Action = value; }
 		}
 		
@@ -172,7 +172,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long StoreCategoryID
 		{ 
-			get { return ApiRequest.StoreCategoryID; }
+			get { return ApiRequest.StoreCategoryID.Value; }
 			set { ApiRequest.StoreCategoryID = value; }
 		}
 		
@@ -181,7 +181,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long CategoryID
 		{ 
-			get { return ApiRequest.CategoryID; }
+			get { return ApiRequest.CategoryID.Value; }
 			set { ApiRequest.CategoryID = value; }
 		}
 		
@@ -190,7 +190,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool AllFixedPriceItems
 		{ 
-			get { return ApiRequest.AllFixedPriceItems; }
+			get { return ApiRequest.AllFixedPriceItems.Value; }
 			set { ApiRequest.AllFixedPriceItems = value; }
 		}
 		
@@ -199,7 +199,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool AllStoreInventoryItems
 		{ 
-			get { return ApiRequest.AllStoreInventoryItems; }
+			get { return ApiRequest.AllStoreInventoryItems.Value; }
 			set { ApiRequest.AllStoreInventoryItems = value; }
 		}
 		
@@ -208,7 +208,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool AllAuctionItems
 		{ 
-			get { return ApiRequest.AllAuctionItems; }
+			get { return ApiRequest.AllAuctionItems.Value; }
 			set { ApiRequest.AllAuctionItems = value; }
 		}
 		
@@ -218,7 +218,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public PromotionalSaleStatusCodeType Status
 		{ 
-			get { return ApiResponse.Status; }
+			get { return ApiResponse.Status.Value; }
 		}
 		
 

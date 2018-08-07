@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -73,7 +74,7 @@ namespace eBay.Service.Call
 			this.ProductID = ProductID;
 
 			Execute();
-			return ApiResponse.CategoryID;
+			return ApiResponse.CategoryID.Value;
 		}
 
 
@@ -134,7 +135,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long ProductID
 		{ 
-			get { return ApiRequest.ProductID; }
+			get { return ApiRequest.ProductID.Value; }
 			set { ApiRequest.ProductID = value; }
 		}
 		
@@ -144,7 +145,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long CategoryID
 		{ 
-			get { return ApiResponse.CategoryID; }
+			get { return ApiResponse.CategoryID.Value; }
 		}
 		
  		/// <summary>
@@ -152,7 +153,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long Category2ID
 		{ 
-			get { return ApiResponse.Category2ID; }
+			get { return ApiResponse.Category2ID.Value; }
 		}
 		
  		/// <summary>
@@ -160,7 +161,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long SaleTemplateID
 		{ 
-			get { return ApiResponse.SaleTemplateID; }
+			get { return ApiResponse.SaleTemplateID.Value; }
 		}
 		
  		/// <summary>
@@ -168,7 +169,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public long SaleTemplateGroupID
 		{ 
-			get { return ApiResponse.SaleTemplateGroupID; }
+			get { return ApiResponse.SaleTemplateGroupID.Value; }
 		}
 		
  		/// <summary>
@@ -186,11 +187,11 @@ namespace eBay.Service.Call
 		{ 
 			get { return ApiResponse.SellingManagerProductDetails; }
 		}
-		
- 		/// <summary>
-		/// Gets the returned <see cref="AddSellingManagerTemplateResponseType.Fees"/> of type <see cref="FeeTypeCollection"/>.
-		/// </summary>
-		public FeeType[] FeeList
+
+        /// <summary>
+        /// Gets the returned <see cref="AddSellingManagerTemplateResponseType.Fees"/> of type <see cref="FeesType"/>.
+        /// </summary>
+        public List<FeeType> FeeList
 		{ 
 			get { return ApiResponse.Fees; }
 		}

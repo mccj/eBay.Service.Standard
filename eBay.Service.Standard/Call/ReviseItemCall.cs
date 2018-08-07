@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -94,14 +95,14 @@ namespace eBay.Service.Call
 		/// When the <b>VerifyOnly</b> is included and set as <code>true</code>, the active listing is not actually revised, but the same response is returned and the seller gets to see the expected fees based on the changes made, and can also view any listing recommendations if the <b>Item.IncludeRecommedations</b> boolean field is included and set to <code>true</code>.
 		/// </param>
 		///
-		public DateTime ReviseItem(ItemType Item, String[] DeletedFieldList, bool VerifyOnly)
+		public DateTime ReviseItem(ItemType Item, List<string> DeletedFieldList, bool VerifyOnly)
 		{
 			this.Item = Item;
 			this.DeletedFieldList = DeletedFieldList;
 			this.VerifyOnly = VerifyOnly;
 
 			Execute();
-			return ApiResponse.StartTime;
+			return ApiResponse.StartTime.Value;
 		}
 
 		/// <summary>
@@ -109,7 +110,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public override void Execute()
 		{
-			if (ApiContext.EPSServerUrl != null && PictureFileList != null && PictureFileList.Length > 0)
+			if (ApiContext.EPSServerUrl != null && PictureFileList != null && PictureFileList.Count > 0)
 			{
 				eBayPictureService eps = new eBayPictureService(this.ApiContext);
 				if (Item.PictureDetails == null)
@@ -117,14 +118,15 @@ namespace eBay.Service.Call
 					Item.PictureDetails = new PictureDetailsType();
 					Item.PictureDetails.PhotoDisplay = PhotoDisplayCodeType.None;
 				} 
-				else if (!Item.PictureDetails.PhotoDisplaySpecified || Item.PictureDetails.PhotoDisplay == PhotoDisplayCodeType.CustomCode)
+				else if (!Item.PictureDetails.PhotoDisplay.HasValue || Item.PictureDetails.PhotoDisplay == PhotoDisplayCodeType.CustomCode)
 				{
 					Item.PictureDetails.PhotoDisplay = PhotoDisplayCodeType.None;
 				}
 
 				try
 				{
-					Item.PictureDetails.PictureURL = eps.UpLoadPictureFiles(Item.PictureDetails.PhotoDisplay, PictureFileList);
+					Item.PictureDetails.PictureURL = new List<string>();
+					Item.PictureDetails.PictureURL.AddRange(eps.UpLoadPictureFiles(Item.PictureDetails.PhotoDisplay.Value, PictureFileList.ToArray()));
 				} 
 				catch (Exception ex)
 				{
@@ -194,9 +196,9 @@ namespace eBay.Service.Call
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="ReviseItemRequestType.DeletedField"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="ReviseItemRequestType.DeletedField"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] DeletedFieldList
+		public List<string> DeletedFieldList
 		{ 
 			get { return ApiRequest.DeletedField; }
 			set { ApiRequest.DeletedField = value; }
@@ -207,13 +209,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool VerifyOnly
 		{ 
-			get { return ApiRequest.VerifyOnly; }
+			get { return ApiRequest.VerifyOnly.Value; }
 			set { ApiRequest.VerifyOnly = value; }
 		}
 		/// <summary>
 		///
 		/// </summary>
-										public String[] PictureFileList
+										public List<string> PictureFileList
 		{ 
 			get { return mPictureFileList; }
 			set { mPictureFileList = value; }
@@ -233,7 +235,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartTime
 		{ 
-			get { return ApiResponse.StartTime; }
+			get { return ApiResponse.StartTime.Value; }
 		}
 		
  		/// <summary>
@@ -241,13 +243,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTime
 		{ 
-			get { return ApiResponse.EndTime; }
+			get { return ApiResponse.EndTime.Value; }
 		}
 		
  		/// <summary>
-		/// Gets the returned <see cref="ReviseItemResponseType.Fees"/> of type <see cref="FeeTypeCollection"/>.
+		/// Gets the returned <see cref="ReviseItemResponseType.Fees"/> of type <see cref="List<FeeType>"/>.
 		/// </summary>
-		public FeeType[] FeeList
+		public List<FeeType> FeeList
 		{ 
 			get { return ApiResponse.Fees; }
 		}
@@ -273,13 +275,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool VerifyOnlyReturn
 		{ 
-			get { return ApiResponse.VerifyOnly; }
+			get { return ApiResponse.VerifyOnly.Value; }
 		}
 		
  		/// <summary>
-		/// Gets the returned <see cref="ReviseItemResponseType.DiscountReason"/> of type <see cref="DiscountReasonCodeTypeCollection"/>.
+		/// Gets the returned <see cref="ReviseItemResponseType.DiscountReason"/> of type <see cref="List<DiscountReasonCodeType?>"/>.
 		/// </summary>
-		public DiscountReasonCodeType[] DiscountReasonList
+		public List<DiscountReasonCodeType?> DiscountReasonList
 		{ 
 			get { return ApiResponse.DiscountReason; }
 		}
@@ -304,7 +306,7 @@ namespace eBay.Service.Call
 		#endregion
 
 		#region Private Fields
-		private String[] mPictureFileList = new string[] { };
+		private List<string> mPictureFileList = new List<string>();
 		#endregion
 		
 	}

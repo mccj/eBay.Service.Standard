@@ -57,7 +57,7 @@ namespace eBay.Service.Call
 		{
 
 			Execute();
-			return ApiResponse.Timestamp;
+			return ApiResponse.Timestamp.Value;
 		}
 
 
@@ -99,7 +99,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EBayTime
 		{ 
-		   	get { return ApiResponse.Timestamp; }
+		   	get { return ApiResponse.Timestamp.Value; }
 		}
 		
 

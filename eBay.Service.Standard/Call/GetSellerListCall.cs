@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -143,7 +144,7 @@ namespace eBay.Service.Call
 		/// If true, the <b>Variations</b> node is returned for all multi-variation listings in the response.  <b>Note:</b> If the seller includes a large number of variations in many listings, using this flag may degrade the call's performance. Therefore, when you use this flag, you may need to reduce the total number of items you're requesting at once. <br/><br/> For example, you may need to use shorter time ranges in the <b>EndTime</b> or <b>StartTime</b> filters, fewer entries per page in <b>Pagination</b>, and/or <b>SKUArray</b>.
 		/// </param>
 		///
-		public ItemType[] GetSellerList(string UserID, UserIDArrayType MotorsDealerUserList, DateTime EndTimeFrom, DateTime EndTimeTo, int Sort, DateTime StartTimeFrom, DateTime StartTimeTo, PaginationType Pagination, GranularityLevelCodeType GranularityLevel, String[] SKUArrayList, bool IncludeWatchCount, bool AdminEndedItemsOnly, int CategoryID, bool IncludeVariations)
+		public List<ItemType> GetSellerList(string UserID, System.Collections.Generic.List<string> MotorsDealerUserList, DateTime EndTimeFrom, DateTime EndTimeTo, int Sort, DateTime StartTimeFrom, DateTime StartTimeTo, PaginationType Pagination, GranularityLevelCodeType GranularityLevel, List<string> SKUArrayList, bool IncludeWatchCount, bool AdminEndedItemsOnly, int CategoryID, bool IncludeVariations)
 		{
 			this.UserID = UserID;
 			this.MotorsDealerUserList = MotorsDealerUserList;
@@ -168,7 +169,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public ItemType[] GetSellerList()
+		public List<ItemType> GetSellerList()
 		{
 			Execute();
 			return ItemList;
@@ -219,10 +220,10 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="GetSellerListRequestType.MotorsDealerUsers"/> of type <see cref="UserIDArrayType"/>.
 		/// </summary>
-		public UserIDArrayType MotorsDealerUserList
+		public System.Collections.Generic.List<string> MotorsDealerUserList
 		{ 
-			get { return ApiRequest.MotorsDealerUsers; }
-			set { ApiRequest.MotorsDealerUsers = value; }
+			get { return ApiRequest.MotorsDealerUsers.UserID; }
+			set { ApiRequest.MotorsDealerUsers = new UserIDArrayType {  UserID= value }; }
 		}
 		
  		/// <summary>
@@ -230,7 +231,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTimeFrom
 		{ 
-			get { return ApiRequest.EndTimeFrom; }
+			get { return ApiRequest.EndTimeFrom.Value; }
 			set { ApiRequest.EndTimeFrom = value; }
 		}
 		
@@ -239,7 +240,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime EndTimeTo
 		{ 
-			get { return ApiRequest.EndTimeTo; }
+			get { return ApiRequest.EndTimeTo.Value; }
 			set { ApiRequest.EndTimeTo = value; }
 		}
 		
@@ -248,7 +249,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int Sort
 		{ 
-			get { return ApiRequest.Sort; }
+			get { return ApiRequest.Sort.Value; }
 			set { ApiRequest.Sort = value; }
 		}
 		
@@ -257,7 +258,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartTimeFrom
 		{ 
-			get { return ApiRequest.StartTimeFrom; }
+			get { return ApiRequest.StartTimeFrom.Value; }
 			set { ApiRequest.StartTimeFrom = value; }
 		}
 		
@@ -266,7 +267,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public DateTime StartTimeTo
 		{ 
-			get { return ApiRequest.StartTimeTo; }
+			get { return ApiRequest.StartTimeTo.Value; }
 			set { ApiRequest.StartTimeTo = value; }
 		}
 		
@@ -284,17 +285,17 @@ namespace eBay.Service.Call
 		/// </summary>
 		public GranularityLevelCodeType GranularityLevel
 		{ 
-			get { return ApiRequest.GranularityLevel; }
+			get { return ApiRequest.GranularityLevel.Value; }
 			set { ApiRequest.GranularityLevel = value; }
 		}
 		
  		/// <summary>
-		/// Gets or sets the <see cref="GetSellerListRequestType.SKUArray"/> of type <see cref="StringCollection"/>.
+		/// Gets or sets the <see cref="GetSellerListRequestType.SKUArray"/> of type <see cref="List<string>"/>.
 		/// </summary>
-		public String[] SKUArrayList
+		public List<string> SKUArrayList
 		{ 
 			get { return ApiRequest.SKUArray; }
-			set { ApiRequest.SKUArray = value; }
+			set { ApiRequest.SKUArray = value ; }
 		}
 		
  		/// <summary>
@@ -302,7 +303,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeWatchCount
 		{ 
-			get { return ApiRequest.IncludeWatchCount; }
+			get { return ApiRequest.IncludeWatchCount.Value; }
 			set { ApiRequest.IncludeWatchCount = value; }
 		}
 		
@@ -311,7 +312,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool AdminEndedItemsOnly
 		{ 
-			get { return ApiRequest.AdminEndedItemsOnly; }
+			get { return ApiRequest.AdminEndedItemsOnly.Value; }
 			set { ApiRequest.AdminEndedItemsOnly = value; }
 		}
 		
@@ -320,7 +321,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int CategoryID
 		{ 
-			get { return ApiRequest.CategoryID; }
+			get { return ApiRequest.CategoryID.Value; }
 			set { ApiRequest.CategoryID = value; }
 		}
 		
@@ -329,7 +330,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool IncludeVariations
 		{ 
-			get { return ApiRequest.IncludeVariations; }
+			get { return ApiRequest.IncludeVariations.Value; }
 			set { ApiRequest.IncludeVariations = value; }
 		}
 				/// <summary>
@@ -337,7 +338,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public TimeFilter EndTimeFilter
 		{ 
-			get { return new TimeFilter(ApiRequest.EndTimeFrom, ApiRequest.EndTimeTo); }
+			get { return new TimeFilter(ApiRequest.EndTimeFrom.Value, ApiRequest.EndTimeTo.Value); }
 			set 
 			{
 				if (value.TimeFrom > DateTime.MinValue)
@@ -352,7 +353,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public TimeFilter StartTimeFilter
 		{ 
-			get { return new TimeFilter(ApiRequest.StartTimeFrom, ApiRequest.StartTimeTo); }
+			get { return new TimeFilter(ApiRequest.StartTimeFrom.Value, ApiRequest.StartTimeTo.Value); }
 			set 
 			{
 				if (value.TimeFrom > DateTime.MinValue)
@@ -377,13 +378,13 @@ namespace eBay.Service.Call
 		/// </summary>
 		public bool HasMoreItems
 		{ 
-			get { return ApiResponse.HasMoreItems; }
+			get { return ApiResponse.HasMoreItems.Value; }
 		}
 		
  		/// <summary>
 		/// Gets the returned <see cref="GetSellerListResponseType.ItemArray"/> of type <see cref="ItemTypeCollection"/>.
 		/// </summary>
-		public ItemType[] ItemList
+		public List<ItemType> ItemList
 		{ 
 			get { return ApiResponse.ItemArray; }
 		}
@@ -393,7 +394,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int ItemsPerPage
 		{ 
-			get { return ApiResponse.ItemsPerPage; }
+			get { return ApiResponse.ItemsPerPage.Value; }
 		}
 		
  		/// <summary>
@@ -401,7 +402,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int PageNumber
 		{ 
-			get { return ApiResponse.PageNumber; }
+			get { return ApiResponse.PageNumber.Value; }
 		}
 		
  		/// <summary>
@@ -409,7 +410,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int ReturnedItemCountActual
 		{ 
-			get { return ApiResponse.ReturnedItemCountActual; }
+			get { return ApiResponse.ReturnedItemCountActual.Value; }
 		}
 		
  		/// <summary>

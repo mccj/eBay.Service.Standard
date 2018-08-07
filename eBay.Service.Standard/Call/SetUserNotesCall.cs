@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -125,7 +126,7 @@ namespace eBay.Service.Call
 		/// <b>GetMyeBaySellinging</b>.
 		/// </param>
 		///
-		public void SetUserNotes(string ItemID, SetUserNotesActionCodeType Action, string NoteText, string TransactionID, NameValueListType[] VariationSpecificList, string SKU, string OrderLineItemID)
+		public void SetUserNotes(string ItemID, SetUserNotesActionCodeType Action, string NoteText, string TransactionID, List<NameValueListType> VariationSpecificList, string SKU, string OrderLineItemID)
 		{
 			this.ItemID = ItemID;
 			this.Action = Action;
@@ -188,7 +189,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public SetUserNotesActionCodeType Action
 		{ 
-			get { return ApiRequest.Action; }
+			get { return ApiRequest.Action.Value; }
 			set { ApiRequest.Action = value; }
 		}
 		
@@ -213,7 +214,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="SetUserNotesRequestType.VariationSpecifics"/> of type <see cref="NameValueListTypeCollection"/>.
 		/// </summary>
-		public NameValueListType[] VariationSpecificList
+		public List<NameValueListType> VariationSpecificList
 		{ 
 			get { return ApiRequest.VariationSpecifics; }
 			set { ApiRequest.VariationSpecifics = value; }

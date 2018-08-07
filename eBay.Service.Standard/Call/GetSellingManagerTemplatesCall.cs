@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -57,7 +58,7 @@ namespace eBay.Service.Call
 		/// The unique identifier of the Selling Manager Template whose data will be returned. A Selling Manager Template contains the data needed to list an item. One or more template IDs can be specified, each in its own field. You can obtain a <b>SaleTemplateID</b> by calling <b>GetSellingManagerInventory</b>.
 		/// </param>
 		///
-		public SellingManagerTemplateDetailsType[] GetSellingManagerTemplates(Int64[] SaleTemplateIDList)
+		public List<SellingManagerTemplateDetailsType> GetSellingManagerTemplates(List<Int64?> SaleTemplateIDList)
 		{
 			this.SaleTemplateIDList = SaleTemplateIDList;
 
@@ -101,9 +102,9 @@ namespace eBay.Service.Call
 
 		
  		/// <summary>
-		/// Gets or sets the <see cref="GetSellingManagerTemplatesRequestType.SaleTemplateID"/> of type <see cref="Int64Collection"/>.
+		/// Gets or sets the <see cref="GetSellingManagerTemplatesRequestType.SaleTemplateID"/> of type <see cref="List<Int64>"/>.
 		/// </summary>
-		public Int64[] SaleTemplateIDList
+		public List<Int64?> SaleTemplateIDList
 		{ 
 			get { return ApiRequest.SaleTemplateID; }
 			set { ApiRequest.SaleTemplateID = value; }
@@ -113,7 +114,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetSellingManagerTemplatesResponseType.SellingManagerTemplateDetailsArray"/> of type <see cref="SellingManagerTemplateDetailsTypeCollection"/>.
 		/// </summary>
-		public SellingManagerTemplateDetailsType[] SellingManagerTemplateDetailsList
+		public List<SellingManagerTemplateDetailsType> SellingManagerTemplateDetailsList
 		{ 
 			get { return ApiResponse.SellingManagerTemplateDetailsArray; }
 		}

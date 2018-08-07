@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -107,7 +108,7 @@ namespace eBay.Service.Call
 		/// <b>FeedbackType</b> and <b>Pagination</b> fields (if included) are ignored.
 		/// </param>
 		///
-		public FeedbackDetailType[] GetFeedback(string UserID, string FeedbackID, string ItemID, string TransactionID, CommentTypeCodeType[] CommentTypeList, FeedbackTypeCodeType FeedbackType, PaginationType Pagination, string OrderLineItemID)
+		public List<FeedbackDetailType> GetFeedback(string UserID, string FeedbackID, string ItemID, string TransactionID, List<CommentTypeCodeType?> CommentTypeList, FeedbackTypeCodeType FeedbackType, PaginationType Pagination, string OrderLineItemID)
 		{
 			this.UserID = UserID;
 			this.FeedbackID = FeedbackID;
@@ -126,7 +127,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public FeedbackDetailType[] GetFeedback()
+		public List<FeedbackDetailType> GetFeedback()
 		{
 			Execute();
 			return FeedbackList;
@@ -134,7 +135,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public FeedbackDetailType[] GetFeedback(string UserID)
+		public List<FeedbackDetailType> GetFeedback(string UserID)
 		{
 			this.UserID = UserID;
 			Execute();
@@ -209,11 +210,11 @@ namespace eBay.Service.Call
 			get { return ApiRequest.TransactionID; }
 			set { ApiRequest.TransactionID = value; }
 		}
-		
- 		/// <summary>
-		/// Gets or sets the <see cref="GetFeedbackRequestType.CommentType"/> of type <see cref="CommentTypeCodeTypeCollection"/>.
-		/// </summary>
-		public CommentTypeCodeType[] CommentTypeList
+
+        /// <summary>
+        /// Gets or sets the <see cref="GetFeedbackRequestType.CommentType"/> of type <see cref="List<CommentTypeCodeType>"/>.
+        /// </summary>
+        public List<CommentTypeCodeType?> CommentTypeList
 		{ 
 			get { return ApiRequest.CommentType; }
 			set { ApiRequest.CommentType = value; }
@@ -224,7 +225,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public FeedbackTypeCodeType FeedbackType
 		{ 
-			get { return ApiRequest.FeedbackType; }
+			get { return ApiRequest.FeedbackType.Value; }
 			set { ApiRequest.FeedbackType = value; }
 		}
 		
@@ -245,12 +246,12 @@ namespace eBay.Service.Call
 			get { return ApiRequest.OrderLineItemID; }
 			set { ApiRequest.OrderLineItemID = value; }
 		}
-		
-		
- 		/// <summary>
-		/// Gets the returned <see cref="GetFeedbackResponseType.FeedbackDetailArray"/> of type <see cref="FeedbackDetailTypeCollection"/>.
-		/// </summary>
-		public FeedbackDetailType[] FeedbackList
+
+
+        /// <summary>
+        /// Gets the returned <see cref="GetFeedbackResponseType.FeedbackDetailArray"/> of type <see cref="List<FeedbackDetailType>"/>.
+        /// </summary>
+        public List<FeedbackDetailType> FeedbackList
 		{ 
 			get { return ApiResponse.FeedbackDetailArray; }
 		}
@@ -260,7 +261,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int FeedbackDetailItemTotal
 		{ 
-			get { return ApiResponse.FeedbackDetailItemTotal; }
+			get { return ApiResponse.FeedbackDetailItemTotal.Value; }
 		}
 		
  		/// <summary>
@@ -276,7 +277,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int FeedbackScore
 		{ 
-			get { return ApiResponse.FeedbackScore; }
+			get { return ApiResponse.FeedbackScore.Value; }
 		}
 		
  		/// <summary>
@@ -292,7 +293,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int EntriesPerPage
 		{ 
-			get { return ApiResponse.EntriesPerPage; }
+			get { return ApiResponse.EntriesPerPage.Value; }
 		}
 		
  		/// <summary>
@@ -300,7 +301,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int PageNumber
 		{ 
-			get { return ApiResponse.PageNumber; }
+			get { return ApiResponse.PageNumber.Value; }
 		}
 		
 

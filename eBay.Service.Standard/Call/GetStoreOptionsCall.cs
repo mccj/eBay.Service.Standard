@@ -10,6 +10,7 @@
 
 #region Namespaces
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
@@ -53,7 +54,7 @@ namespace eBay.Service.Call
 		/// This call is used to retrieve the current list of eBay Store configuration settings.
 		/// </summary>
 		/// 
-		public StoreThemeType[] GetStoreOptions()
+		public List<StoreThemeType> GetStoreOptions()
 		{
 
 			Execute();
@@ -115,7 +116,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetStoreOptionsResponseType.LogoArray"/> of type <see cref="StoreLogoTypeCollection"/>.
 		/// </summary>
-		public StoreLogoType[] LogoList
+		public List<StoreLogoType> LogoList
 		{ 
 			get { return ApiResponse.LogoArray; }
 		}
@@ -123,7 +124,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetStoreOptionsResponseType.SubscriptionArray"/> of type <see cref="StoreSubscriptionTypeCollection"/>.
 		/// </summary>
-		public StoreSubscriptionType[] SubscriptionList
+		public List<StoreSubscriptionType> SubscriptionList
 		{ 
 			get { return ApiResponse.SubscriptionArray; }
 		}
@@ -133,7 +134,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int MaxCategories
 		{ 
-			get { return ApiResponse.MaxCategories; }
+			get { return ApiResponse.MaxCategories.Value; }
 		}
 		
  		/// <summary>
@@ -141,7 +142,7 @@ namespace eBay.Service.Call
 		/// </summary>
 		public int MaxCategoryLevels
 		{ 
-			get { return ApiResponse.MaxCategoryLevels; }
+			get { return ApiResponse.MaxCategoryLevels.Value; }
 		}
 		
 
