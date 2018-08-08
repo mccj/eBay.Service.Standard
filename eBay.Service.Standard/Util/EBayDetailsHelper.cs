@@ -31,7 +31,7 @@ namespace eBay.Service.Util
 		private static EBayDetailsHelper _helper;
 		private ApiContext _apiContext;
 		private SiteCodeType _site;
-		private List<DetailNameCodeType?> _siteIndependentDetailNames = new List<DetailNameCodeType?>(new DetailNameCodeType?[] {
+		private List<DetailNameCodeType> _siteIndependentDetailNames = new List<DetailNameCodeType>(new DetailNameCodeType[] {
 																			   DetailNameCodeType.CountryDetails,
 																			   DetailNameCodeType.CurrencyDetails, 
 																			   DetailNameCodeType.DispatchTimeMaxDetails, 
@@ -39,7 +39,7 @@ namespace eBay.Service.Util
 																			   DetailNameCodeType.SiteDetails, 
 																			   DetailNameCodeType.TimeZoneDetails
 																		   });
-		private List<DetailNameCodeType?>  _siteRelatedDetailNames = new List<DetailNameCodeType?>(new DetailNameCodeType?[] {
+		private List<DetailNameCodeType>  _siteRelatedDetailNames = new List<DetailNameCodeType>(new DetailNameCodeType[] {
 																		   DetailNameCodeType.PaymentOptionDetails, 
 																		   DetailNameCodeType.RegionDetails,
 																		   DetailNameCodeType.ShippingServiceDetails,
@@ -398,7 +398,7 @@ namespace eBay.Service.Util
 
 	private void loadPaymentOptionsDetailsForSite(GeteBayDetailsResponseType resp, SiteCodeType site)  {
 		if(resp == null) {
-                List < DetailNameCodeType?> detailNames = new List<DetailNameCodeType?>(new DetailNameCodeType?[]{DetailNameCodeType.PaymentOptionDetails});
+                List < DetailNameCodeType> detailNames = new List<DetailNameCodeType>(new DetailNameCodeType[]{DetailNameCodeType.PaymentOptionDetails});
 			resp = makeApiCall(detailNames, site);
 		}
             List < PaymentOptionDetailsType> details = resp.PaymentOptionDetails;
@@ -418,7 +418,7 @@ namespace eBay.Service.Util
 
 	private void loadURLDetailsForSite(GeteBayDetailsResponseType resp, SiteCodeType site)  {	
 		if(resp == null) {
-                List < DetailNameCodeType?> detailNames = new List<DetailNameCodeType?>(new DetailNameCodeType?[] {DetailNameCodeType.URLDetails});
+                List < DetailNameCodeType> detailNames = new List<DetailNameCodeType>(new DetailNameCodeType[] {DetailNameCodeType.URLDetails});
 			resp = makeApiCall(detailNames, site);
 		}
             List < URLDetailsType> urlDetails = resp.URLDetails;
@@ -454,8 +454,8 @@ namespace eBay.Service.Util
 	{	
 		if(resp == null) 
 		{
-                List < DetailNameCodeType?> detailNames = 
-				new List<DetailNameCodeType?>(new DetailNameCodeType?[] {DetailNameCodeType.TaxJurisdiction});
+                List < DetailNameCodeType> detailNames = 
+				new List<DetailNameCodeType>(new DetailNameCodeType[] {DetailNameCodeType.TaxJurisdiction});
 			resp = makeApiCall(detailNames, site);
 		}
             List < TaxJurisdictionType> details = resp.TaxJurisdiction;
@@ -479,8 +479,8 @@ namespace eBay.Service.Util
 	{
 		if(resp == null) 
 		{
-                List < DetailNameCodeType?> detailNames = 
-				new List<DetailNameCodeType?>(new DetailNameCodeType?[] {DetailNameCodeType.ShippingServiceDetails});
+                List < DetailNameCodeType> detailNames = 
+				new List<DetailNameCodeType>(new DetailNameCodeType[] {DetailNameCodeType.ShippingServiceDetails});
 			resp = makeApiCall(detailNames, site);
 		}
             List < ShippingServiceDetailsType> details = resp.ShippingServiceDetails;
@@ -504,8 +504,8 @@ namespace eBay.Service.Util
 	{	
 		if(resp == null) 
 		{
-                List < DetailNameCodeType?> detailNames = 
-				new List<DetailNameCodeType?>(new DetailNameCodeType?[] {DetailNameCodeType.RegionDetails});
+                List < DetailNameCodeType> detailNames = 
+				new List<DetailNameCodeType>(new DetailNameCodeType[] {DetailNameCodeType.RegionDetails});
 			resp = makeApiCall(detailNames, site);
 		}
             List < RegionDetailsType> details = resp.RegionDetails;
@@ -526,11 +526,11 @@ namespace eBay.Service.Util
 		loadRegionDetailsForSite(null, site);
 	}
 	
-	private GeteBayDetailsResponseType makeApiCall(List<DetailNameCodeType?> detailNames, SiteCodeType site)  {
+	private GeteBayDetailsResponseType makeApiCall(List<DetailNameCodeType> detailNames, SiteCodeType site)  {
 		SiteCodeType savedSite = _site;
 		_apiContext.Site = site;
 		GeteBayDetailsCall api = new GeteBayDetailsCall(_apiContext);
-            List < DetailLevelCodeType?> detailLevels = new List<DetailLevelCodeType?>( new DetailLevelCodeType?[] {DetailLevelCodeType.ReturnAll});
+            List < DetailLevelCodeType> detailLevels = new List<DetailLevelCodeType>( new DetailLevelCodeType[] {DetailLevelCodeType.ReturnAll});
 		api.DetailLevelList = detailLevels;
 		api.GeteBayDetails(detailNames);
 		_apiContext.Site = savedSite;

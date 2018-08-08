@@ -10,18 +10,11 @@
 
 #region Namespaces
 using System;
-using System.Reflection;
-using System.Collections;
-//using System.Web.Services.Protocols;
-using System.Runtime.InteropServices;
-using eBay.Service.Call;
-using eBay.Service.Util;
-using eBay.Service.Core.Soap;
-using System.Collections.Generic;
-using System.ServiceModel.Description;
-using System.ServiceModel.Channels;
-using System.ServiceModel.Dispatcher;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
+//using System.Web.Services.Protocols;
+using System.ServiceModel.Description;
+using System.ServiceModel.Dispatcher;
 //using System.Web.Services.Protocols;
 
 #endregion
@@ -87,15 +80,20 @@ namespace eBay.Service.Core.Sdk
     {
         public void 添加发送报文(string s)
         {
-            _发送.Add(s);
+            发送报文?.Invoke(s);
+            //_发送.Add(s);
         }
         public void 添加接收报文(string s)
         {
-            _接收.Add(s);
+            接收报文?.Invoke(s);
+            //_接收.Add(s);
         }
-        private List<string> _发送 = new List<string>();
-        private List<string> _接收 = new List<string>();
-        public string[] 发送 { get { return _发送.ToArray(); } }
-        public string[] 接收 { get { return _接收.ToArray(); } }
+        //private List<string> _发送 = new List<string>();
+        //private List<string> _接收 = new List<string>();
+        //public string[] 发送 { get { return _发送.ToArray(); } }
+        //public string[] 接收 { get { return _接收.ToArray(); } }
+
+        public Action<string> 发送报文 { get; set; }
+        public Action<string> 接收报文 { get; set; }
     }
 }

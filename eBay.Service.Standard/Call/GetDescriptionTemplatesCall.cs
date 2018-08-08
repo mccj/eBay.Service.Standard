@@ -160,7 +160,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetDescriptionTemplatesResponseType.ObsoleteLayoutID"/> of type <see cref="Int32Collection"/>.
 		/// </summary>
-		public List<Int32?> ObsoleteLayoutIDList
+		public List<Int32> ObsoleteLayoutIDList
 		{ 
 			get { return ApiResponse.ObsoleteLayoutID; }
 		}
@@ -168,7 +168,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="GetDescriptionTemplatesResponseType.ObsoleteThemeID"/> of type <see cref="Int32Collection"/>.
 		/// </summary>
-		public List<Int32?> ObsoleteThemeIDList
+		public List<Int32> ObsoleteThemeIDList
 		{ 
 			get { return ApiResponse.ObsoleteThemeID; }
 		}

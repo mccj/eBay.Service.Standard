@@ -58,7 +58,7 @@ namespace eBay.Service.Call
 		/// The unique identifier of the Selling Manager Template whose data will be returned. A Selling Manager Template contains the data needed to list an item. One or more template IDs can be specified, each in its own field. You can obtain a <b>SaleTemplateID</b> by calling <b>GetSellingManagerInventory</b>.
 		/// </param>
 		///
-		public List<SellingManagerTemplateDetailsType> GetSellingManagerTemplates(List<Int64?> SaleTemplateIDList)
+		public List<SellingManagerTemplateDetailsType> GetSellingManagerTemplates(List<Int64> SaleTemplateIDList)
 		{
 			this.SaleTemplateIDList = SaleTemplateIDList;
 
@@ -104,7 +104,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="GetSellingManagerTemplatesRequestType.SaleTemplateID"/> of type <see cref="List<Int64>"/>.
 		/// </summary>
-		public List<Int64?> SaleTemplateIDList
+		public List<Int64> SaleTemplateIDList
 		{ 
 			get { return ApiRequest.SaleTemplateID; }
 			set { ApiRequest.SaleTemplateID = value; }

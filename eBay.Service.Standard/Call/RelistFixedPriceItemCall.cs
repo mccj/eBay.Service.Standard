@@ -302,7 +302,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets the returned <see cref="RelistFixedPriceItemResponseType.DiscountReason"/> of type <see cref="List<DiscountReasonCodeType?>"/>.
 		/// </summary>
-		public List<DiscountReasonCodeType?> DiscountReasonList
+		public List<DiscountReasonCodeType> DiscountReasonList
 		{ 
 			get { return ApiResponse.DiscountReason; }
 		}

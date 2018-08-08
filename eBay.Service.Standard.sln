@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eBay.Service.Standard.Test2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eBay.Service.Standard.Test3", "eBay.Service.Standard.Test3\eBay.Service.Standard.Test3.csproj", "{4FDACD87-9137-4C5C-85D6-F209B940C6EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSDLTool", "WSDLTool\WSDLTool\WSDLTool.csproj", "{60E1C43B-5142-499D-B382-B3F8638E16C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4FDACD87-9137-4C5C-85D6-F209B940C6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FDACD87-9137-4C5C-85D6-F209B940C6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FDACD87-9137-4C5C-85D6-F209B940C6EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E1C43B-5142-499D-B382-B3F8638E16C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E1C43B-5142-499D-B382-B3F8638E16C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E1C43B-5142-499D-B382-B3F8638E16C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E1C43B-5142-499D-B382-B3F8638E16C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

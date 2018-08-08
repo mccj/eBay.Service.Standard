@@ -108,7 +108,7 @@ namespace eBay.Service.Call
 		/// <b>FeedbackType</b> and <b>Pagination</b> fields (if included) are ignored.
 		/// </param>
 		///
-		public List<FeedbackDetailType> GetFeedback(string UserID, string FeedbackID, string ItemID, string TransactionID, List<CommentTypeCodeType?> CommentTypeList, FeedbackTypeCodeType FeedbackType, PaginationType Pagination, string OrderLineItemID)
+		public List<FeedbackDetailType> GetFeedback(string UserID, string FeedbackID, string ItemID, string TransactionID, List<CommentTypeCodeType> CommentTypeList, FeedbackTypeCodeType FeedbackType, PaginationType Pagination, string OrderLineItemID)
 		{
 			this.UserID = UserID;
 			this.FeedbackID = FeedbackID;
@@ -214,7 +214,7 @@ namespace eBay.Service.Call
         /// <summary>
         /// Gets or sets the <see cref="GetFeedbackRequestType.CommentType"/> of type <see cref="List<CommentTypeCodeType>"/>.
         /// </summary>
-        public List<CommentTypeCodeType?> CommentTypeList
+        public List<CommentTypeCodeType> CommentTypeList
 		{ 
 			get { return ApiRequest.CommentType; }
 			set { ApiRequest.CommentType = value; }

@@ -88,7 +88,7 @@ namespace eBay.Service.Call
 		/// This container allows the seller to retrieve orders that were purchased within a specified time range. A time range can be set up to 90 days in the past (or up to 120 days if the <b>Archived</b> field is included and set to <code>true</code>.
 		/// </param>
 		///
-		public List<SellingManagerSoldOrderType> GetSellingManagerSoldListings(SellingManagerSearchType Search, long StoreCategoryID, List<SellingManagerSoldListingsPropertyTypeCodeType?> FilterList, bool Archived, SellingManagerSoldListingsSortTypeCodeType Sort, SortOrderCodeType SortOrder, PaginationType Pagination, TimeRangeType SaleDateRange)
+		public List<SellingManagerSoldOrderType> GetSellingManagerSoldListings(SellingManagerSearchType Search, long StoreCategoryID, List<SellingManagerSoldListingsPropertyTypeCodeType> FilterList, bool Archived, SellingManagerSoldListingsSortTypeCodeType Sort, SortOrderCodeType SortOrder, PaginationType Pagination, TimeRangeType SaleDateRange)
 		{
 			this.Search = Search;
 			this.StoreCategoryID = StoreCategoryID;
@@ -159,7 +159,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="GetSellingManagerSoldListingsRequestType.Filter"/> of type <see cref="SellingManagerSoldListingsPropertyTypeCodeTypeCollection"/>.
 		/// </summary>
-		public List<SellingManagerSoldListingsPropertyTypeCodeType?> FilterList
+		public List<SellingManagerSoldListingsPropertyTypeCodeType> FilterList
 		{ 
 			get { return ApiRequest.Filter; }
 			set { ApiRequest.Filter = value; }

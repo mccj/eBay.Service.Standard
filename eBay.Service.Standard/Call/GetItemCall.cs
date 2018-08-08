@@ -254,36 +254,36 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="GetItemRequestType.IncludeWatchCount"/> of type <see cref="bool"/>.
 		/// </summary>
-		public bool IncludeWatchCount
+		public bool? IncludeWatchCount
 		{ 
-			get { return ApiRequest.IncludeWatchCount.Value; }
+			get { return ApiRequest.IncludeWatchCount; }
 			set { ApiRequest.IncludeWatchCount = value; }
 		}
 		
  		/// <summary>
 		/// Gets or sets the <see cref="GetItemRequestType.IncludeCrossPromotion"/> of type <see cref="bool"/>.
 		/// </summary>
-		public bool IncludeCrossPromotion
+		public bool? IncludeCrossPromotion
 		{ 
-			get { return ApiRequest.IncludeCrossPromotion.Value; }
+			get { return ApiRequest.IncludeCrossPromotion; }
 			set { ApiRequest.IncludeCrossPromotion = value; }
 		}
 		
  		/// <summary>
 		/// Gets or sets the <see cref="GetItemRequestType.IncludeItemSpecifics"/> of type <see cref="bool"/>.
 		/// </summary>
-		public bool IncludeItemSpecifics
+		public bool? IncludeItemSpecifics
 		{ 
-			get { return ApiRequest.IncludeItemSpecifics.Value; }
+			get { return ApiRequest.IncludeItemSpecifics; }
 			set { ApiRequest.IncludeItemSpecifics = value; }
 		}
 		
  		/// <summary>
 		/// Gets or sets the <see cref="GetItemRequestType.IncludeTaxTable"/> of type <see cref="bool"/>.
 		/// </summary>
-		public bool IncludeTaxTable
+		public bool? IncludeTaxTable
 		{ 
-			get { return ApiRequest.IncludeTaxTable.Value; }
+			get { return ApiRequest.IncludeTaxTable; }
 			set { ApiRequest.IncludeTaxTable = value; }
 		}
 		
@@ -326,9 +326,9 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="GetItemRequestType.IncludeItemCompatibilityList"/> of type <see cref="bool"/>.
 		/// </summary>
-		public bool IncludeItemCompatibilityList
+		public bool? IncludeItemCompatibilityList
 		{ 
-			get { return ApiRequest.IncludeItemCompatibilityList.Value; }
+			get { return ApiRequest.IncludeItemCompatibilityList; }
 			set { ApiRequest.IncludeItemCompatibilityList = value; }
 		}
 		

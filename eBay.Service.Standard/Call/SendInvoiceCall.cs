@@ -172,7 +172,7 @@ namespace eBay.Service.Call
 		/// This field allows the seller to adjust the total cost of the order to account for an extra charge or to pass down a discount to the buyer.  The currency used in this field must be the same currency of the listing site. A positive value in this field indicates that the amount is an extra charge being paid to the seller by the buyer, and a negative value indicates that the amount is a discount given to the buyer by the seller.
 		/// </param>
 		///
-		public void SendInvoice(string ItemID, string TransactionID, string OrderID, List<InternationalShippingServiceOptionsType> InternationalShippingServiceOptionsList, List<ShippingServiceOptionsType> ShippingServiceOptionsList, SalesTaxType SalesTax, InsuranceOptionCodeType InsuranceOption, AmountType InsuranceFee, List<BuyerPaymentMethodCodeType?> PaymentMethodsList, string PayPalEmailAddress, string CheckoutInstructions, bool EmailCopyToSeller, AmountType CODCost, string SKU, string OrderLineItemID, AmountType AdjustmentAmount)
+		public void SendInvoice(string ItemID, string TransactionID, string OrderID, List<InternationalShippingServiceOptionsType> InternationalShippingServiceOptionsList, List<ShippingServiceOptionsType> ShippingServiceOptionsList, SalesTaxType SalesTax, InsuranceOptionCodeType InsuranceOption, AmountType InsuranceFee, List<BuyerPaymentMethodCodeType> PaymentMethodsList, string PayPalEmailAddress, string CheckoutInstructions, bool EmailCopyToSeller, AmountType CODCost, string SKU, string OrderLineItemID, AmountType AdjustmentAmount)
 		{
 			this.ItemID = ItemID;
 			this.TransactionID = TransactionID;
@@ -323,7 +323,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="SendInvoiceRequestType.PaymentMethods"/> of type <see cref="BuyerPaymentMethodCodeTypeCollection"/>.
 		/// </summary>
-		public List<BuyerPaymentMethodCodeType?> PaymentMethodsList
+		public List<BuyerPaymentMethodCodeType> PaymentMethodsList
 		{ 
 			get { return ApiRequest.PaymentMethods; }
 			set { ApiRequest.PaymentMethods = value; }

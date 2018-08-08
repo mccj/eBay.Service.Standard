@@ -34,7 +34,7 @@ namespace eBay.Service.Util
         private int _levelLimit = 3;
         private bool _viewAllNodes = true;
         private bool _allFeaturesForCategory = true;
-        private List<FeatureIDCodeType?> _featureIDs = null;
+        private List<FeatureIDCodeType> _featureIDs = null;
 
         private static Hashtable _categoryFeaturesBySite = new Hashtable(5);
         private List<CategoryFeatureType> _categoryFeatures;
@@ -64,7 +64,7 @@ namespace eBay.Service.Util
         /// <summary>
         /// 
         /// </summary>
-        public GetCategoryFeaturesHelper(ApiContext ApiContext, string CategoryID, int LevelLimit, bool ViewAllNodes, List<FeatureIDCodeType?> FeatureIDList, bool AllFeaturesForCategory)
+        public GetCategoryFeaturesHelper(ApiContext ApiContext, string CategoryID, int LevelLimit, bool ViewAllNodes, List<FeatureIDCodeType> FeatureIDList, bool AllFeaturesForCategory)
         {
             _apiContext = ApiContext;
             _site = _apiContext.Site;
@@ -233,7 +233,7 @@ namespace eBay.Service.Util
         private void getCategoryFeatures()
         {
             GetCategoryFeaturesCall api = new GetCategoryFeaturesCall(_apiContext);
-            List<DetailLevelCodeType?> detailLevels = new List<DetailLevelCodeType?>(new DetailLevelCodeType?[] { DetailLevelCodeType.ReturnAll });
+            List<DetailLevelCodeType> detailLevels = new List<DetailLevelCodeType>(new DetailLevelCodeType[] { DetailLevelCodeType.ReturnAll });
             api.DetailLevelList = detailLevels;
 
             // Make API call.

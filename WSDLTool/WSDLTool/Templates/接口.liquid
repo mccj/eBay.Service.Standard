@@ -1,0 +1,44 @@
+﻿{% if it.Namespace and it.Namespace !=''-%}
+namespace {{it.Namespace}}
+{
+{% endif -%}
+
+{% if it.Description.Summary and it.Description.Summary != '' -%}
+/// <summary>
+/// {{ it.Description.Summary | csharpdocs }}
+/// </summary>
+{% endif -%}
+{% if it.Description.Remarks and it.Description.Remarks != '' -%}
+/// <remarks>
+/// {{ it.Description.Remarks | csharpdocs }}
+/// </remarks>
+{% endif -%}
+[System.CodeDom.Compiler.GeneratedCode("{{ setting.ToolchainName }}", "{{ setting.ToolchainVersion }}")]
+{% for attribute in it.Attributes -%}
+{% if attribute and attribute != '' -%}
+[{{attribute}}]
+{% endif -%}
+{% endfor -%}
+{{ it.TypeAccessModifier | downcase }} interface {{it.Name}}
+{
+{% for method in it.Methods -%}
+{% if method.Description.Summary and method.Description.Summary != '' -%}
+    /// <summary>
+    /// {{ method.Description.Summary | csharpdocs }}
+    /// </summary>
+{% endif -%}
+{% if method.Description.Remarks and method.Description.Remarks != '' -%}
+    /// <remarks>
+    /// {{ method.Description.Remarks | csharpdocs }}
+    /// </remarks>
+{% endif -%}
+	{% for attribute in method.Attributes -%}
+	[{{attribute}}]
+	{% endfor -%}
+	{{method.ResultType}} {{method.Name}}({% for parameter in method.Parameters -%}	{{parameter.Type}} {{parameter.Name}}{% if parameter.DefaultValue and parameter.DefaultValue != '' %} = null{% endif %}{% if forloop.last == false %}, {% endif %}{% endfor -%});
+{% endfor -%}
+}
+
+{% if it.Namespace and it.Namespace !=''-%}
+}
+{% endif -%}

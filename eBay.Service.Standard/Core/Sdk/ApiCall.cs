@@ -554,7 +554,7 @@ namespace eBay.Service.Core.Sdk
 
 
 
-        public List<DetailLevelCodeType?> DetailLevelList
+        public List<DetailLevelCodeType> DetailLevelList
         {
             get { return mDetailLevelList; }
             set { mDetailLevelList = value; }
@@ -695,7 +695,7 @@ namespace eBay.Service.Core.Sdk
         private string mVersion;
         private TimeSpan mResponseTime;
         private SiteCodeType mSite = SiteCodeType.CustomCode;
-        private List<DetailLevelCodeType?> mDetailLevelList = new List<DetailLevelCodeType?>();
+        private List<DetailLevelCodeType> mDetailLevelList = new List<DetailLevelCodeType>();
         //private string mSoapRequest;
         //private string mSoapResponse;
         private string mOAuth;

@@ -66,7 +66,7 @@ namespace eBay.Service.Call
 		/// If neither the <b>PromotionalSaleID</b> nor a <b>PromotionalSaleStatus</b> field is used, then all promotional sales for the eBay store owner are returned.
 		/// </param>
 		///
-		public List<PromotionalSaleType> GetPromotionalSaleDetails(long PromotionalSaleID, List<PromotionalSaleStatusCodeType?> PromotionalSaleStatuList)
+		public List<PromotionalSaleType> GetPromotionalSaleDetails(long PromotionalSaleID, List<PromotionalSaleStatusCodeType> PromotionalSaleStatuList)
 		{
 			this.PromotionalSaleID = PromotionalSaleID;
 			this.PromotionalSaleStatuList = PromotionalSaleStatuList;
@@ -122,7 +122,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="GetPromotionalSaleDetailsRequestType.PromotionalSaleStatus"/> of type <see cref="PromotionalSaleStatusCodeTypeCollection"/>.
 		/// </summary>
-		public List<PromotionalSaleStatusCodeType?> PromotionalSaleStatuList
+		public List<PromotionalSaleStatusCodeType> PromotionalSaleStatuList
 		{ 
 			get { return ApiRequest.PromotionalSaleStatus; }
 			set { ApiRequest.PromotionalSaleStatus = value; }

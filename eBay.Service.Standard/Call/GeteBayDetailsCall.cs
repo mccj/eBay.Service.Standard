@@ -60,7 +60,7 @@ namespace eBay.Service.Call
 		/// One or more <b>DetailName</b> fields may be used to control the the type of metadata that is returned in the response. If no <b>DetailName</b> fields are used, all metadata will be returned in the response. It is a good idea to familiarize yourself with the metadata that can be returned with <b>GeteBayDetails</b> by reading through the enumeration values in <a href="types/DetailNameCodeType.html">DetailNameCodeType</a>.
 		/// </param>
 		///
-		public void GeteBayDetails(List<DetailNameCodeType?> DetailNameList)
+		public void GeteBayDetails(List<DetailNameCodeType> DetailNameList)
 		{
 			this.DetailNameList = DetailNameList;
 
@@ -106,7 +106,7 @@ namespace eBay.Service.Call
         /// <summary>
         /// Gets or sets the <see cref="GeteBayDetailsRequestType.DetailName"/> of type <see cref="List<DetailNameCodeType>"/>.
         /// </summary>
-        public List<DetailNameCodeType?> DetailNameList
+        public List<DetailNameCodeType> DetailNameList
 		{ 
 			get { return ApiRequest.DetailName; }
 			set { ApiRequest.DetailName = value; }

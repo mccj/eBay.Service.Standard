@@ -75,7 +75,7 @@ namespace eBay.Service.Call
 		/// FolderID = 1.
 		/// </param>
 		///
-		public void ReviseMyMessagesFolders(MyMessagesFolderOperationCodeType Operation, List<Int64?> FolderIDList, List<string> FolderNameList)
+		public void ReviseMyMessagesFolders(MyMessagesFolderOperationCodeType Operation, List<Int64> FolderIDList, List<string> FolderNameList)
 		{
 			this.Operation = Operation;
 			this.FolderIDList = FolderIDList;
@@ -89,7 +89,7 @@ namespace eBay.Service.Call
 		/// <summary>
 		/// For backward compatibility with old wrappers.
 		/// </summary>
-		public void ReviseMyMessagesFolders(MyMessagesFolderOperationCodeType Operation, List<string> FolderNameList, List<Int64?> FolderIDList)
+		public void ReviseMyMessagesFolders(MyMessagesFolderOperationCodeType Operation, List<string> FolderNameList, List<Int64> FolderIDList)
 		{
 			this.Operation = Operation;
 			this.FolderNameList = FolderNameList;
@@ -142,7 +142,7 @@ namespace eBay.Service.Call
  		/// <summary>
 		/// Gets or sets the <see cref="ReviseMyMessagesFoldersRequestType.FolderID"/> of type <see cref="List<Int64>"/>.
 		/// </summary>
-		public List<Int64?> FolderIDList
+		public List<Int64> FolderIDList
 		{ 
 			get { return ApiRequest.FolderID; }
 			set { ApiRequest.FolderID = value; }

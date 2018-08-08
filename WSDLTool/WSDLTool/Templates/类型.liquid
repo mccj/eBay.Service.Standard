@@ -1,0 +1,77 @@
+﻿{% if it.Namespace and it.Namespace !=''-%}
+namespace {{it.Namespace}}
+{
+{% endif -%}
+
+{% if it.Description.Summary and it.Description.Summary != '' -%}
+/// <summary>
+/// {{ it.Description.Summary | csharpdocs }}
+/// </summary>
+{% endif -%}
+{% if it.Description.Remarks and it.Description.Remarks != '' -%}
+/// <remarks>
+/// {{ it.Description.Remarks | csharpdocs }}
+/// </remarks>
+{% endif -%}
+[System.CodeDom.Compiler.GeneratedCode("{{ setting.ToolchainName }}", "{{ setting.ToolchainVersion }}")]
+[System.Serializable()]
+//[System.Diagnostics.DebuggerStepThrough()]
+{% for attribute in it.Attributes -%}
+{% if attribute and attribute != '' -%}
+[{{attribute}}]
+{% endif -%}
+{% endfor -%}
+{{ it.TypeAccessModifier | downcase }} {% if it.IsAbstract %}abstract {% endif %}partial class {{it.Name}} {% if it.BaseTypeName and it.BaseTypeName != '' -%} : {{it.BaseTypeName}}{% endif -%}
+{
+
+#region 属性
+{% for property in it.Properties -%}
+{% if property.Description.Summary and property.Description.Summary != '' -%}
+    /// <summary>
+    /// {{ property.Description.Summary | csharpdocs }}
+    /// </summary>
+{% endif -%}
+{% if property.Description.Remarks and property.Description.Remarks != '' -%}
+    /// <remarks>
+    /// {{ property.Description.Remarks | csharpdocs }}
+    /// </remarks>
+{% endif -%}
+{% for attribute in property.Attributes -%}
+{% if attribute and attribute != '' -%}
+[{{attribute}}]
+{% endif -%}
+{% endfor -%}
+{% if property.Name == it.Name %}[System.Xml.Serialization.XmlElement("{{property.Name}}")]{% endif %}
+	{{ property.TypeAccessModifier | downcase }} {{property.Type}} {{property.Name}}{% if property.Name == it.Name %}1{% endif %} { get; set; }
+{% endfor -%}
+#endregion
+
+#region 方法
+{% for method in it.Methods -%}
+{% if method.Description.Summary and method.Description.Summary != '' -%}
+    /// <summary>
+    /// {{ method.Description.Summary | csharpdocs }}
+    /// </summary>
+{% endif -%}
+{% if method.Description.Remarks and method.Description.Remarks != '' -%}
+    /// <remarks>
+    /// {{ method.Description.Remarks | csharpdocs }}
+    /// </remarks>
+{% endif -%}
+{% for attribute in method.Attributes -%}
+{% if attribute and attribute != '' -%}
+[{{attribute}}]
+{% endif -%}
+{% endfor -%}
+{% if method.Name == it.Name %}[System.Xml.Serialization.XmlElement("{{method.Name}}")]{% endif %}
+	{{ method.TypeAccessModifier | downcase }} {{method.ResultType}} {{method.Name}}({% for parameter in method.Parameters -%}	{{parameter.Type}} {{parameter.Name}}{% if parameter.DefaultValue and parameter.DefaultValue != '' %} = null{% endif %}{% if forloop.last == false %}, {% endif %}{% endfor -%})
+	{
+		{{method.Content}}
+	}
+{% endfor -%}
+#endregion
+}
+
+{% if it.Namespace and it.Namespace !=''-%}
+}
+{% endif -%}
