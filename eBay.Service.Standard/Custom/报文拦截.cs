@@ -23,9 +23,9 @@ namespace eBay.Service.Core.Sdk
 {
     public class ContextPropagationBehavior : IEndpointBehavior
     {
-        private 报文 报文;
+        private SoapMessage 报文;
 
-        public ContextPropagationBehavior(报文 报文)
+        public ContextPropagationBehavior(SoapMessage 报文)
         {
             this.报文 = 报文;
         }
@@ -52,22 +52,22 @@ namespace eBay.Service.Core.Sdk
     }
     public class MyMessageInspector : System.ServiceModel.Dispatcher.IClientMessageInspector
     {
-        private 报文 报文;
+        private SoapMessage  _soapMessage;
 
-        public MyMessageInspector(报文 报文)
+        public MyMessageInspector(SoapMessage soapMessage)
         {
-            this.报文 = 报文;
+            this._soapMessage = soapMessage;
         }
 
         public void AfterReceiveReply(ref Message reply, object correlationState)
         {
-            this.报文.添加接收报文(reply.ToString());
+            this._soapMessage.receiveMessage(reply.ToString());
             //throw new NotImplementedException();
         }
 
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
-            this.报文.添加发送报文(request.ToString());
+            this._soapMessage.sendMessage(request.ToString());
             //MessageBuffer buffer = request.CreateBufferedCopy(Int32.MaxValue);
             //request = buffer.CreateMessage();
             //Console.WriteLine("Sending:\n{0}", buffer.CreateMessage().ToString());
@@ -76,16 +76,16 @@ namespace eBay.Service.Core.Sdk
             return null;
         }
     }
-    public class 报文
+    public class SoapMessage
     {
-        public void 添加发送报文(string s)
+        internal void sendMessage(string message)
         {
-            发送报文?.Invoke(s);
+            SendMessage?.Invoke(message);
             //_发送.Add(s);
         }
-        public void 添加接收报文(string s)
+        internal void receiveMessage(string message)
         {
-            接收报文?.Invoke(s);
+            ReceiveMessage?.Invoke(message);
             //_接收.Add(s);
         }
         //private List<string> _发送 = new List<string>();
@@ -93,7 +93,7 @@ namespace eBay.Service.Core.Sdk
         //public string[] 发送 { get { return _发送.ToArray(); } }
         //public string[] 接收 { get { return _接收.ToArray(); } }
 
-        public Action<string> 发送报文 { get; set; }
-        public Action<string> 接收报文 { get; set; }
+        public Action<string> SendMessage { get; set; }
+        public Action<string> ReceiveMessage { get; set; }
     }
 }

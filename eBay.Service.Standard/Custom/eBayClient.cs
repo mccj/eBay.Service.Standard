@@ -11,28 +11,41 @@ namespace eBay.Service
             //securityHeader.eBayAuthToken = "";
             eBayAPIInstance();
         }
-        public eBayClient(string devId = null, string appId = null, string certId = null, string ruName = null, string authToken = null) : this(authToken)
+        public eBayClient(string userName = null, string passWord = null)
+        {
+            securityHeader.Credentials.Username = userName;
+            securityHeader.Credentials.Password = passWord;
+            eBayAPIInstance();
+        }
+        public eBayClient(string devId = null, string appId = null, string certId = null, string ruName = null, string authToken = null, string userName = null, string passWord = null)
         {
             securityHeader.Credentials.AppId = appId;
             securityHeader.Credentials.DevId = devId;
             securityHeader.Credentials.AuthCert = certId;
+            securityHeader.Credentials.Username = userName;
+            securityHeader.Credentials.Password = passWord;
             this.ruName = ruName;
+            this.eBayAuthToken = authToken;
+            eBayAPIInstance();
         }
         #region 公共属性
         public string eBayAuthToken { get { return securityHeader.eBayAuthToken; } set { securityHeader.eBayAuthToken = value; } }
         public Core.Soap.SiteCodeType SiteCode { get; set; } = Core.Soap.SiteCodeType.US;
         public Core.Soap.ErrorLanguageCodeType ErrorLanguage { get; set; } = Core.Soap.ErrorLanguageCodeType.zh_CN;
-        public Core.Sdk.报文 报文 { get; } = new Core.Sdk.报文();
+        public Core.Sdk.SoapMessage SoapMessage { get; } = new Core.Sdk.SoapMessage();
         public string Version { get; } = "1065";
         public string DevId => securityHeader.Credentials.DevId;
         public string AppId => securityHeader.Credentials.AppId;
         public string CertId => securityHeader.Credentials.AuthCert;
+        public string UserName => securityHeader.Credentials.Username;
+        public string PassWord => securityHeader.Credentials.Password;
         public string ruName { get; }
         #endregion 公共属性
         #region 基础功能   
-        private Core.Soap.CustomSecurityHeaderType securityHeader { get; } = new Core.Soap.CustomSecurityHeaderType() {  Credentials=new Core.Soap.UserIdPasswordType { } };
+        private Core.Soap.CustomSecurityHeaderType securityHeader { get; } = new Core.Soap.CustomSecurityHeaderType() { Credentials = new Core.Soap.UserIdPasswordType { } };
         [NonSerialized]
         private System.ServiceModel.ChannelFactory<Core.Soap.eBayAPIInterface> channelFactory = null;
+
         private void eBayAPIInstance()
         {
             var binding = new System.ServiceModel.BasicHttpsBinding()
@@ -45,7 +58,7 @@ namespace eBay.Service
             var endpointAddress = new System.ServiceModel.EndpointAddress("https://api.ebay.com/wsapi");
             channelFactory = new System.ServiceModel.ChannelFactory<Core.Soap.eBayAPIInterface>(binding, endpointAddress);
             //var 报文 = new Core.Sdk.报文();
-            channelFactory.Endpoint.EndpointBehaviors.Add(new Core.Sdk.ContextPropagationBehavior(报文));
+            channelFactory.Endpoint.EndpointBehaviors.Add(new Core.Sdk.ContextPropagationBehavior(SoapMessage));
         }
         private T handleRequest<T>(T abstractRequest) where T : Core.Soap.AbstractRequestType
         {

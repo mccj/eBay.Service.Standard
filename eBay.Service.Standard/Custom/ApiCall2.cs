@@ -32,7 +32,7 @@ namespace eBay.Service.Core.Sdk
         {
             var endpointAddress = new System.ServiceModel.EndpointAddress("https://api.ebay.com/wsapi");
             channelFactory = new System.ServiceModel.ChannelFactory<Core.Soap.eBayAPIInterface>(binding, endpointAddress);
-            var 报文 = new Core.Sdk.报文();
+            var 报文 = new Core.Sdk.SoapMessage();
             channelFactory.Endpoint.EndpointBehaviors.Add(new Core.Sdk.ContextPropagationBehavior(报文));
         }
         public Core.Soap.eBayAPIInterface GeteBayAPIClient(string url, double? timeout = null)
