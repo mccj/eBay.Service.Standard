@@ -13,9 +13,9 @@ namespace eBay.Service
         }
         public eBayClient(string devId = null, string appId = null, string certId = null, string ruName = null, string authToken = null) : this(authToken)
         {
-            this.AppId = appId;
-            this.DevId = devId;
-            this.CertId = certId;
+            securityHeader.Credentials.AppId = appId;
+            securityHeader.Credentials.DevId = devId;
+            securityHeader.Credentials.AuthCert = certId;
             this.ruName = ruName;
         }
         #region 公共属性
@@ -24,13 +24,13 @@ namespace eBay.Service
         public Core.Soap.ErrorLanguageCodeType ErrorLanguage { get; set; } = Core.Soap.ErrorLanguageCodeType.zh_CN;
         public Core.Sdk.报文 报文 { get; } = new Core.Sdk.报文();
         public string Version { get; } = "1065";
-        public string DevId { get; }
-        public string AppId { get; }
-        public string CertId { get; }
+        public string DevId => securityHeader.Credentials.DevId;
+        public string AppId => securityHeader.Credentials.AppId;
+        public string CertId => securityHeader.Credentials.AuthCert;
         public string ruName { get; }
         #endregion 公共属性
         #region 基础功能   
-        private Core.Soap.CustomSecurityHeaderType securityHeader { get; } = new Core.Soap.CustomSecurityHeaderType();
+        private Core.Soap.CustomSecurityHeaderType securityHeader { get; } = new Core.Soap.CustomSecurityHeaderType() {  Credentials=new Core.Soap.UserIdPasswordType { } };
         [NonSerialized]
         private System.ServiceModel.ChannelFactory<Core.Soap.eBayAPIInterface> channelFactory = null;
         private void eBayAPIInstance()
