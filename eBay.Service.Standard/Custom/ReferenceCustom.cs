@@ -21,7 +21,7 @@ namespace eBay.Service.Core.Soap
         public bool? OutOfStockControl { get; set; }
         public bool? PostCheckoutExperienceEnabled { get; set; }
         public bool? IntangibleItem { get; set; }
-        public bool? PrivateListing { get; set; }
+        //public bool? PrivateListing { get; set; }
         public int? GiftIcon { get; set; }
 
     }
