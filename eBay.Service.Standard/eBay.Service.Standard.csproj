@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;NET45</TargetFrameworks>
     <Product>eBay Service SDK</Product>
-    <Version>1.0.0</Version>
+    <Version>3.1113.0.0</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Use the eBay SDK for .NET to simplify common development tasks like logging, error handling, and authentication.</Description>
     <PackageProjectUrl>https://github.com/mccj/eBay.Service.Standard</PackageProjectUrl>
